@@ -252,6 +252,17 @@ table.imp{ width:100%; border-collapse:collapse; font-size:14px; } table.imp td{
 .plans .best{ border-color:var(--ok) !important; box-shadow:inset 0 0 0 1px var(--ok); }
 .score2{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:8px 0; } .score2 div{ background:var(--led); color:#ECE8DC; border-radius:6px; padding:6px 10px; } .score2 small{ color:var(--amber); display:block; font-size:12.5px; } .score2 b{ font-size:15px; }
 .linkbtn{ background:none; border:none; color:var(--ink2); text-decoration:underline; font-size:14px; padding:10px 0; display:block; }
+
+.coach{ border-left:6px solid var(--line); padding:4px 10px; display:grid; gap:3px; }
+.coach .cph{ display:flex; align-items:baseline; gap:8px; } .coach .cph b{ font-family:var(--disp); font-size:clamp(19px,4.8vw,24px); } .coach .cph small{ color:var(--ink2); font-size:12.5px; }
+.coach .dot{ width:10px; height:10px; border-radius:50%; background:var(--line); align-self:center; }
+.coach p{ margin:0; font-size:14.5px; line-height:1.3; }
+.coach.ph-at,.coach.ph-rc{ border-color:var(--ok); } .coach.ph-at .dot,.coach.ph-rc .dot{ background:var(--ok); }
+.coach.ph-df,.coach.ph-pd{ border-color:var(--red); } .coach.ph-df .dot,.coach.ph-pd .dot{ background:var(--red); }
+.cacts{ display:flex; gap:6px; flex-wrap:wrap; margin-top:2px; } .cact{ border:none; border-radius:6px; padding:7px 11px; font-family:var(--disp); font-weight:700; font-size:15px; color:#fff; background:var(--ink); min-height:38px; }
+.cact.plan{ background:var(--red); } .cact.def{ background:var(--blue); } .cact.ord{ background:var(--amber); color:#1d1a12; }
+.coach p:nth-child(n+4){ display:none; } @media (max-width:640px){ .coach p{ font-size:13.5px; } .coach p:nth-child(n+3){ display:none; } .coach .cph small{ display:none; } .cact{ min-height:40px; font-size:14px; padding:6px 9px; } .hud.easy .minis .mini:nth-child(3){ display:none; } }
+.legend9{ display:grid; gap:4px; font-size:14px; margin-bottom:6px; } .legend9 div{ display:grid; grid-template-columns:14px 1fr; gap:8px; align-items:center; } .legend9 i{ width:12px; height:12px; border-radius:3px; display:block; }
 @media (max-width:520px){ .meters{ display:none !important; } .placar{ padding:6px 10px; } .placar .tm{ font-size:15px; } .wrap{ padding:10px 10px 0; } .frame{ padding:8px; } .plans button{ min-height:76px; padding:7px 5px; } .actbar{ margin-left:-10px; margin-right:-10px; border-radius:0; } .actbar .stopbtn{ min-width:118px; } .hint{ display:none; } }
 .next{ background:var(--ink); color:var(--panel); border-radius:8px; padding:10px 12px; margin:8px 0 6px; display:grid; gap:6px; }
 .next small{ font-family:var(--disp); font-weight:700; letter-spacing:.06em; color:var(--amber); font-size:13px; }
@@ -404,7 +415,7 @@ const PITCH = {
   5:  { n: "Futsal, 5 contra 5", L: 40, W: 24, goal: 3, boxL: 6, boxW: 14, sixL: 0, sixW: 0, pen: 6, arc: 3, maxPer: 15 }
 };
 let SIZE = 11;
-const CFG = { prd: true, slope: 1.5, half: 180, fk: 3.4, linkPull: false, x4: 0, f4: 2.2, rt: 2, sep: 0.3, mx: 2, cx: 1, x7: -0.35, f7: 1.6, noFichas: false, flat: 15, assim: 6, assimF: 0.6, noGoal: 0, cps: [], subDl: 75, ordCd: 8, focoB: 0.03, focoD: 0.04, focoC: 0.6, shape: 0 };
+const CFG = { prd: true, slope: 1.5, half: 180, fk: 3.4, linkPull: false, x4: 0, f4: 2.2, rt: 2, sep: 0.3, mx: 2, cx: 1, x7: -0.35, f7: 1.6, noFichas: false, flat: 15, assim: 6, assimF: 0.6, noGoal: 0, cps: [], subDl: 75, ordCd: 8, focoB: 0.03, focoD: 0.04, focoC: 0.6, shape: 0, longB: 0.05 };
 const SHAPE = { alta: { back: 0.1, press: 1, mk: null, w: 1 }, media: { back: 0, press: 0, mk: 0.1, w: 0.75 }, baixa: { back: -0.08, press: -9, mk: 0.1, w: 0.9 }, homem: { back: 0.02, press: 0, mk: 0.9, w: 1.15 } }; // formas bem diferentes à vista: dá para ler a defesa olhando o campo
 function setCfg(o) { Object.assign(CFG, o); HALF = CFG.half; }
 function cfg7() { setPitch(7); setCfg({ half: 120, noFichas: true, noGoal: 40, subDl: 68, shape: 1, x7: 0.3, sep: 0.24, mx: 2.5, assim: 10, assimF: 0.5, cps: [{ id: "cp1", t: 40, n: "Análise dos 20 s" }, { id: "cp3", t: 180, n: "Análise dos 30 s do 2º tempo" }] }); }
@@ -496,7 +507,7 @@ const COMBO = {
   qua: { n: "Quadrado", d: "Quatro em quadrado entre as linhas, girando posições." }
 };
 const CMX = { tab: { alta: 0.9, media: 1.0, baixa: 1.1, homem: 1.1 }, tri: { alta: 1.2, media: 1.0, baixa: 0.9, homem: 1.0 }, qua: { alta: 1.0, media: 1.2, baixa: 0.9, homem: 1.0 } }; // média igual (1,025) para as três
-const ATT_BASE = { lados: 1.15 }, COMBO_BASE = { tab: 0.93, qua: 1.07 };
+const ATT_BASE = { lados: 1.6 }, COMBO_BASE = { tab: 0.93, qua: 1.07 };
 const COUNTER_COMBO = { alta: "tri", media: "qua", baixa: "tab", homem: "tab" };
 const PLAN_FORM7 = { dentro: "2-3-1", lados: "2-2-2", prof: "3-1-2", infil: "3-2-1" };
 function comboLinks(T, combo) { // liga os jogadores mais adiantados conforme a combinação
@@ -821,7 +832,7 @@ function decideHolder(M, p) {
     const d = dist(p.x, p.y, q.x, q.y); if (d < 3 || d > 55) continue;
     const [qx, qy] = toN(side, q.x, q.y);
     if (q.role === "G" && nx > 0.35) continue;
-    const lofted = d > 30;
+    const lofted = d > 30, longFwd = T.plan && T.plan.att === "prof" && CFG.shape && d > 16 && qx > nx + 0.2;
     const P = passProb(M, p, q, lofted);
     let V = zoneValue(qx, qy);
     if (q.run && q.run.until > M.t) V += 0.05 * te.link; // tabelinha: devolver para quem já arrancou
@@ -829,6 +840,7 @@ function decideHolder(M, p) {
     const back = qx < nx - 0.05;
     let score = P * V * riskW - (1 - P) * lossCost * (1.6 - te.risco / 100) - (back ? 0.004 * (te.ritmo / 50) : 0);
     if (foco === q.i && foco !== p.i) score += P * P * (CFG.focoB + Math.abs(score) * 0.6);
+    if (longFwd) score += CFG.longB * P; // bola nas costas: procura o lançamento
     opts.push({ k: "pass", q, p: P, lofted, score, V });
   }
   // condução / 1x1
@@ -957,6 +969,11 @@ function targets(M) {
     const triggerZone = 1 - (0.35 + te.pressao / 100 * 0.6); // a partir de onde pressiona (coord do adversário)
     const oppBallNx = 1 - bnx;
     const pressers = att ? [] : mine.filter(p => p.role !== "G").sort((a, c) => dist(a.x, a.y, b.x, b.y) - dist(c.x, c.y, b.x, b.y)).slice(0, (oppBallNx > triggerZone || M.t - M.lostAt[side] < 5) ? pressN : 1);
+    if (att && CFG.shape && T.plan && T.plan.att === "prof" && (!T.nextDeep || M.t > T.nextDeep) && b.owner && b.owner.side === side) { // bola nas costas: o atacante ataca o espaço atrás da linha
+      const f = mine.filter(p => (p.role === "A" || p.role === "M") && p !== b.owner && !(p.run && p.run.until > M.t)).sort((u, v) => toN(side, v.x, v.y)[0] - toN(side, u.x, u.y)[0])[0];
+      if (f) { const last = Math.max(...M.ps.filter(o => o.side !== side && o.role !== "G").map(o => toN(side, o.x, o.y)[0])); const [, fy] = toN(side, f.x, f.y);
+        const [rx, ry] = toW(side, clamp(last + 0.12, 0.5, 0.95), clamp(fy, 0.25, 0.75)); f.run = { x: rx, y: ry, until: M.t + 3, deep: true }; M.stats[side].deep = (M.stats[side].deep || 0) + 1; }
+      T.nextDeep = M.t + 4 + rnd() * 2; }
     if (att && T.plan && T.plan.att === "infil" && (!T.nextInf || M.t > T.nextInf) && b.owner && b.owner.side === side) {
       const cand = mine.filter(p => (p.role === "M" || p.role === "A") && p !== b.owner && !(p.run && p.run.until > M.t)).sort((a, c) => toN(side, c.x, c.y)[0] - toN(side, a.x, a.y)[0]);
       const r = cand[cand.length > 1 ? 1 : 0]; if (r) { const [ix, iy] = toW(side, 1 - (BOX_L * 0.55) / FL, 0.5 + (rnd() - 0.5) * 0.35); r.run = { x: ix, y: iy, until: M.t + 3.5, inf: true }; M.stats[side].inf = (M.stats[side].inf || 0) + 1; }
@@ -1018,6 +1035,15 @@ function targets(M) {
         const dx = q.tx - p.tx, dy = q.ty - p.ty, d = Math.hypot(dx, dy) || 0.01; if (d >= minD) continue;
         const push = (minD - d) / 2, ux = dx / d, uy = dy / d;
         p.tx = clamp(p.tx - ux * push, 1, FL - 1); p.ty = clamp(p.ty - uy * push, 1, FW - 1); q.tx = clamp(q.tx + ux * push, 1, FL - 1); q.ty = clamp(q.ty + uy * push, 1, FW - 1); } }
+    if (att && CFG.shape && T.plan && b.owner && b.owner.side === side) { // forma do ataque, bem visível
+      const ak = T.plan.att, out = mine.filter(p => p.role !== "G" && p !== b.owner && !(p.run && p.run.until > M.t));
+      const bySide = out.slice().sort((u, v) => toN(side, u.tx, u.ty)[1] - toN(side, v.tx, v.ty)[1]);
+      if (ak === "lados" && bySide.length >= 2) { const lo = bySide[0], hi = bySide[bySide.length - 1];
+        [[lo, 0.06], [hi, 0.94]].forEach(([p, yy]) => { const [nx] = toN(side, p.tx, p.ty); [p.tx, p.ty] = toW(side, Math.max(nx, Math.min(0.88, bnx + 0.12)), yy); }); }
+      else if (ak === "dentro") out.forEach(p => { const [nx, ny] = toN(side, p.tx, p.ty); [p.tx, p.ty] = toW(side, nx, 0.5 + (ny - 0.5) * 0.55); });
+      else if (ak === "prof") { const f = out.slice().sort((u, v) => toN(side, v.tx, v.ty)[0] - toN(side, u.tx, u.ty)[0])[0];
+        if (f) { const opp = M.ps.filter(o => o.side !== side && o.role !== "G").map(o => toN(side, o.x, o.y)[0]), last = Math.max(...opp); const [, ny] = toN(side, f.tx, f.ty); [f.tx, f.ty] = toW(side, clamp(last + 0.01, 0.55, 0.93), ny); } }
+    }
     if (!att && shp && b.owner) { // forma da defesa, bem visível: bloco baixo fundo, médio estreito no meio, alta adiantada, encaixe colado no homem
       const dk = T.plan.def, opps = M.ps.filter(o => o.side !== side && o.role !== "G");
       if (dk === "homem" && (!T._mk || M.t > T._mkT)) { const used = new Set(); T._mk = {}; T._mkT = M.t + 6;
@@ -2370,7 +2396,7 @@ function hostShout(m) { // mensagens do convidado no anfitrião (com descarte de
 const netBroadcastV6 = netBroadcast;
 netBroadcast = function (now) {
   const M = S.M; if (!NET.room || now - NET.lastSend < 125) return;
-  NET.extra = { od: M.order.map(o => o && o.until > M.t ? [o.k, o.target ?? -1, Math.round((o.until - M.t) * 10), Math.round(o.my * 100), Math.round(o.opp * 100)] : 0), oc: M.ordCd.map(c => Math.round(Math.max(0, c - M.t) * 10)), dw: M.stats.map(st => [st.duels, st.duelsW]), rd: S.ready.map(Number), wr: NET.waitRejoin ? 1 : 0, rx: NET.readX || 0 };
+  NET.extra = { od: M.order.map(o => o && o.until > M.t ? [o.k, o.target ?? -1, Math.round((o.until - M.t) * 10), Math.round(o.my * 100), Math.round(o.opp * 100)] : 0), oc: M.ordCd.map(c => Math.round(Math.max(0, c - M.t) * 10)), dw: M.stats.map(st => [st.duels, st.duelsW]), rd: S.ready.map(Number), wr: NET.waitRejoin ? 1 : 0, rx: NET.readX || 0, ax: NET.areadX || 0 };
   netBroadcastV6(now);
 };
 const netInterpV6 = netInterp;
@@ -2444,20 +2470,20 @@ planShort = function (T, k) { if (!S.easy) return ATT[T.plans[k].att].n.replace(
 // ---------- leitura da defesa dele pela organização (para onde os jogadores tentam ir) ----------
 updateRead = function (M, dt) {
   if (!M.read) M.read = [newRead(), newRead()];
-  const b = M.ball, h = b.owner; if (!h) return; const a = Math.min(1, dt / 3);
+  const b = M.ball, h = b.owner; if (!h) return; const a = Math.min(1, dt / 2);
   const d = 1 - h.side, R = M.read[d], defs = team(M, d).filter(p => p.role !== "G"), atk = team(M, h.side).filter(p => p.role !== "G");
-  const bx = toN(d, b.x, b.y)[0]; if (bx < 0.3 || bx > 0.75) return; // mede com a bola no meio: é onde a forma da defesa aparece
+  const bx = toN(d, b.x, b.y)[0]; if (bx < 0.2 || bx > 0.85) return; // mede com a bola no meio: é onde a forma da defesa aparece
   const tx = p => p.tx ?? p.x, ty = p => p.ty ?? p.y;
   const depth = defs.map(p => toN(d, tx(p), ty(p))[0] * FL).sort((x, y) => x - y), line = (depth[0] + depth[1]) / 2;
-  const press = defs.filter(p => dist(p.x, p.y, b.x, b.y) < 6).length, man = atk.filter(q => defs.some(p => dist(tx(p), ty(p), q.x, q.y) < 2.5)).length / atk.length;
+  const gap = bx * FL - line, press = defs.filter(p => dist(p.x, p.y, b.x, b.y) < 6).length, man = atk.filter(q => defs.some(p => dist(tx(p), ty(p), q.x, q.y) < 2.5)).length / atk.length;
   const ys = defs.map(ty), width = Math.max(...ys) - Math.min(...ys);
   const a2 = R.n < 60 ? 1 / (R.n + 1) : a; // média simples no começo, depois média móvel (~3 s de jogo)
-  R.line += (line - R.line) * a2; R.press += (press - R.press) * a2; R.man += (man - R.man) * a2; R.width += (width - R.width) * a2; R.n++;
+  R.gap = (R.gap ?? gap) + (gap - (R.gap ?? gap)) * a2; R.line += (line - R.line) * a2; R.press += (press - R.press) * a2; R.man += (man - R.man) * a2; R.width += (width - R.width) * a2; R.n++;
 };
-const LINE_HI = 17.5, LINE_LO = 9.5, MAN_HI = 0.48;
+const LINE_HI = 17.5, LINE_LO = 9.5, MAN_HI = 0.48, GAP_HI = 7.5;
 function tellOf(M, s) { // o que você vê da defesa dele (s = você)
   const R = M.read && M.read[1 - s]; if (!R || R.n < 40) return null;
-  const line = R.line >= LINE_HI ? "alta" : R.line >= LINE_LO ? "média" : "baixa", man = R.man >= MAN_HI;
+  const line = (R.gap ?? 99) <= GAP_HI ? "alta" : R.line >= LINE_LO ? "média" : "baixa", man = R.man >= MAN_HI; // alta = linha colada na bola
   return { line, man, m: Math.round(R.line), mk: R.man, txt: man ? "marcação individual" : `linha ${line} · por zona` };
 }
 readRows = function (M, s) {
@@ -2592,7 +2618,171 @@ tutorial = function (after) { tutorialV7(after ? () => { try { localStorage.setI
 const updateReadV8 = updateRead;
 updateRead = function (M, dt) { if (isGuest()) return; updateReadV8(M, dt); };
 const netBroadcastV8 = netBroadcast;
-netBroadcast = function (now) { const M = S.M; NET.readX = M && M.read ? M.read.map(r => [Math.round(r.line * 10), Math.round(r.man * 100), Math.round(r.press * 10), Math.min(99, r.n)]) : 0; netBroadcastV8(now); };
+netBroadcast = function (now) { const M = S.M; NET.readX = M && M.read ? M.read.map(r => [Math.round(r.line * 10), Math.round(r.man * 100), Math.round(r.press * 10), Math.min(99, r.n), r.sc ? Object.keys(r.sc).sort((x, y) => r.sc[x] - r.sc[y])[0] : "", Math.min(99, r.sn || 0)]) : 0; netBroadcastV8(now); };
 const netInterpV8 = netInterp;
-netInterp = function (dt) { netInterpV8(dt); const M = S.M, s = NET.snap; if (M && s && s.rx) M.read = s.rx.map(([l, m, p, n]) => ({ ...newRead(), line: l / 10, man: m / 100, press: p / 10, n })); };
+netInterp = function (dt) { netInterpV8(dt); const M = S.M, s = NET.snap; if (M && s && s.rx) M.read = s.rx.map(([l, m, p, n, k, sn]) => ({ ...newRead(), line: l / 10, man: m / 100, press: p / 10, n, sn: sn || 0, sc: k ? { alta: 1, media: 1, baixa: 1, homem: 1, [k]: 0 } : null })); };
+// ===================== V9: o treinador ao lado do campo =====================
+// Uma frase por fase da jogada (atacando, defendendo, recuperou, perdeu), com o número que justifica e um botão quando há decisão.
+// No campo, só o que pede decisão: a linha dele, o passe perigoso, a saída, os 2 melhores duelos e a ordem ativa.
+S.detail = false;
+const ATT_TELL = { dentro: "por dentro, time estreito", lados: "pelos lados, pontas abertos", prof: "bola nas costas, corridas atrás da linha", infil: "com infiltrações dos meias" };
+// ---------- leitura do ataque dele (largura e corridas) ----------
+const updateReadV9 = updateRead;
+updateRead = function (M, dt) {
+  updateReadV9(M, dt); if (isGuest()) return;
+  if (!M.aread) M.aread = [{ w: 0, n: 0, hist: [] }, { w: 0, n: 0, hist: [] }];
+  const h = M.ball.owner;
+  for (let s = 0; s < 2; s++) { const A = M.aread[s], last = A.hist[A.hist.length - 1]; if (!last || M.t - last[0] >= 1) { A.hist.push([M.t, M.stats[s].deep || 0, M.stats[s].inf || 0]); if (A.hist.length > 40) A.hist.shift(); } }
+  if (!h) return; const s = h.side, A = M.aread[s];
+  const o = team(M, s).filter(p => p.role !== "G" && p !== h && !(p.run && p.run.until > M.t)); if (o.length < 2) return;
+  const ys = o.map(p => toN(s, p.tx ?? p.x, p.ty ?? p.y)[1]), w = Math.max(...ys) - Math.min(...ys), a = A.n < 60 ? 1 / (A.n + 1) : Math.min(1, dt / 3);
+  A.w += (w - A.w) * a; A.n++;
+};
+function attTellOf(M, s) { // como o adversário de s ataca
+  const A = M.aread && M.aread[1 - s]; if (!A || A.n < 40) return null;
+  const old = A.hist.find(x => x[0] >= M.t - 20) || A.hist[0] || [0, 0, 0], st = M.stats[1 - s], dp = (st.deep || 0) - old[1], inf = (st.inf || 0) - old[2];
+  const k = inf >= 2 ? "infil" : dp >= 2 ? "prof" : A.w >= 0.62 ? "lados" : A.w <= 0.36 ? "dentro" : null;
+  return k ? { k, txt: ATT_TELL[k], w: A.w, dp, inf } : null;
+}
+// ---------- fase da jogada ----------
+function phaseOf(M, s) {
+  const h = M.ball.owner; if (!S.ph || S.ph.M !== M) S.ph = { M, side: null, since: 0 };
+  if (h && h.side !== S.ph.side) { S.ph.side = h.side; S.ph.since = M.t; }
+  const side = S.ph.side, fresh = M.t - S.ph.since < 5;
+  if (side == null) return "neutro";
+  return side === s ? (fresh && S.ph.since > 1 ? "recuperou" : "ataque") : (fresh && S.ph.since > 1 ? "perdeu" : "defesa");
+}
+function bestPassOf(M, h, minP = 0) { // o passe que um treinador pediria: seguro primeiro, depois o mais à frente
+  let best = null; team(M, h.side).forEach(q => { if (q === h || q.role === "G") return; const d = dist(h.x, h.y, q.x, q.y); if (d > 34) return; const [qx] = toN(h.side, q.x, q.y), [hx] = toN(h.side, h.x, h.y), p = passProb(M, h, q, d > 30); if (p < minP) return; const v = p * (0.6 + Math.max(0, qx - hx) * 2.5); if (!best || v > best.v) best = { q, p, v }; }); return best; }
+function closerOf(M, s, q) { return team(M, s).filter(p => p.role !== "G").sort((a, b) => dist(a.x, a.y, q.x, q.y) - dist(b.x, b.y, q.x, q.y))[0]; }
+// ---------- o que o treinador diz ----------
+function coach(M, s) {
+  const ph = phaseOf(M, s), T = M.teams[s], cur = Math.max(0, T.cur), tl = tellOf(M, s), at = attTellOf(M, s), h = M.ball.owner, out = { ph, lines: [], acts: [], marks: {} };
+  const ansIdx = tl ? ANS.findIndex(x => x.d === (tl.k || (tl.man ? "homem" : { alta: "alta", "média": "media", baixa: "baixa" }[tl.line]))) : -1;
+  const dans = at ? DANS.find(x => x.vs === at.k) : null, md = myDef(T);
+  if (ph === "ataque" || ph === "recuperou") {
+    if (ph === "recuperou" && h) { const bp = bestPassOf(M, h, 0.65); if (bp) { out.marks.outlet = bp; out.lines.push(`Recuperou! Saída: passe para o ${bp.q.num} (${pct(bp.p)} de acerto) e o time sobe junto.`); } else out.lines.push("Recuperou, mas não há passe seguro: proteja a bola até alguém se apresentar."); }
+    if (tl) { out.lines.push(ansIdx === cur ? `Ele defende com ${tl.txt}: o plano ${PLAN_KEYS[cur]} é a resposta. Mantenha.` : `Ele defende com ${tl.txt}. Ataque ${ANS[ansIdx].t.toLowerCase()} (plano ${PLAN_KEYS[ansIdx]}).`);
+      if (ansIdx !== cur && ansIdx >= 0) out.acts.push({ t: `Plano ${PLAN_KEYS[ansIdx]}: ${ANS[ansIdx].t}`, f: () => pressPlan(s, ansIdx), k: "plan" }); }
+    else out.lines.push("Com a bola no meio, a defesa dele aparece em alguns segundos.");
+    const bo = canOrderUI(s) ? bestOrder(M, s).filter(o => o.k === "foco")[0] : null;
+    if (bo && bo.r >= 1.15) { const p = M.ps.find(q => q.side === s && q.i === bo.t); out.marks.duel = p; out.lines.push(`O ${p.num} ${p.name} ganha ${pct(bo.e.duel)} dos duelos: com a bola nele, suas chances sobem ${fmtM(bo.e.my).replace("+", "")}.`); out.acts.push({ t: `Bola no ${p.name}`, f: () => pressOrder(s, "foco", p.i), k: "ord" }); }
+  } else if (ph === "defesa" || ph === "perdeu") {
+    let dangerLine = null; if (h) { const bp = bestPassOf(M, h, 0.4); if (bp) { const c = closerOf(M, s, bp.q); out.marks.danger = bp; out.marks.closer = c; dangerLine = `Perigo: o passe para o ${bp.q.num} dele (${pct(bp.p)} de acerto). O seu ${c ? c.num : "jogador"} fecha.`; } }
+    if (at) { out.lines.push(dans && dans.d === md ? `Ele ataca ${at.txt}: a sua defesa (${DEF[md].n.toLowerCase()}) é a resposta.` : `Ele ataca ${at.txt}. Defenda com ${dans.t.toLowerCase()}: ${dans.why}.`);
+      if (dans && dans.d !== md) out.acts.push({ t: `Defesa: ${dans.t}`, f: () => liveDef(s, dans.d), k: "def" }); }
+    else out.lines.push("Observe como ele ataca: largura, corridas nas costas ou infiltrações.");
+    if (dangerLine) out.lines.push(dangerLine);
+    if (ph === "perdeu" && canOrderUI(s)) { const e = orderPreview(M, s, "pressao"), lead = M.score[s] - M.score[1 - s];
+      if (e.my / e.opp >= 1.1) { out.lines.push(`Perdeu a bola: pressione agora (suas chances ${fmtM(e.my)}, as dele ${fmtM(e.opp)}).`); out.acts.push({ t: "Pressão", f: () => pressOrder(s, "pressao"), k: "ord" }); }
+      else if (lead > 0) { out.lines.push("Perdeu a bola e está na frente: recue e segure."); out.acts.push({ t: "Segurar", f: () => pressOrder(s, "segurar"), k: "ord" }); }
+      else out.lines.push(`Perdeu a bola: não pressione, ele sai ${at && at.k === "prof" ? "com bola longa" : "jogando"} e pune. Recomponha.`); }
+  } else out.lines.push("Bola em disputa.");
+  return out;
+}
+function liveDef(s, d) {
+  const M = S.M, T = M.teams[s]; if (!M || M.over || S.timeoutEnd) return;
+  if (isGuest()) { netIntent({ k: "def", d }, () => NET.snap && NET.snap.pl && NET.snap.pl[S.me][1] === d); T.plans.forEach(P => { P.def = d; P.slots = null; }); const k = Math.max(0, T.cur); T.cur = -1; T.cur = k; setPlan(T, T.plans[k].att, d, T.plans[k].combo); applyPlans(M); renderHud(); return; }
+  const go = () => { if (S.M !== M || S.timeoutEnd) return; T.plans.forEach(P => { P.def = d; P.slots = null; }); const k = Math.max(0, T.cur); T.cur = -1; switchPlan(M, s, k); M.decisions.push({ t: M.t, side: s, k: "plano", txt: "Defesa: " + DEF[d].n }); renderHud(); };
+  if (S.mode === "online") setTimeout(go, 250); else go();
+}
+const hostShoutV9 = hostShout;
+hostShout = function (m) {
+  const d = m.data || {}; if (m.sameTab || !NET.host || !S.M || d.k !== "def" || !DEF[d.d]) return hostShoutV9(m);
+  if (d.id) { if (NET.seen.has(d.id)) return; NET.seen.add(d.id); }
+  if (S.timeoutEnd) return; const T = S.M.teams[1]; T.plans.forEach(P => { P.def = d.d; P.slots = null; }); const k = Math.max(0, T.cur); T.cur = -1; switchPlan(S.M, 1, k);
+};
+// online: o convidado recebe a leitura do ataque calculada no anfitrião
+const netBroadcastV9 = netBroadcast;
+netBroadcast = function (now) { const M = S.M; NET.areadX = M && M.aread ? M.aread.map(A => { const o = A.hist.find(x => x[0] >= M.t - 20) || A.hist[0] || [0, 0, 0]; return [Math.round(A.w * 100), Math.min(99, A.n), (M.stats[M.aread.indexOf(A)].deep || 0) - o[1], (M.stats[M.aread.indexOf(A)].inf || 0) - o[2]]; }) : 0; netBroadcastV9(now); };
+const netInterpV9 = netInterp;
+netInterp = function (dt) { netInterpV9(dt); const M = S.M, s = NET.snap; if (M && s && s.ax) { M.aread = s.ax.map(([w, n]) => ({ w: w / 100, n, hist: [[M.t, 0, 0]] })); s.ax.forEach(([, , dp, inf], i) => { M.stats[i].deep = dp; M.stats[i].inf = inf; }); } };
+
+// ---------- faixa do treinador (nós fixos: o texto muda, os botões só são recriados quando a decisão muda) ----------
+const renderHudV8 = renderHud;
+renderHud = function () {
+  if (!S.easy) return renderHudV8();
+  const hud = $("#hud"), M = S.M; if (!hud) return;
+  if (!M || M.over || S.timeoutEnd) { hud.classList.add("hidden"); return; } hud.classList.remove("hidden"); hud.classList.add("easy");
+  const s = mySide(), C = coach(M, s); S.coachNow = C;
+  if (!hud.querySelector(".coach")) { hud.innerHTML = ""; hud.dataset.k = "";
+    hud.append(el("div", { class: "coach" }, el("div", { class: "cph" }, el("span", { class: "dot" }), el("b", { class: "cphn" }), el("small", { text: "o treinador diz:" })), el("div", { class: "clines" }), el("div", { class: "cacts" })), el("div", { class: "minis" })); }
+  const PH = { ataque: ["Atacando", "at"], recuperou: ["Recuperou a bola", "rc"], defesa: ["Defendendo", "df"], perdeu: ["Perdeu a bola", "pd"], neutro: ["Bola em disputa", "nt"] }[C.ph];
+  const box = hud.querySelector(".coach"); box.className = "coach ph-" + PH[1]; const nm = box.querySelector(".cphn"); if (nm.textContent !== PH[0]) nm.textContent = PH[0];
+  const lk = C.lines.slice(0, 3).join("|"), lb = box.querySelector(".clines"); if (lb.dataset.k !== lk) { lb.dataset.k = lk; lb.innerHTML = ""; C.lines.slice(0, 3).forEach(t => lb.append(el("p", { text: t }))); }
+  const ak = C.acts.slice(0, 2).map(a => a.k + a.t).join("|"), ab = box.querySelector(".cacts"); S.coachActs = C.acts;
+  if (ab.dataset.k !== ak) { ab.dataset.k = ak; const want = C.acts.slice(0, 2), have = [...ab.children];
+    have.forEach(b => { if (!want.some(a => a.k + a.t === b.dataset.key)) b.remove(); }); // só troca o botão cuja decisão mudou
+    want.forEach(a => { const key = a.k + a.t; if (ab.querySelector(`[data-key="${CSS.escape(key)}"]`)) return;
+      ab.append(el("button", { class: "cact " + a.k, "data-key": key, text: a.t, onclick: () => { const x = (S.coachActs || []).find(y => y.k + y.t === key); if (x) x.f(); ab.dataset.k = ""; } })); }); }
+  const mk = Math.floor(M.t * 2) + "|" + M.score.join(), mb = hud.querySelector(".minis"); if (mb.dataset.k === mk) return; mb.dataset.k = mk; mb.innerHTML = "";
+  const a = teamNums(M, s), b = teamNums(M, 1 - s);
+  const bar = (l, x, y, f) => { const m = Math.max(x, y, 1e-6); return el("div", { class: "mini" }, el("span", { class: "l", text: l }), el("em", { text: f(x) }), el("span", { class: "tw a" }, el("i", { style: `width:${Math.round(x / m * 100)}%;background:${COLORS[0]}` })), el("span", { class: "tw b" }, el("i", { style: `width:${Math.round(y / m * 100)}%;background:${COLORS[1]}` })), el("em", { text: f(y) })); };
+  mb.append(el("div", { class: "mhead" }, el("span", { text: "" }), el("span", { text: "você" }), el("span", { text: "" }), el("span", { text: "" }), el("span", { text: "ele" })),
+    bar("Chances (20 s)", a.xr, b.xr, v => dec(v)), bar("Chances no jogo", a.xg, b.xg, v => dec(v)), bar("Energia", a.en / 100, b.en / 100, pct));
+};
+
+// ---------- campo limpo ----------
+const drawMatchV8 = drawMatch;
+drawMatch = function () {
+  if (!S.easy || S.detail) return drawMatchV8();
+  const M = S.M, b = M.ball, s = mySide(), C = S.coachNow && S.coachNow.ph ? S.coachNow : coach(M, s); S.pillN = 0;
+  M.ps.forEach(p => { if (p.run && p.run.until > M.t) arrow(p.x, p.y, p.run.x, p.run.y, p.side === s ? "rgba(238,235,225,.5)" : "rgba(235,120,100,.85)", .2, [.6, .6]); }); // corridas: as dele em vermelho (é como ele ataca)
+  const o = 1 - s, R = M.read && M.read[o], tl = tellOf(M, s);
+  if (R && tl && (C.ph === "ataque" || C.ph === "recuperou")) { const [x0, y0] = toW(o, R.line / FL, 0.06), [x1, y1] = toW(o, R.line / FL, 0.94), [a0, b0] = W2C(x0, y0), [a1, b1] = W2C(x1, y1);
+    ctx.save(); ctx.strokeStyle = "rgba(240,178,58,.85)"; ctx.lineWidth = SC * .28 * K; ctx.setLineDash([SC * .9, SC * .6]); ctx.beginPath(); ctx.moveTo(a0, b0); ctx.lineTo(a1, b1); ctx.stroke(); ctx.restore(); }
+  const line = (p, q, col, w) => { const [x1, y1] = W2C(p.x, p.y), [x2, y2] = W2C(q.x, q.y); ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = SC * w * K; ctx.setLineDash([SC * .8 * K, SC * .45 * K]); ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); ctx.restore(); };
+  const h = b.owner;
+  if (C.marks.danger && h) line(h, C.marks.danger.q, "rgba(235,90,70,.95)", .3);
+  if (C.marks.outlet && h) line(h, C.marks.outlet.q, "rgba(90,200,120,.95)", .3);
+  M.ps.forEach(p => magnet(p.x, p.y, COLORS[p.side], p.num, { sel: b.owner === p, en: p.side === s ? p.en : undefined }));
+  const P = (x, y, t, bg, fg) => { S.pillN++; pill(x, y, t, bg, fg); };
+  if (R && tl && (C.ph === "ataque" || C.ph === "recuperou")) { const [lx, ly] = toW(o, R.line / FL, 0.04); P(lx, ly, `linha dele: ${tl.m} m`, "#F0B23A", "#1d1a12"); }
+  if (C.marks.danger && h) { const q = C.marks.danger.q; P(q.x, q.y - 3 * K, `perigo ${pct(C.marks.danger.p)}`, "#B8382A"); if (C.marks.closer) P(C.marks.closer.x, C.marks.closer.y + 2.8 * K, "fecha", "#2C5DA6"); }
+  if (C.marks.outlet && h) { const q = C.marks.outlet.q; P(q.x, q.y - 3 * K, `saída ${pct(C.marks.outlet.p)}`, "#2F7A46"); }
+  if (C.marks.duel && !C.marks.outlet) { const p = C.marks.duel; P(p.x, p.y + 2.8 * K, `duelo ${pct(threatOf(M, p).duel)}`, "#2F7A46"); }
+  const od = orderOf(M, s); if (od && od.k === "foco") { const p = M.ps.find(q => q.side === s && q.i === od.target); if (p) { const [cx, cy] = W2C(p.x, p.y); ctx.save(); ctx.strokeStyle = "#F0B23A"; ctx.lineWidth = SC * .35 * K; ctx.setLineDash([SC * .5, SC * .35]); ctx.beginPath(); ctx.arc(cx, cy, SC * 2.4 * K, 0, 7); ctx.stroke(); ctx.restore(); P(p.x, p.y - 3.2 * K, "bola aqui", "#F0B23A", "#1d1a12"); } }
+  if (h && h.side === s) { const [nx] = toN(s, h.x, h.y); if (nx > 0.6) { const x = xG(M, h); if (x >= 0.08) P(h.x, h.y - 2.8 * K, `chute ${pct(x)}`, "#F0B23A", "#1d1a12"); } }
+  if (b.shot) chalkText("xG " + dec(b.shot.xg), b.x, b.y - 2.6 * K, 1.4, "rgba(240,178,58,1)");
+  if (M.t < CFG.noGoal) chalkText(`estudo: sem gol até ${STUDY_S()} s`, FL / 2, FW - 2, 1.4, "rgba(240,178,58,.9)");
+  const [sx, sy] = W2C(b.x + b.z * .25, b.y + b.z * .35), [bx, by] = W2C(b.x, b.y - b.z * .5);
+  ctx.fillStyle = "rgba(0,0,0,.4)"; ctx.beginPath(); ctx.ellipse(sx, sy, SC * .7 * K, SC * .45 * K, 0, 0, 7); ctx.fill();
+  ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(bx, by, SC * K * (.62 + b.z * .05), 0, 7); ctx.fill(); ctx.strokeStyle = "#222"; ctx.lineWidth = SC * .1; ctx.stroke();
+};
+// ---------- painel: legenda e botão de detalhes ----------
+const renderMatchSideV8 = renderMatchSide;
+renderMatchSide = function () {
+  renderMatchSideV8(); if (!S.easy) return;
+  const side = $("#side"), h2 = side.querySelector("h2");
+  const leg = el("div", { class: "legend9" },
+    el("div", {}, el("i", { style: "background:#F0B23A" }), "Amarelo: a linha dele e as suas ordens"),
+    el("div", {}, el("i", { style: "background:#2F7A46" }), "Verde: bom para você (saída, duelo que você ganha)"),
+    el("div", {}, el("i", { style: "background:#B8382A" }), "Vermelho: perigo (o passe dele, as corridas dele)"),
+    el("div", {}, el("i", { style: "background:#2C5DA6" }), "\"fecha\": o seu jogador que corta o passe perigoso"),
+    el("button", { class: "linkbtn", text: S.detail ? "Esconder os detalhes do campo" : "Ver todos os números no campo", onclick: () => { S.detail = !S.detail; renderMatchSide(); draw(); } }));
+  if (h2) h2.after(el("h3", { text: "O que as cores querem dizer" }), leg); else side.prepend(leg);
+};
+// tutorial: troca a tela 2 por uma que explica o treinador
+TUT.splice(1, 0, { t: "O treinador fala com você", d: "Acima do campo, o treinador diz o que está acontecendo: atacando, defendendo, recuperou ou perdeu a bola. Cada frase traz o número que a justifica e, quando há uma decisão, um botão. Você decide se segue: ele não vê o que o adversário vai fazer depois.",
+  svg: `<svg viewBox="0 0 320 170" role="img" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="170" rx="10" fill="#ECE6D8"/><rect x="12" y="14" width="6" height="142" rx="3" fill="#B8382A"/><text x="28" y="34" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="17" font-weight="700" fill="#1F201C">Defendendo</text><text x="28" y="60" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="14" fill="#1F201C">Perigo: passe para o 9 dele (75%).</text><text x="28" y="80" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="14" fill="#1F201C">Ele ataca pelos lados, pontas abertos.</text><text x="28" y="100" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="14" fill="#1F201C">Defenda com encaixe: cola nos pontas.</text><rect x="28" y="116" width="150" height="30" rx="6" fill="#2C5DA6"/><text x="103" y="136" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="14" font-weight="700" fill="#fff">Defesa: Encaixe</text></svg>` });
+
+// ---------- leitura da defesa por padrão: para cada posição da bola, onde cada defesa costuma deixar a linha e quanto marca individual ----------
+// (padrões medidos em 160 jogos simulados; comparar o jogo com eles acerta 97% e percebe a troca em ~5 s)
+const DEF_TPL = {"alta":{"l":[[8.2,1.12],[10.8,1.4],[13.0,1.52],[15.5,1.53],[17.8,1.56],[20.1,1.59],[22.5,1.92],[24.8,1.87],[27.1,1.88],[28.8,2.45],[29.3,2.36],[29.2,2.3],[29.8,2.55],[29.7,2.3]],"m":[[0.4,0.16],[0.41,0.17],[0.42,0.16],[0.39,0.16],[0.38,0.18],[0.36,0.18],[0.28,0.16],[0.36,0.17],[0.41,0.18],[0.4,0.16],[0.42,0.17],[0.38,0.16],[0.39,0.17],[0.39,0.17]]},"media":{"l":[[7.9,1.36],[9.0,2.16],[10.5,3.1],[11.3,3.43],[11.4,3.78],[12.4,3.47],[13.6,3.44],[13.0,3.35],[13.3,3.25],[14.3,2.89],[15.3,2.36],[16.1,1.99],[16.6,2.14],[17.0,2.14]],"m":[[0.38,0.17],[0.39,0.16],[0.37,0.15],[0.35,0.17],[0.38,0.18],[0.36,0.18],[0.28,0.16],[0.37,0.18],[0.37,0.16],[0.33,0.15],[0.32,0.13],[0.31,0.12],[0.29,0.12],[0.28,0.15]]},"baixa":{"l":[[3.5,1.9],[3.9,2.04],[4.6,2.38],[4.9,2.13],[5.1,1.99],[5.7,2.49],[6.1,2.55],[6.7,2.76],[7.0,2.13],[7.6,2.5],[8.0,2.31],[8.7,3.17],[8.7,2.31],[9.4,3.18]],"m":[[0.38,0.16],[0.36,0.16],[0.36,0.17],[0.32,0.16],[0.29,0.15],[0.3,0.16],[0.24,0.12],[0.28,0.13],[0.29,0.15],[0.29,0.13],[0.28,0.13],[0.26,0.12],[0.24,0.13],[0.24,0.13]]},"homem":{"l":[[7.5,2.02],[9.7,2.36],[11.6,2.81],[13.8,3.45],[15.3,4.49],[18.1,4.27],[22.0,4.46],[21.1,5.22],[20.0,5.9],[21.7,6.6],[23.5,6.93],[25.2,7.05],[28.7,6.34],[30.1,5.94]],"m":[[0.73,0.14],[0.73,0.14],[0.72,0.13],[0.72,0.14],[0.69,0.14],[0.71,0.15],[0.68,0.14],[0.71,0.16],[0.73,0.15],[0.69,0.14],[0.7,0.13],[0.7,0.15],[0.71,0.15],[0.74,0.17]]}};
+const updateReadV9b = updateRead;
+updateRead = function (M, dt) {
+  updateReadV9b(M, dt); if (isGuest()) return;
+  const b = M.ball, h = b.owner; if (!h) return; const d = 1 - h.side, R = M.read && M.read[d]; if (!R) return;
+  const bx = toN(d, b.x, b.y)[0]; if (bx < 0.15 || bx >= 0.85) return;
+  const defs = team(M, d).filter(p => p.role !== "G"), atk = team(M, h.side).filter(p => p.role !== "G"), tx = p => p.tx ?? p.x, ty = p => p.ty ?? p.y;
+  const dep = defs.map(p => toN(d, tx(p), ty(p))[0] * FL).sort((x, y) => x - y), line = (dep[0] + dep[1]) / 2, man = atk.filter(q => defs.some(p => dist(tx(p), ty(p), q.x, q.y) < 2.5)).length / atk.length;
+  const i = Math.min(13, Math.floor((bx - 0.15) / 0.05)); R.sc = R.sc || { alta: 0, media: 0, baixa: 0, homem: 0 }; R.sn = (R.sn || 0) + 1; const a = R.sn < 30 ? 1 / R.sn : Math.min(1, dt / 1.5);
+  for (const k in DEF_TPL) { const [ml, sl] = DEF_TPL[k].l[i], [mm, sm] = DEF_TPL[k].m[i]; const e = ((line - ml) / sl) ** 2 + ((man - mm) / sm) ** 2; R.sc[k] += (e - R.sc[k]) * a; }
+};
+const DEF_TXT = { alta: ["alta", "linha alta, colada na bola"], media: ["média", "linha média · por zona"], baixa: ["baixa", "linha baixa · por zona"], homem: [null, "marcação individual"] };
+tellOf = function (M, s) {
+  const R = M.read && M.read[1 - s]; if (!R || !R.sc || (R.sn || 0) < 40) return null;
+  const k = Object.keys(R.sc).sort((x, y) => R.sc[x] - R.sc[y])[0];
+  return { k, line: DEF_TXT[k][0] || "média", man: k === "homem", m: Math.round(R.line), mk: R.man, txt: DEF_TXT[k][1] };
+};
 </script></body></html>
