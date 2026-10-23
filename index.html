@@ -449,10 +449,11 @@ const PITCH = {
   5:  { n: "Futsal, 5 contra 5", L: 40, W: 24, goal: 3, boxL: 6, boxW: 14, sixL: 0, sixW: 0, pen: 6, arc: 3, maxPer: 15 }
 };
 let SIZE = 11;
-const CFG = { prd: true, slope: 1.5, half: 180, fk: 3.4, linkPull: false, x4: 0, f4: 2.2, rt: 2, sep: 0.3, mx: 2, cx: 1, x7: -0.35, f7: 1.6, noFichas: false, flat: 15, assim: 6, assimF: 0.6, noGoal: 0, cps: [], subDl: 75, ordCd: 8, focoB: 0.03, focoD: 0.04, focoC: 0.6, shape: 0, longB: 0.05, x6: -0.6, playB: 0.06, playWait: 1.2, playMax: 30, playBoostT: 16, playBoostK: 1.2 };
+const CFG = { prd: true, slope: 1.5, half: 180, fk: 3.4, linkPull: false, x4: 0, f4: 2.2, rt: 2, sep: 0.3, mx: 2, cx: 1, x7: -0.35, f7: 1.6, noFichas: false, flat: 15, assim: 6, assimF: 0.6, noGoal: 0, cps: [], subDl: 75, ordCd: 8, focoB: 0.03, focoD: 0.04, focoC: 0.6, shape: 0, longB: 0.05, x6: -0.6, x5: -1.0, roster: 0, zactB: 0.05, crossB: 0.05, wideB: 0.03, headB: 1.5, airK: 28, arrowW: 0.6, playB: 0.06, playWait: 1.2, playMax: 30, playBoostT: 16, playBoostK: 1.2 };
 const SHAPE = { alta: { back: 0.1, press: 1, mk: null, w: 1 }, media: { back: 0, press: 0, mk: 0.1, w: 0.75 }, baixa: { back: -0.08, press: -9, mk: 0.1, w: 0.9 }, homem: { back: 0.02, press: 0, mk: 0.9, w: 1.15 } }; // formas bem diferentes à vista: dá para ler a defesa olhando o campo
 function setCfg(o) { Object.assign(CFG, o); HALF = CFG.half; }
 function cfg6() { cfgSoc7(); setPitch(6); }
+function cfg5() { cfgSoc7(); setPitch(5); }
 function cfg7() { cfgSoc7(); }
 function cfgSoc7() { setPitch(7); setCfg({ half: 120, noFichas: true, noGoal: 40, subDl: 68, shape: 1, x7: 0.3, sep: 0.24, mx: 2.5, assim: 10, assimF: 0.5, cps: [{ id: "cp1", t: 40, n: "Análise dos 20 s" }, { id: "cp3", t: 180, n: "Análise dos 30 s do 2º tempo" }] }); }
 function setPitch(n) { const p = PITCH[n]; SIZE = n; FL = p.L; FW = p.W; GOAL_W = p.goal; BOX_L = p.boxL; BOX_W = p.boxW; SIX_L = p.sixL; SIX_W = p.sixW; PEN = p.pen; ARC = p.arc; MAX_PER = p.maxPer; }
@@ -482,6 +483,8 @@ const FORMATIONS = {
   ,"1-1-1": { era: "Escada: fixo, meia e pivô em diagonal", n: 4, s: [["G","GOL",0,.5],["D","FIX",.22,.3],["M","MEI",.52,.72],["A","PIV",.84,.32]] }
   ,"2-2": { era: "Quadrado do futsal", n: 5, s: [["G","GOL",0,.5],["D","FIX",.25,.3],["M","ALA",.55,.15],["M","ALA",.55,.85],["A","PIV",.85,.65]] }
   ,"3-1": { era: "Losango: fixo, alas e pivô", n: 5, s: [["G","GOL",0,.5],["D","FIX",.2,.5],["M","ALA",.5,.15],["M","ALA",.5,.85],["A","PIV",.86,.5]] }
+  ,"1-2-1": { era: "Futsal: meio por dentro", n: 5, s: [["G","GOL",0,.5],["D","FIX",.2,.5],["M","MC",.47,.33],["M","MC",.47,.67],["A","PIV",.85,.5]] }
+  ,"1-1-2": { era: "Futsal: dois na frente", n: 5, s: [["G","GOL",0,.5],["D","FIX",.2,.5],["M","VOL",.45,.5],["A","ATA",.8,.32],["A","ATA",.8,.68]] }
   ,"4-0": { era: "Rodízio sem pivô", n: 5, s: [["G","GOL",0,.5],["D","FIX",.22,.5],["M","ALA",.45,.12],["M","ALA",.45,.88],["A","ALA",.65,.5]] }
 };
 function formationsFor(n) { return Object.keys(FORMATIONS).filter(k => FORMATIONS[k].n === n); }
@@ -550,9 +553,11 @@ const CMX = { tab: { alta: 0.9, media: 1.0, baixa: 1.1, homem: 1.1 }, tri: { alt
 const ATT_BASE = { lados: 1.6 }, COMBO_BASE = { tab: 0.93, qua: 1.07 };
 const COUNTER_COMBO = { alta: "tri", media: "qua", baixa: "tab", homem: "tab" };
 const PLAN_FORM6 = { dentro: "2-2-1", lados: "1-2-2", prof: "2-1-2", infil: "1-3-1" };
-const SOC = () => SIZE === 7 || SIZE === 6, PFORM = () => SIZE === 6 ? PLAN_FORM6 : PLAN_FORM7;
+const PLAN_FORM5 = { dentro: "1-2-1", lados: "3-1", prof: "1-1-2", infil: "4-0" };
+const SOC = () => SIZE === 7 || SIZE === 6 || SIZE === 5, PFORM = () => SIZE === 6 ? PLAN_FORM6 : SIZE === 5 ? PLAN_FORM5 : PLAN_FORM7;
 const PLAN_FORM7 = { dentro: "2-3-1", lados: "2-2-2", prof: "3-1-2", infil: "3-2-1" };
 function comboLinks(T, combo) { // liga os jogadores mais adiantados conforme a combinação
+  if (T.userLinks && T.userLinks.length) { const ix = n => T.players.findIndex(p => p.num === n); return T.userLinks.map(([a, b]) => [ix(a), ix(b)]).filter(([a, b]) => a >= 0 && b >= 0); } // conexões desenhadas pelo técnico
   const out = T.players.filter(p => p.role !== "G").sort((a, b) => b.slot.x - a.slot.x).map(p => p.i);
   if (combo === "tri") { const t = out.slice(0, 3); return [[t[0], t[1]], [t[1], t[2]], [t[0], t[2]]]; }
   if (combo === "qua") { const q = out.slice(0, 4).map(i => T.players[i]), cx = q.reduce((a, p) => a + p.slot.x, 0) / 4, cy = q.reduce((a, p) => a + p.slot.y, 0) / 4;
@@ -571,6 +576,7 @@ function defaultPlans() { return [{ att: "dentro", def: "media", combo: "qua" },
 function usePlan(T, k) { const P = T.plans[k]; T.cur = k; setPlan(T, P.att, P.def, P.combo); if (P.slots && P.slots.length === T.players.length && P.form === T.formation) { T.players.forEach((p, i) => { p.slot = { ...P.slots[i] }; }); T.links = comboLinks(T, T.plan.combo); T._S = null; } }
 function savePlanSlots(T) { const P = T.plans && T.plans[T.cur]; if (!P) return; P.slots = T.players.map(p => ({ x: p.slot.x, y: p.slot.y })); P.form = T.formation; }
 function fitShare(T, roles, traits, M, side) {
+  const tp = T.players.filter(p => roles.includes(p.role)); if (tp.length && tp[0].sk && T.plan) { const want = traits === (ATT[T.plan.att] || {}).traits ? ATT_SK[T.plan.att] : DEF_SK[T.plan.def]; if (want) return skFit(tp, want); }
   const ps = M ? M.ps.filter(p => p.side === side && roles.includes(p.role)) : T.players.filter(p => roles.includes(p.role));
   return ps.length ? ps.filter(p => traits.includes(p.trait)).length / ps.length : 0;
 }
@@ -607,7 +613,7 @@ function npcOrders(M, side) { // ordens ao vivo do NPC: Profissional e Seleção
   const lead = M.score[side] - M.score[1 - side];
   if (lead > 0 && M.half === 2 && M.t > 2 * HALF - 40) giveOrder(M, side, "segurar"); else if (L[0][2] > 1.05) giveOrder(M, side, L[0][0], L[0][1]);
 }
-function styleFormation(k, n) { const s = STYLES[k]; if (n === 4) { const v = s.v; return v.contra > 80 ? "2-1" : v.largura > 80 ? "1-2" : "1-1-1"; } return n === 11 ? s.f : n === 7 ? s.f7 : n === 6 ? "2-2-1" : s.f5; }
+function styleFormation(k, n) { const s = STYLES[k]; if (n === 4) { const v = s.v; return v.contra > 80 ? "2-1" : v.largura > 80 ? "1-2" : "1-1-1"; } return n === 11 ? s.f : n === 7 ? s.f7 : n === 6 ? "2-2-1" : n === 5 ? "1-2-1" : s.f5; }
 const PLAN_FORM4 = { dentro: "1-1-1", lados: "1-2", prof: "2-1" };
 const SHOUTS = [
   { k: "press", n: "Pressiona!", d: "+pressão e linha alta por 20 s", mod: {pressao:+25,linha:+18,contrap:+20} },
@@ -617,6 +623,35 @@ const SHOUTS = [
 ];
 const NAMES = ["Rivelino","Tostão","Jairzinho","Clodoaldo","Piazza","Zé","Tião","Didi","Nenê","Juca","Bira","Tonho","Lula","Biro","Dinho","Careca","Mané","Zito","Pita","Chico","Neco","Dadá","Joca","Bené","Mauro","Paulão","Bebeto"];
 const NAMES_B = ["Mirandinha","Dario","Paulo Isidoro","Éder","Leandro","Tato","Gilmar","Edu","Fumaça","Lico","Toninho","Serginho","Adílio","Batata","Jair","Nunes","Roberto","Marinho","Badeco","Cocada","Pintinho","Ditão","Pelado","Russo","Vavá","Quarentinha","Ciro"];
+// ---------- elenco único: 12 atletas com 6 habilidades (mesma soma para todos); cada técnico escala os seus ----------
+const SKILLS = { for: "Força", alt: "Altura", dri: "Drible", mar: "Marcação", vel: "Velocidade", toq: "Toque" };
+const ROSTER = [ // desvios sobre 64 em [força, altura, drible, marcação, velocidade, toque] — soma zero: ninguém é melhor em tudo
+  { id: "torre", n: "Torre", ico: "🗼", d: "Alto e forte: ganha a bola aérea, cabeceia o cruzamento", v: [18, 28, -22, -4, -18, -2] },
+  { id: "flecha", n: "Flecha", ico: "⚡", d: "Muito rápido: ataca as costas da linha", v: [-18, -14, 10, -16, 30, 8] },
+  { id: "maestro", n: "Maestro", ico: "🎼", d: "Toque refinado: quebra linhas por dentro", v: [-14, -10, 10, -6, -6, 26] },
+  { id: "muralha", n: "Muralha", ico: "🧱", d: "Zagueiro forte e alto: marca e ganha no alto", v: [16, 14, -26, 28, -14, -18] },
+  { id: "artilheiro", n: "Artilheiro", ico: "🎯", d: "Chute forte: converte meia chance", v: [22, 4, 4, -22, 2, -10] },
+  { id: "driblador", n: "Driblador", ico: "🌀", d: "Vence o 1x1 e infiltra", v: [-14, -16, 30, -20, 14, 6] },
+  { id: "pulmao", n: "Pulmão", ico: "🫁", d: "Equilibrado e incansável: aguenta a pressão", v: [4, -4, 0, 6, 4, -10], sta: 0.6 },
+  { id: "ala", n: "Ala", ico: "↗️", d: "Rápido pelo lado e cruza bem", v: [-8, -10, 6, -8, 16, 4], cross: 0.35 },
+  { id: "xerife", n: "Xerife", ico: "🛡️", d: "Zagueiro alto: tira tudo pelo alto", v: [14, 24, -24, 22, -16, -20] },
+  { id: "lancador", n: "Lançador", ico: "🏹", d: "Zagueiro do passe longo: a bola nas costas sai dele", v: [6, 2, -16, 8, -12, 12], long: 0.4 },
+  { id: "volante", n: "Volante", ico: "⚓", d: "Marca e corta passes no meio", v: [8, 0, -12, 22, -8, -10], cut: 1.3 },
+  { id: "pivo", n: "Pivô", ico: "🪨", d: "Forte de costas: segura e distribui", v: [28, 10, -4, -10, -14, -10] }
+];
+const GK_SK = { for: 66, alt: 74, dri: 40, mar: 74, vel: 55, toq: 56 };
+const skOf = r => { const k = Object.keys(SKILLS), o = {}; k.forEach((x, i) => o[x] = 64 + r.v[i]); return o; };
+const ROLE_OF = { torre: "A", flecha: "A", maestro: "M", muralha: "D", artilheiro: "A", driblador: "M", pulmao: "M", ala: "M", xerife: "D", lancador: "D", volante: "M", pivo: "A" };
+// o que cada tática pede de habilidade (para o multiplicador de encaixe e para a dica de escalação)
+const ATT_SK = { dentro: { toq: 1, dri: 0.7 }, lados: { alt: 1.2, for: 0.5, vel: 0.3 }, prof: { vel: 1, toq: 0.5 }, infil: { dri: 0.8, for: 0.6 } };
+const DEF_SK = { alta: { vel: 1, mar: 0.3 }, media: { mar: 0.7, toq: 0.4 }, baixa: { alt: 0.8, mar: 0.7 }, homem: { mar: 1, vel: 0.5 } };
+function skFit(ps, want) { if (!ps.length) return 0.5; let s = 0, w = 0; for (const k in want) { const avg = ps.reduce((a, p) => a + ((p.sk || {})[k] ?? 64), 0) / ps.length; s += want[k] * (avg - 64) / 18; w += want[k]; } return clamp(0.5 + s / w * 0.5, 0, 1); }
+function rosterTeam(T, picks) { // monta o time com goleiro + os escolhidos do elenco
+  const f = FORMATIONS[T.formation].s, out = [], pool = picks.map(id => ROSTER.find(r => r.id === id)).filter(Boolean);
+  const take = role => { let k = pool.findIndex(r => ROLE_OF[r.id] === role); if (k < 0) k = 0; return pool.splice(k, 1)[0]; };
+  f.forEach((sl, i) => { const r = sl[0] === "G" ? null : take(sl[0]); out.push({ i, role: sl[0], lbl: sl[1], num: i + 1, num0: i + 1, slot: { x: sl[2], y: sl[3] }, fichas: 0, name: r ? r.n : "Goleiro", rid: r ? r.id : "gk", trait: r ? r.id : "muralha", sk: r ? skOf(r) : { ...GK_SK } }); });
+  T.players = out; T.picks = picks.slice(); T.bench = ROSTER.filter(r => !picks.includes(r.id)).map(r => ({ role: ROLE_OF[r.id], name: r.n, trait: r.id, rid: r.id, sk: skOf(r), fichas: 0 })); T.links = comboLinks(T, T.plan ? T.plan.combo : "tri"); T._S = null;
+}
 const BASE = { G:{pas:55,dri:40,fin:20,def:72,pac:55}, D:{pas:58,dri:50,fin:38,def:70,pac:63}, M:{pas:69,dri:62,fin:54,def:58,pac:64}, A:{pas:60,dri:69,fin:71,def:36,pac:71} };
 const MAX_FICHAS = 50; let MAX_PER = 10;
 // habilidades de cada atleta (o lado fantasy): o técnico escala quem tem a habilidade certa para o plano
@@ -636,10 +671,11 @@ const TRAITS = { // características por posição, cada uma com efeito real no 
   ponta:      { n: "Ponta aberto", pos: "A", d: "Fica na linha lateral e cruza bem", m: { pac: 6, pas: 6 }, cross: 0.35 },
   coringa:    { n: "Coringa", pos: "", d: "+5 em tudo: joga em qualquer setor", m: { pas: 5, dri: 5, fin: 5, def: 5, pac: 5 } }
 };
+ROSTER.forEach(r => { TRAITS[r.id] = { n: r.n, pos: "DMA", d: r.d, m: {}, long: r.long, cross: r.cross, cut: r.cut, sta: r.sta }; });
 const ROLE_TRAITS = { G: ["muralha", "libero"], D: ["xerife", "chutao", "velocista", "armador"], M: ["volante", "armador", "pulmao", "driblador", "chegada"], A: ["pivo", "velocista", "finalizador", "driblador", "ponta"] };
 const OUT7 = null;
 const pickTrait = r => { const a = ROLE_TRAITS[r]; return a[Math.floor(rnd() * a.length)]; };
-const BENCH_ROLES = { 6: ["D", "M", "A", "M", "D"], 4: ["D", "M", "A"], 11: ["G", "D", "M", "M", "A"], 7: ["D", "M", "A", "M", "D"], 5: ["D", "M", "A", "M", "A"] };
+const BENCH_ROLES = { 5: ["D", "M", "A", "M", "D"], 6: ["D", "M", "A", "M", "D"], 4: ["D", "M", "A"], 11: ["G", "D", "M", "M", "A"], 7: ["D", "M", "A", "M", "D"], 5: ["D", "M", "A", "M", "A"] };
 const BENCH_LEVEL = 4; // reserva entra com o equivalente a 4 fichas
 function makeBench(t, names) {
   t.bench = BENCH_ROLES[SIZE].map((r, k) => ({ role: r, name: names[k] || "Reserva " + (k + 1), trait: pickTrait(r), fichas: BENCH_LEVEL }));
@@ -661,13 +697,14 @@ function setFormation(t, f, names) {
   const s = FORMATIONS[f].s; t.formation = f;
   const old = t.players;
   let src = old; // cada jogador vai para o setor dele: o zagueiro lançador continua zagueiro quando a formação muda
-  if (old && old.length === s.length) { const left = old.slice(), fitsR = (p, r) => p.role === r || (TRAITS[p.trait] && TRAITS[p.trait].pos.includes(r));
+  if (old && old.length === s.length && !t.inMatch) { const left = old.slice(), fitsR = (p, r) => p.role === r || (TRAITS[p.trait] && TRAITS[p.trait].pos.includes(r));
     src = s.map(r => { let k = left.findIndex(p => p.role === r[0]); if (k < 0) k = left.findIndex(p => fitsR(p, r[0])); if (k < 0) k = 0; return left.splice(k, 1)[0]; }); }
-  t.players = s.map((r, i) => ({ i, role: r[0], lbl: r[1], num: src[i] && src[i].num0 ? src[i].num0 : i + 1, num0: src[i] && src[i].num0 ? src[i].num0 : i + 1, slot: { x: r[2], y: r[3] }, fichas: src[i] ? src[i].fichas : 0, name: src[i] ? src[i].name : (names ? names[i] : NAMES[i]), trait: src[i] ? src[i].trait : null }));
+  t.players = s.map((r, i) => ({ i, role: r[0], lbl: r[1], num: src[i] && src[i].num0 ? src[i].num0 : i + 1, num0: src[i] && src[i].num0 ? src[i].num0 : i + 1, slot: { x: r[2], y: r[3] }, fichas: src[i] ? src[i].fichas : 0, name: src[i] ? src[i].name : (names ? names[i] : NAMES[i]), trait: src[i] ? src[i].trait : null, sk: src[i] ? src[i].sk : undefined, rid: src[i] ? src[i].rid : undefined, arrow: src[i] ? src[i].arrow : undefined, zact: src[i] ? src[i].zact : undefined }));
   t.links = t.links.filter(([a, b]) => a < s.length && b < s.length); t._S = null; if (t.captain >= s.length) t.captain = -1; t.spine = t.spine.filter(i => i < s.length);
 }
 function fichasUsed(t) { return t.players.reduce((s, p) => s + p.fichas, 0); }
 function attrsOf(t, p) {
+  if (p.sk) { const k = p.sk; return { pas: k.toq, dri: k.dri, def: k.mar, pac: k.vel, fin: Math.round(0.6 * k.for + 0.4 * k.toq), for: k.for, alt: k.alt }; }
   const b = BASE[p.role], k = CFG.noFichas ? CFG.flat : p.fichas * CFG.fk, o = {}, tm = (TRAITS[p.trait] || { m: {} }).m;
   for (const a in b) o[a] = Math.min(99, b[a] + k + (tm[a] || 0));
   return o;
@@ -743,6 +780,7 @@ function toN(side, x, y) { return side === 0 ? [x / FL, y / FW] : [1 - x / FL, 1
 function mkZone() { return { ent: [0, 0, 0], xg: [0, 0, 0], lossOwn: 0, possOwn: 0 }; }
 const corridor = ny => ny < 1 / 3 ? 0 : ny < 2 / 3 ? 1 : 2; // 0 = esquerda do atacante, 2 = direita
 function newMatch(teamA, teamB, opts = {}) {
+  teamA.inMatch = teamB.inMatch = true;
   const M = { teams: [teamA, teamB], t: 0, half: 1, score: [0, 0], ps: [], ball: null, log: [], stats: [mkStats(), mkStats()], shouts: [[], []], shoutsLeft: [4, 4], lostAt: [-99, -99], wonAt: [-99, -99], events: [], over: false, paused: false, options: [],
     mode: opts.mode || "habilidade", order: [null, null], ordCd: [0, 0], ordLog: [[], []], assim: [0, 0], planLog: [[], []], study: [0, 0], cpDone: {}, checkpoint: null, bank: [0, 0], subs: [3, 3], subLog: [[], []], timeouts: [1, 1], bench: [(teamA.bench || []).map(b => ({ ...b })), (teamB.bench || []).map(b => ({ ...b }))], zone: [mkZone(), mkZone()], duelPairs: [{}, {}] };
   [teamA, teamB].forEach((T, side) => T.players.forEach(p => {
@@ -837,8 +875,10 @@ function xG(M, p) {
   for (const q of M.ps) { if (q.side === p.side || q.role === "G") continue;
     const dx = gx - p.x, dy = gy - p.y, L2 = dx * dx + dy * dy, u = ((q.x - p.x) * dx + (q.y - p.y) * dy) / L2;
     if (u > 0 && u < 1) { const e = dist(q.x, q.y, p.x + u * dx, p.y + u * dy); block += Math.exp(-e * e / 2); } }
-  const z = (SIZE === 11 ? 0 : SOC() ? CFG.x7 + (SIZE === 6 ? CFG.x6 : 0) : SIZE === 4 ? CFG.x4 : -0.8) - 1.8 - 0.12 * d + 1.3 * ang + (p.a.fin - 70) * 0.02 - press * 0.8 - block * 0.45 - (gk.a.def - 72) * 0.015;
-  const air = p.crossAt && M.t - p.crossAt < 1.6 && TRAITS[p.trait] && TRAITS[p.trait].aerial ? TRAITS[p.trait].aerial : 1;
+  const z = (SIZE === 11 ? 0 : SOC() ? CFG.x7 + (SIZE === 6 ? CFG.x6 : SIZE === 5 ? CFG.x5 : 0) : SIZE === 4 ? CFG.x4 : -0.8) - 1.8 - 0.12 * d + 1.3 * ang + (p.a.fin - 70) * 0.02 - press * 0.8 - block * 0.45 - (gk.a.def - 72) * 0.015;
+  let air = p.crossAt && M.t - p.crossAt < 1.6 && TRAITS[p.trait] && TRAITS[p.trait].aerial ? TRAITS[p.trait].aerial : 1;
+  if (p.crossAt && M.t - p.crossAt < 1.6 && p.a.alt != null) { const dfa = M.ps.filter(q => q.side !== p.side && q.role !== "G" && dist(q.x, q.y, p.x, p.y) < 3.5).reduce((m, q) => Math.max(m, q.a.alt || 0), 0);
+    air = Math.max(0.5, 1 + (p.a.alt - 60) / CFG.airK - Math.max(0, dfa - 60) / 70); } // cabeceio: altura de quem cabeceia contra a de quem marca
   return clamp(sig(z) * air * (M.pm ? M.pm[p.side] : 1) * (M.assim && M.t < M.assim[p.side] ? CFG.assimF : 1) * ordMult(M, p.side), 0.005, 0.9);
 }
 // Probabilidade de passe: técnica, distância, linhas de interceptação, pressão, ligação tática
@@ -857,7 +897,8 @@ function passProb(M, p, q, lofted) {
   }
   const press = M.ps.filter(o => o.side !== p.side && dist(o.x, o.y, p.x, p.y) < 2.5).length;
   const lb = linkBonus(T, p.i, q.i) * te.link;
-  const z = 2.7 + (p.a.pas - 68) * 0.045 * CFG.slope - d * (lofted ? 0.028 : 0.05) - threat * 2.6 - press * 0.45 + lb - (lofted ? 0.5 : 0);
+  let z = 2.7 + (p.a.pas - 68) * 0.045 * CFG.slope - d * (lofted ? 0.028 : 0.05) - threat * 2.6 - press * 0.45 + lb - (lofted ? 0.5 : 0);
+  if (lofted && q.a.alt != null) { const op = M.ps.filter(o => o.side !== p.side && o.role !== "G").sort((a, c) => dist(a.x, a.y, q.x, q.y) - dist(c.x, c.y, q.x, q.y))[0]; if (op && dist(op.x, op.y, q.x, q.y) < 4) z += ((q.a.alt || 60) - (op.a.alt || 60)) / 30; } // bola alta: disputa no alto
   let pp = sig(z); const tp = TRAITS[p.trait];
   if (tp && tp.long && d > 16) pp += (1 - pp) * tp.long; // lançador: a bola longa chega
   if (tp && tp.cross) { const [, py] = toN(p.side, p.x, p.y), [qx] = toN(p.side, q.x, q.y); if (Math.abs(py - 0.5) > 0.28 && qx > 0.75) pp += (1 - pp) * tp.cross; } // ponta: cruzamento
@@ -868,7 +909,7 @@ function luck(M, side, kind, p) {
   const L = M.luck || (M.luck = [{}, {}]), d = L[side][kind] || 0, q = clamp(p + d * 0.6, 0.01, 0.99), ok = rnd() < q;
   L[side][kind] = d + p - (ok ? 1 : 0); return ok;
 }
-function duelProb(att, def) { return clamp(sig(((att.a.dri - def.a.def) / 11 + (att.a.pac - def.a.pac) / 40) * CFG.slope + 0.15), 0.05, 0.95); }
+function duelProb(att, def) { const fz = att.a.for != null && def.a.for != null ? (att.a.for - def.a.for) / 45 : 0; return clamp(sig(((att.a.dri - def.a.def) / 11 + (att.a.pac - def.a.pac) / 40 + fz) * CFG.slope + 0.15), 0.05, 0.95); }
 
 // ------------- decisão do portador (agente baseado em utilidade) -------------
 // ------------- jogadas desenhadas pelo técnico (giz): passes e corridas em ordem -------------
@@ -877,6 +918,10 @@ function duelProb(att, def) { return clamp(sig(((att.a.dri - def.a.def) / 11 + (
 const PAT = { costas: "nas costas da linha", lado: "no lado do campo", entre: "entre as linhas", infiltra: "num meia chegando à área" };
 const PAT_DEF = { costas: { alta: 1.6, media: 1.0, baixa: 0.6, homem: 1.0 }, lado: { alta: 0.9, media: 1.0, baixa: 1.6, homem: 0.8 }, entre: { alta: 0.8, media: 1.6, baixa: 0.9, homem: 1.0 }, infiltra: { alta: 1.0, media: 0.9, baixa: 0.9, homem: 1.6 } };
 function patternOfPos(nx, ny, role) { if (role === "M" && nx > 0.74) return "infiltra"; if (Math.abs(ny - 0.5) > 0.27) return "lado"; if (nx > 0.8) return "costas"; return "entre"; }
+// zonas do campo de ataque (coordenadas do atacante): esquerda/meio/direita × intermediária/área
+const ZONES = { ie: { n: "intermediária esquerda", x: [0.55, 0.78], y: [0, 0.34] }, im: { n: "intermediária", x: [0.55, 0.78], y: [0.34, 0.66] }, id: { n: "intermediária direita", x: [0.55, 0.78], y: [0.66, 1] },
+  ae: { n: "ponta esquerda", x: [0.78, 1], y: [0, 0.3] }, am: { n: "área", x: [0.78, 1], y: [0.3, 0.7] }, ad: { n: "ponta direita", x: [0.78, 1], y: [0.7, 1] } };
+function inZone(z, nx, ny) { const Z = ZONES[z]; return !!Z && nx >= Z.x[0] && nx < Z.x[1] && ny >= Z.y[0] && ny < Z.y[1]; }
 function patternOfPlay(T, steps) { // pelo desenho: o último passe e a corrida de quem recebe
   const last = [...steps].reverse().find(s => s.k === "pass"); if (!last) return null;
   const run = [...steps].reverse().find(s => s.k === "run" && s.who === last.to), p = T.players.find(q => q.num === last.to); if (!p) return null;
@@ -963,7 +1008,7 @@ function decideHolder(M, p) {
   // chute
   const xg = xG(M, p);
   const fo = orderOf(M, side), foco = fo && fo.k === "foco" ? fo.target : null;
-  const shotBias = (p.role === "A" ? 1 : 0.85) * (foco === p.i ? 1.3 : 1);
+  const shotBias = (p.role === "A" ? 1 : 0.85) * (foco === p.i ? 1.3 : 1) * (p.crossAt && M.t - p.crossAt < 1.6 ? CFG.headB : 1); // de cabeça: finaliza de primeira
   const PL = playOf(M, side), pl = PL ? curPass(PL) : null;
   if (nx > 0.62) opts.push({ k: "shot", p: xg, score: xg * 2.1 * shotBias - (1 - xg) * 0.01, xg });
   // passes
@@ -982,6 +1027,8 @@ function decideHolder(M, p) {
     if (foco === q.i && foco !== p.i) score += P * P * (CFG.focoB + Math.abs(score) * 0.6);
     if (pl && pl.from === p.num && pl.to === q.num) score += P * P * (CFG.playB + Math.abs(score) * 0.8); // jogada ensaiada: o passe desenhado
     if (longFwd) score += CFG.longB * P; // bola nas costas: procura o lançamento
+    if (T.plan && T.plan.att === "lados" && Math.abs(qy - 0.5) > 0.26 && qx > 0.5 && qx > nx - 0.05) score += CFG.wideB * P; // pelos lados: a bola vai para a ponta
+    if (q.a && q.a.alt != null && Math.abs(ny - 0.5) > 0.26 && nx > 0.6 && qx > 0.76 && Math.abs(qy - 0.5) < 0.26) score += CFG.crossB * (T.plan && T.plan.att === "lados" ? 1 : 0.35) * P * Math.max(0, (q.a.alt - 56) / 30); // cruzamento: procura quem ganha pelo alto
     opts.push({ k: "pass", q, p: P, lofted, score, V });
   }
   // condução / 1x1
@@ -998,6 +1045,12 @@ function decideHolder(M, p) {
     opts.push({ k: "carry", p: 0.85, score: 0.85 * zoneValue(fx, fy) * riskW * 0.9 });
   }
   if (pl && pl.from === p.num && M.t - PL.segT < CFG.playWait) { const q = M.ps.find(x => x.side === side && x.num === pl.to); if (q && q.run && dist(q.x, q.y, q.run.x, q.run.y) > 2.5) opts.push({ k: "carry", p: 0.9, score: 0.9 * zoneValue(nx, ny) + 0.05 }); } // segura até o companheiro chegar
+  const ins = T.players[p.i] && T.players[p.i].zact; // ação na zona: "se receber ali, faça isto"
+  if (ins && inZone(ins.zone, nx, ny)) { const b2 = CFG.zactB; opts.forEach(o => { if (ins.act === "shot" && o.k === "shot") o.score += b2 + o.score;
+      else if (ins.act === "cross" && o.k === "pass" && toN(side, o.q.x, o.q.y)[0] > 0.76) o.score += b2 * o.p;
+      else if (ins.act === "dribble" && (o.k === "duel" || o.k === "carry")) o.score += b2 * (o.p || 0.8);
+      else if (ins.act === "pass" && o.k === "pass" && o.q.num === ins.to) o.score += b2 * o.p * 1.4; });
+    if (M.t - (p.zactT || 0) > 2) { p.zactT = M.t; (M.zactLog || (M.zactLog = [[], []]))[side].push({ t: M.t, num: p.num, act: ins.act }); } }
   opts.forEach(o => o.noisy = o.score + gauss() * noise * 0.05);
   opts.sort((a, b) => b.noisy - a.noisy);
   const best = opts.reduce((a, b) => (b.score > a.score ? b : a), opts[0]), st = M.stats[side];
@@ -1009,7 +1062,7 @@ function decideHolder(M, p) {
 function execute(M, p, o) {
   const b = M.ball, side = p.side, st = M.stats[side];
   if (o.k === "shot") {
-    st.shots++; st.xg += o.xg; M.xgT.push([Math.round(M.t * 10) / 10, side, o.xg]);
+    st.shots++; st.xg += o.xg; if (p.crossAt && M.t - p.crossAt < 1.6) { st.hd = (st.hd || 0) + 1; st.hdxg = (st.hdxg || 0) + o.xg; } M.xgT.push([Math.round(M.t * 10) / 10, side, o.xg]);
     const gk = M.ps.find(q => q.side !== side && q.role === "G");
     const r = rnd(); let goal;
     if (M.t < CFG.noGoal) { goal = false; M.study[side] += o.xg; }
@@ -1083,7 +1136,7 @@ function giveBall(M, p) {
     const gain = zoneValue(bx, by) - zoneValue(ax, ay);
     f.fp += Math.max(0, gain) * 40; p.fp += 0.2;
     if (ax < 2 / 3 && bx >= 2 / 3) M.zone[p.side].ent[corridor(by)]++;
-    if (Math.abs(ay - 0.5) > 0.28 && bx > 0.72) p.crossAt = M.t; // recebeu cruzamento na área
+    if (Math.abs(ay - 0.5) > 0.28 && bx > 0.72) { p.crossAt = M.t; M.stats[p.side].crs = (M.stats[p.side].crs || 0) + 1; } // recebeu cruzamento na área
     if (linkBonus(T, f.i, p.i) > 0) { const L = M.stats[p.side].links[key] || (M.stats[p.side].links[key] = { n: 0, gain: 0 }); L.n++; L.gain += gain; }
     chainPush(M, p, "rec", { p: b.pass.p, from: f.name });
   } else if (prev !== p.side || !M.chain || M.chain.side !== p.side) {
@@ -1151,6 +1204,7 @@ function targets(M) {
         const sx = o.x + Math.cos(ang) * r + dir * 4, sy = o.y + Math.sin(ang) * r;
         x = x * 0.7 + sx * 0.3; y = y * 0.7 + sy * 0.3;
       }
+      { const tp = T.players[p.i]; if (att && tp && tp.arrow && b.owner && b.owner.side === side && b.owner !== p) { const [ax, ay] = toW(side, tp.arrow[0], tp.arrow[1]), w = CFG.arrowW; x = x * (1 - w) + ax * w; y = y * (1 - w) + ay * w; } } // seta do técnico: para onde ele corre quando o time ataca
       { const fo = orderOf(M, side); if (fo && fo.k === "foco" && fo.target === p.i && att && b.owner && b.owner.side === side && b.owner !== p) { const [fx, fy] = toW(side, 1 - (BOX_L * 1.2) / FL, clamp(toN(side, x, y)[1], 0.25, 0.75)); x = x * 0.6 + fx * 0.4; y = y * 0.6 + fy * 0.4; } }
       if (p.run && p.run.until > M.t) { x = p.run.x; y = p.run.y; }
       // sem posse: marcação individual se compactação baixa
@@ -1183,7 +1237,9 @@ function targets(M) {
       const bySide = out.slice().sort((u, v) => toN(side, u.tx, u.ty)[1] - toN(side, v.tx, v.ty)[1]);
       if (ak === "lados" && bySide.length >= 2) { const pts = bySide.filter(p => p.trait === "ponta"); let lo = bySide[0], hi = bySide[bySide.length - 1];
         if (pts.length) { const mid = 0.5; pts.forEach(p => { const [, py] = toN(side, p.tx, p.ty); if (py < mid) lo = p; else hi = p; }); if (lo === hi) hi = bySide[bySide.length - 1] === lo ? bySide[0] : bySide[bySide.length - 1]; }
-        [[lo, 0.06], [hi, 0.94]].forEach(([p, yy]) => { const [nx] = toN(side, p.tx, p.ty); [p.tx, p.ty] = toW(side, Math.max(nx, Math.min(0.88, bnx + 0.12)), yy); }); }
+        [[lo, 0.06], [hi, 0.94]].forEach(([p, yy]) => { const [nx] = toN(side, p.tx, p.ty); [p.tx, p.ty] = toW(side, Math.max(nx, Math.min(0.88, bnx + 0.12)), yy); }); 
+        { const [, bny] = toN(side, b.x, b.y); if (bnx > 0.58 && Math.abs(bny - 0.5) > 0.2) { const box = out.filter(p => p !== lo && p !== hi && p.role !== "D").sort((u, v) => ((v.a && v.a.alt) || 60) - ((u.a && u.a.alt) || 60)).slice(0, 2); // bola aberta: os mais altos atacam a área
+          box.forEach((p, k) => { [p.tx, p.ty] = toW(side, k ? 0.8 : 0.87, bny < 0.5 ? (k ? 0.62 : 0.46) : (k ? 0.38 : 0.54)); }); } } }
       else if (ak === "dentro") out.forEach(p => { const [nx, ny] = toN(side, p.tx, p.ty); [p.tx, p.ty] = toW(side, nx, 0.5 + (ny - 0.5) * 0.55); });
       else if (ak === "prof") { const f = out.slice().sort((u, v) => toN(side, v.tx, v.ty)[0] - toN(side, u.tx, u.ty)[0])[0];
         if (f) { const opp = M.ps.filter(o => o.side !== side && o.role !== "G").map(o => toN(side, o.x, o.y)[0]), last = Math.max(...opp); const [, ny] = toN(side, f.tx, f.ty); [f.tx, f.ty] = toW(side, clamp(last + 0.01, 0.55, 0.93), ny); } }
@@ -1354,11 +1410,11 @@ function doSub(M, side, outI, benchK, auto) {
   if (!bc || !p || bc.used) return false;
   if ((bc.role === "G") !== (p.role === "G")) return false; // goleiro só por goleiro
   const T = M.teams[side], tp = T.players[outI], prev = { name: p.name, en: Math.round(p.en), trait: p.trait };
-  const card = { role: p.role, fichas: bc.fichas, trait: bc.trait };
+  const card = { role: p.role, fichas: bc.fichas, trait: bc.trait, sk: bc.sk };
   const a = attrsOf(T, card);
   bc.used = true; M.subs[side]--;
   p.name = bc.name; p.trait = bc.trait; p.a0 = a; p.a = { ...a }; p.en = 100; p.fp = 0; p.run = null;
-  tp.name = bc.name; tp.trait = bc.trait; tp.fichas = bc.fichas;
+  tp.name = bc.name; tp.trait = bc.trait; tp.fichas = bc.fichas; if (bc.sk) { tp.sk = bc.sk; tp.rid = bc.rid; p.sk = bc.sk; }
   M.decisions.push({ t: M.t, side, k: "troca", txt: `Entra ${bc.name}${auto ? " (obrigatória)" : ""}` }); applyPlans(M);
   M.subLog[side].push({ m: clockMin(M), out: prev.name, in: bc.name, en: prev.en, auto: !!auto });
   logE(M, side, `${auto ? "Substituição obrigatória" : "Substituição"}: sai ${prev.name} (${prev.en}% de energia), entra ${bc.name}, ${TRAITS[bc.trait].n}`, "sub");
@@ -1446,7 +1502,7 @@ function npcShouts(M, side) {
 }
 // Elo
 function eloUpdate(r, opp, res, k = 32) { const e = 1 / (1 + Math.pow(10, (opp - r) / 400)); return Math.round(r + k * (res - e)); }
-if (typeof module !== "undefined") module.exports = { patternOfPlay, PAT, PAT_DEF, patternOfPos, toW, toN, team, startPlay, playOf, npcPlays, npcPickPlay, playReward, cfg6, SOC, npcOrders, orderPreview, ordMult, ORDERS, giveOrder, orderOf, threatOf, cfg7, switchPlan, usePlan, defaultPlans, savePlanSlots, npcCheckpoint, comboLinks, COMBO, CMX, COUNTER_COMBO, PLAN_FORM7, PLAN_KEYS, planChange, syncTeam, NPC_READ, CFG, PLAN_FORM4, setFormation, attrsOf, passProb, duelProb, xG, prepLever: (lv, A, B) => { if (lv === "plano") { B.plan || 0; const op = A.plan; setPlan(B, Object.keys(ATT).find(k => MXG[k][A.plan.def] < 0.8) || "dentro", Object.keys(DEF).find(k => MXG[A.plan.att][k] > 1.2) || "media"); setPlan(A, COUNTER_ATT[B.plan.def], COUNTER_DEF[B.plan.att]); } if (lv === "habilidades") { [A, B].forEach((T, k) => { const want = k ? [] : ATT[T.plan.att].traits; T.players.forEach(p => { if (p.role === "M" || p.role === "A") p.trait = k ? "xerife" : want[Math.floor(rnd() * want.length)]; }); }); } }, setPlan, applyPlans, npcReplan, planReport, ATT, DEF, MXG, COUNTER_ATT, COUNTER_DEF, shout, setCfg, doSub, callTimeout, insights, npcManage, TRAITS, buildNpc, setPitch, getMax: () => MAX_PER, makeTeam, npcCoach, newMatch, step, npcShouts, STYLES, FORMATIONS, structures, addLink, fichasUsed };
+if (typeof module !== "undefined") module.exports = { cfg5, ROSTER, SKILLS, GK_SK, skOf, rosterTeam, ATT_SK, DEF_SK, skFit, ZONES, inZone, ROLE_OF, patternOfPlay, PAT, PAT_DEF, patternOfPos, toW, toN, team, startPlay, playOf, npcPlays, npcPickPlay, playReward, cfg6, SOC, npcOrders, orderPreview, ordMult, ORDERS, giveOrder, orderOf, threatOf, cfg7, switchPlan, usePlan, defaultPlans, savePlanSlots, npcCheckpoint, comboLinks, COMBO, CMX, COUNTER_COMBO, PLAN_FORM7, PLAN_KEYS, planChange, syncTeam, NPC_READ, CFG, PLAN_FORM4, setFormation, attrsOf, passProb, duelProb, xG, prepLever: (lv, A, B) => { if (lv === "plano") { B.plan || 0; const op = A.plan; setPlan(B, Object.keys(ATT).find(k => MXG[k][A.plan.def] < 0.8) || "dentro", Object.keys(DEF).find(k => MXG[A.plan.att][k] > 1.2) || "media"); setPlan(A, COUNTER_ATT[B.plan.def], COUNTER_DEF[B.plan.att]); } if (lv === "habilidades") { [A, B].forEach((T, k) => { const want = k ? [] : ATT[T.plan.att].traits; T.players.forEach(p => { if (p.role === "M" || p.role === "A") p.trait = k ? "xerife" : want[Math.floor(rnd() * want.length)]; }); }); } }, setPlan, applyPlans, npcReplan, planReport, ATT, DEF, MXG, COUNTER_ATT, COUNTER_DEF, shout, setCfg, doSub, callTimeout, insights, npcManage, TRAITS, buildNpc, setPitch, getMax: () => MAX_PER, makeTeam, npcCoach, newMatch, step, npcShouts, STYLES, FORMATIONS, structures, addLink, fichasUsed };
 // ===================== INTERFACE =====================
 const $ = s => document.querySelector(s);
 const el = (tag, attrs = {}, ...kids) => { const e = document.createElement(tag); for (const k in attrs) { const v = attrs[k]; if (v === null || v === undefined || v === false) continue; if (k === "class") e.className = v; else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else if (k === "text") e.textContent = v; else e.setAttribute(k, v === true ? "" : v); } kids.flat().forEach(c => c != null && c !== false && e.append(c.nodeType ? c : document.createTextNode(c))); return e; };
@@ -1811,7 +1867,7 @@ async function netOpen(code, host) {
   NET.offs.push(NET.room.on("shout", m => hostShout(m)));
   NET.offs.push(NET.room.on("again", m => { if (m.sameTab) return; }));
   if (host) {
-    S.size = S.size === 6 ? 6 : 7; cfg7(); S.me = 0;
+    S.size = [5, 6].includes(S.size) ? S.size : 7; cfg7(); S.me = 0;
     await NET.room.presence({ r: "h", nm: name, z: S.size, elo: myElo, st: "lobby" });
     S.teams = [makeTeam(name, COLORS[0], "luisenrique"), null];
     onMsg(`Sala ${code} criada. Passe o código para o adversário.`);
@@ -1828,7 +1884,7 @@ function netPeers(peers) {
   if (other) {
     const nm = String(other.presence.nm || "Adversário").slice(0, 24), changed = nm !== NET.oppName; NET.oppName = nm; NET.oppElo = +other.presence.elo || 1200;
     if (!NET.host && !S.teams[1] && other.presence.z) { // convidado: monta o time no tamanho do anfitrião
-      S.size = other.presence.z === 6 ? 6 : 7; cfg7();
+      S.size = [5, 6].includes(+other.presence.z) ? +other.presence.z : 7; cfg7();
       S.teams = [null, makeTeam(($("#nameA").value || "Giz EC").slice(0, 24), COLORS[1], "ancelotti", NAMES_B)]; enterOnlineBoard();
     }
     if (!NET.host && NET.snap === null && other.presence.s) netGuestSnap(other.presence.s);
@@ -3261,4 +3317,476 @@ netOpen = async function (code, host) {
 };
 const netPeersV10 = netPeers;
 netPeers = function (peers) { netPeersV10(peers); try { if (!NET.host && NET.oppName && !NET.started && $("#onMsg")) onMsg(`Você está na sala com ${NET.oppName}. Prepare o time e toque em Pronto.`); } catch (e) { } };
+// ===================== V11: interface mínima com ícones, escalação de 12, setas, ligações, ação por zona, teste antes do jogo =====================
+// Fluxo: Início (modo + formato) → Preparar [Escalar · Prancheta · Defesa · Testar] → Jogo (planos A–D + ordens) → Paradas (palpite → leitura → ajuste) → Fim.
+// Regra de ouro: um ícone, uma palavra; o número só aparece quando ajuda a decidir.
+
+// ---------- ícones (traço simples, cor do texto) ----------
+const IC = {
+  robot: '<rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 16h6"/><circle cx="9.5" cy="12.5" r="1.2" fill="currentColor"/><circle cx="14.5" cy="12.5" r="1.2" fill="currentColor"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.2 3.5 3.2 14.5 0 18M12 3c-3.2 3.5-3.2 14.5 0 18"/>',
+  phone: '<rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/>',
+  play: '<path d="M8 5l11 7-11 7z" fill="currentColor"/>',
+  help: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.5V14"/><circle cx="12" cy="17" r=".6" fill="currentColor"/>',
+  trophy: '<path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8"/>',
+  gear: '<circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/>',
+  team: '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15.5 14.5c3 0 5.5 2 5.5 5"/>',
+  board: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/><circle cx="12" cy="12" r="2.5"/><path d="M6 8l2 2M8 8l-2 2M16 15h3"/>',
+  shield: '<path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/>',
+  flask: '<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3M7.5 15h9"/>',
+  move: '<path d="M12 3v18M3 12h18M9 6l3-3 3 3M9 18l3 3 3-3M6 9l-3 3 3 3M18 9l3 3-3 3"/>',
+  arrow: '<path d="M5 19L19 5M19 5h-7M19 5v7"/>',
+  link: '<circle cx="6" cy="18" r="3"/><circle cx="18" cy="6" r="3"/><path d="M8.2 15.8l7.6-7.6"/>',
+  pin: '<path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2"/>',
+  pencil: '<path d="M4 20l4-1L19 8l-3-3L5 16zM14 6l3 3"/>',
+  for: '<path d="M6.5 7v10M3.5 9.5v5M17.5 7v10M20.5 9.5v5M6.5 12h11"/>',
+  alt: '<path d="M12 3v18M8 7l4-4 4 4M8 17l4 4 4-4"/>',
+  dri: '<path d="M4 20l4-6 4 4 4-8"/><circle cx="18.5" cy="6" r="2.5"/>',
+  mar: '<rect x="6" y="11" width="12" height="9" rx="2"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"/>',
+  vel: '<path d="M13 3L5 14h6l-1 7 8-11h-6z"/>',
+  toq: '<circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="7" r="2.5"/><path d="M7.5 15.3l8.6-6.6M12.5 8.4h3.6v3.6"/>',
+  a_dentro: '<path d="M12 21V4M8 8l4-4 4 4"/><path d="M5 21v-5M19 21v-5" opacity=".5"/>',
+  a_lados: '<path d="M5 20V9q0-4 5-4h2"/><path d="M10 2.5L12.5 5 10 7.5"/><path d="M19 20v-7" opacity=".5"/>',
+  a_prof: '<path d="M3 11h18" stroke-dasharray="2 3" opacity=".6"/><path d="M7 21C7 13 11 7 17 4M17 4h-4.5M17 4v4.5"/>',
+  a_infil: '<path d="M7 21l6-6-4-4 6-6M15 5h-4.5M15 5v4.5"/>',
+  d_alta: '<path d="M8 22h8" opacity=".6"/><path d="M4 6h16"/><circle cx="7" cy="6" r="1.8" fill="currentColor"/><circle cx="12" cy="6" r="1.8" fill="currentColor"/><circle cx="17" cy="6" r="1.8" fill="currentColor"/>',
+  d_media: '<path d="M8 22h8" opacity=".6"/><path d="M5 13h14"/><circle cx="8" cy="13" r="1.8" fill="currentColor"/><circle cx="12" cy="13" r="1.8" fill="currentColor"/><circle cx="16" cy="13" r="1.8" fill="currentColor"/>',
+  d_baixa: '<path d="M8 22h8" opacity=".6"/><path d="M4 18h16"/><circle cx="7" cy="18" r="1.8" fill="currentColor"/><circle cx="12" cy="18" r="1.8" fill="currentColor"/><circle cx="17" cy="18" r="1.8" fill="currentColor"/>',
+  d_homem: '<path d="M8 22h8" opacity=".6"/><circle cx="7" cy="8" r="2"/><circle cx="7" cy="13.5" r="2" fill="currentColor"/><circle cx="17" cy="8" r="2"/><circle cx="17" cy="13.5" r="2" fill="currentColor"/>',
+  shot: '<path d="M6 3h12v5"/><path d="M6 8V3"/><circle cx="12" cy="19" r="2.5"/><path d="M12 16.5V9M9.5 11.5L12 9l2.5 2.5"/>',
+  cross: '<path d="M4 21V6"/><path d="M4 9q8-6 15 3"/><path d="M19 12l-.3-3.6M19 12l-3.5-.4"/>',
+  pass: '<circle cx="4.5" cy="12" r="2.5"/><circle cx="19.5" cy="12" r="2.5"/><path d="M7 12h9.5M14 9l3 3-3 3"/>',
+  target: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>',
+  flame: '<path d="M12 21c-4 0-6-3-6-6 0-4 4-6 4-10 3 2 5 5 5 8 1-1 1.5-2 1.5-3 1.5 1.5 2.5 3.5 2.5 5 0 3.5-3 6-7 6z"/>',
+  hold: '<path d="M9 5v14M15 5v14"/>',
+  talk: '<path d="M4 5h16v11H9l-5 4z"/>',
+  check: '<path d="M5 12l5 5 9-10"/>', x: '<path d="M6 6l12 12M18 6L6 18"/>', spark: '<path d="M12 3v5M12 16v5M3 12h5M16 12h5M6 6l3 3M15 15l3 3M6 18l3-3M15 9l3-3"/>',
+  undo: '<path d="M9 7L4 12l5 5M4 12h11a5 5 0 0 1 0 10h-2"/>', trash: '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>', head: '<circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3-7 7-7s7 3 7 7"/>'
+};
+const ico = (k, cls) => { const s = document.createElement("span"); s.className = "ic" + (cls ? " " + cls : ""); s.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${IC[k] || ""}</svg>`; return s; };
+const icoHtml = k => `<span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">${IC[k] || ""}</svg></span>`;
+const SK_ORDER = ["for", "alt", "dri", "mar", "vel", "toq"];
+const SK_SHORT = { for: "Força", alt: "Altura", dri: "Drible", mar: "Marcação", vel: "Velocidade", toq: "Toque" };
+const ATT_SHORT = { prof: "Costas", dentro: "Por dentro", lados: "Pelos lados", infil: "Infiltração" };
+const DEF_SHORT = { alta: "Pressão alta", media: "Bloco médio", baixa: "Bloco baixo", homem: "Encaixe" };
+const ACT = { shot: ["shot", "Chutar"], cross: ["cross", "Cruzar"], dribble: ["dri", "Driblar"], pass: ["pass", "Tocar"] };
+const ZONE_SHORT = { ae: "ponta esq.", am: "área", ad: "ponta dir.", ie: "meia esq.", im: "meia", id: "meia dir." };
+
+// ---------- estilo ----------
+(() => { const st = document.createElement("style"); st.textContent = `
+.ic{ display:inline-flex; width:1.25em; height:1.25em; flex:none; vertical-align:-.25em; }
+.ic svg{ width:100%; height:100%; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+/* início */
+.wrap:has(#scrHome:not(.hidden)) .placar{ display:none; }
+.home.v11{ display:block; max-width:560px; margin:0 auto; }
+.home.v11 .hero{ min-height:0; padding:18px 20px; display:flex; align-items:center; gap:14px; }
+.home.v11 .hero p, .home.v11 .hero svg{ display:none; }
+.home.v11 .hero h1{ margin:0; font-size:clamp(34px,8vw,52px); }
+.home.v11 .hero .tag{ display:block; font-family:var(--hand); color:var(--chalk); opacity:.85; font-size:17px; }
+.home.v11 .panel{ margin-top:12px; }
+.home.v11 .panel > h2{ display:none; }
+.home.v11 .modes{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.home.v11 .mode{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:12px 6px; min-height:96px; text-align:center; border-radius:10px; }
+.home.v11 .mode .ic{ width:30px; height:30px; }
+.home.v11 .mode b{ font-size:17px; line-height:1.1; margin:0; }
+.home.v11 .mode small{ font-size:12.5px; opacity:.75; line-height:1.15; }
+.fmt11{ margin-top:14px; } .lbl11{ font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink2); margin:0 0 6px; display:block; }
+.fmt11 .chips3{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.fmt11 button{ border:2px solid var(--ink); background:transparent; border-radius:10px; padding:8px 4px 6px; display:flex; flex-direction:column; align-items:center; gap:2px; }
+.fmt11 button[aria-pressed="true"]{ background:var(--ink); color:var(--panel); }
+.fmt11 button b{ font-family:var(--disp); font-size:24px; line-height:1; } .fmt11 button small{ font-size:12px; opacity:.8; }
+.fmt11 .dots{ display:flex; gap:3px; margin:2px 0; } .fmt11 .dots i{ width:7px; height:7px; border-radius:50%; background:currentColor; opacity:.85; }
+.fmt11 .note{ font-size:13px; color:var(--ink2); margin-top:6px; min-height:1.2em; }
+details.cfg11{ margin-top:12px; border-top:1px solid var(--line); padding-top:8px; } details.cfg11 summary{ cursor:pointer; display:flex; align-items:center; gap:8px; color:var(--ink2); font-size:15px; list-style:none; } details.cfg11 summary::-webkit-details-marker{ display:none; }
+.home.v11 #fSize{ display:none; }
+.icorow{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px; }
+.icorow .btn{ white-space:nowrap; font-size:15.5px; display:flex; align-items:center; justify-content:center; gap:8px; }
+#go{ display:flex; align-items:center; justify-content:center; gap:10px; }
+/* preparação */
+.tabs11{ display:grid; grid-template-columns:repeat(4,1fr); gap:4px; background:rgba(0,0,0,.06); border-radius:12px; padding:4px; margin:0 0 10px; }
+.tabs11 button{ border:0; background:transparent; border-radius:9px; padding:7px 2px 5px; display:flex; flex-direction:column; align-items:center; gap:2px; color:var(--ink2); font-size:12.5px; position:relative; }
+.tabs11 button .ic{ width:24px; height:24px; }
+.tabs11 button[aria-selected="true"]{ background:var(--ink); color:var(--panel); }
+.tabs11 button .n{ position:absolute; top:3px; left:8px; font-size:10px; opacity:.6; }
+.tabs11 button.warn::after{ content:""; position:absolute; top:6px; right:12px; width:8px; height:8px; border-radius:50%; background:var(--red); }
+.sub11{ font-size:13.5px; color:var(--ink2); margin:0 0 8px; line-height:1.3; }
+.cnt11{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px; }
+.cnt11 b{ font-family:var(--disp); font-size:22px; } .cnt11 b.ok{ color:var(--ok); }
+.skleg{ display:flex; flex-wrap:wrap; gap:4px 10px; font-size:12px; color:var(--ink2); margin-bottom:8px; } .skleg span{ display:inline-flex; align-items:center; gap:3px; }
+.roster11{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+.rc{ border:1.5px solid var(--line); background:rgba(255,255,255,.35); border-radius:10px; padding:6px 6px 5px; text-align:left; position:relative; display:flex; flex-direction:column; gap:3px; min-height:94px; }
+.rc.on{ border-color:var(--ink); background:var(--ink); color:var(--panel); }
+.rc .nm{ font-weight:700; font-size:14.5px; line-height:1.1; padding-right:18px; }
+.rc .num{ position:absolute; top:5px; right:6px; font-family:var(--disp); font-size:15px; color:var(--amber); }
+.rc .fit{ position:absolute; top:6px; right:7px; width:9px; height:9px; border-radius:50%; background:var(--ok); }
+.rc.on .fit{ display:none; }
+.fp{ display:grid; grid-template-columns:repeat(6,1fr); gap:2px; align-items:end; height:30px; }
+.fp i{ display:block; background:currentColor; opacity:.55; border-radius:2px 2px 0 0; min-height:2px; }
+.fp i.hi{ opacity:1; background:var(--amber); }
+.rc.on .fp i.hi{ background:var(--amber); }
+.fpl{ display:grid; grid-template-columns:repeat(6,1fr); gap:2px; } .fpl .ic{ width:100%; height:12px; opacity:.6; }
+.rc .bf{ display:flex; gap:4px; font-size:11px; opacity:.8; align-items:center; } .rc .bf .ic{ width:14px; height:14px; }
+.tools11{ display:grid; grid-template-columns:repeat(5,1fr); gap:4px; margin-bottom:8px; }
+.tools11 button{ border:1.5px solid var(--line); background:transparent; border-radius:10px; padding:7px 2px 5px; display:flex; flex-direction:column; align-items:center; gap:2px; font-size:12px; }
+.tools11 button .ic{ width:22px; height:22px; }
+.tools11 button[aria-pressed="true"]{ border-color:var(--ink); background:var(--ink); color:var(--panel); }
+.plan11{ display:grid; grid-template-columns:repeat(4,1fr); gap:4px; margin-bottom:8px; }
+.plan11 button{ border:1.5px solid var(--line); background:transparent; border-radius:10px; padding:6px 2px 4px; display:flex; flex-direction:column; align-items:center; gap:1px; font-size:11.5px; line-height:1.1; }
+.plan11 button b{ font-family:var(--disp); font-size:15px; } .plan11 button .ic{ width:22px; height:22px; }
+.plan11 button[aria-pressed="true"]{ border-color:var(--red); background:var(--red); color:#fff; }
+.list11{ display:flex; flex-wrap:wrap; gap:6px; margin:6px 0; }
+.tag11{ display:inline-flex; align-items:center; gap:5px; border:1px solid var(--line); border-radius:999px; padding:3px 4px 3px 10px; font-size:13.5px; background:rgba(255,255,255,.4); }
+.tag11 button{ border:0; background:transparent; width:26px; height:26px; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; }
+.tag11 button:hover{ background:rgba(0,0,0,.08); }
+.zg{ display:grid; grid-template-columns:repeat(3,1fr); gap:4px; margin:6px 0; }
+.zg button{ border:1.5px dashed var(--line); background:rgba(47,122,70,.08); border-radius:8px; padding:8px 2px; font-size:12.5px; }
+.zg button[aria-pressed="true"]{ border-style:solid; border-color:var(--ink); background:var(--ink); color:var(--panel); }
+.acts{ display:grid; grid-template-columns:repeat(4,1fr); gap:4px; margin:6px 0; }
+.acts button{ border:1.5px solid var(--line); background:transparent; border-radius:10px; padding:7px 2px 5px; display:flex; flex-direction:column; align-items:center; gap:2px; font-size:12px; }
+.acts button .ic{ width:22px; height:22px; } .acts button[aria-pressed="true"]{ background:var(--ink); color:var(--panel); border-color:var(--ink); }
+.nums{ display:flex; gap:6px; flex-wrap:wrap; } .nums button{ width:40px; height:40px; border-radius:50%; border:1.5px solid var(--line); background:transparent; font-family:var(--disp); font-size:18px; }
+.nums button[aria-pressed="true"]{ background:var(--red); color:#fff; border-color:var(--red); }
+.def11{ display:grid; grid-template-columns:repeat(2,1fr); gap:6px; }
+.def11 button{ border:1.5px solid var(--line); background:transparent; border-radius:12px; padding:10px 8px; display:flex; flex-direction:column; align-items:flex-start; gap:4px; text-align:left; }
+.def11 button .ic{ width:30px; height:30px; } .def11 button b{ font-size:15.5px; } .def11 button small{ font-size:12.5px; opacity:.8; display:flex; align-items:center; gap:4px; } .def11 button small .ic{ width:16px; height:16px; }
+.def11 button[aria-pressed="true"]{ background:var(--ink); color:var(--panel); border-color:var(--ink); }
+.test11 .go2{ display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px; }
+.test11 .go2 .btn{ display:flex; align-items:center; justify-content:center; gap:6px; font-size:15px; }
+.trow{ display:grid; grid-template-columns:30px minmax(0,1fr) 46px 22px; gap:6px; align-items:center; padding:5px 0; border-bottom:1px solid var(--line); font-size:13.5px; }
+.trow .ic{ width:26px; height:26px; } .trow .nm{ display:flex; flex-direction:column; gap:3px; min-width:0; }
+.trow .bar{ height:10px; border-radius:0 4px 4px 0; background:var(--ink2); opacity:.55; min-width:2px; transition:width .3s; }
+.trow.best .bar{ background:var(--ok); opacity:1; } .trow.worst .bar{ background:var(--red); opacity:1; }
+.trow .v{ font-family:var(--disp); font-size:19px; text-align:right; } .trow .vd .ic{ width:20px; height:20px; }
+.trow.best .vd{ color:var(--ok); } .trow.worst .vd{ color:var(--red); }
+.prog11{ height:4px; background:var(--line); border-radius:2px; overflow:hidden; margin:4px 0 8px; } .prog11 i{ display:block; height:100%; background:var(--amber); }
+.pred11{ margin-top:10px; padding:10px; border-radius:10px; background:var(--led); color:#EEEBE1; font-size:14.5px; line-height:1.35; }
+.pred11 b{ color:var(--amber); } .pred11 .lv{ font-size:11px; letter-spacing:.08em; text-transform:uppercase; opacity:.7; display:block; margin-bottom:3px; }
+.pred11 .btn{ margin-top:8px; }
+.what11{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; font-size:13px; } .what11 > span{ display:inline-flex; gap:4px; align-items:center; border:1px solid var(--line); padding:3px 8px; border-radius:999px; }
+.peer{ font-size:13px; }
+#side h2.t11{ display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:20px; margin:0 0 8px; }
+#side h2.t11 small{ font-size:13px; font-weight:400; color:var(--ink2); }
+/* jogo */
+.hud.aux11{ display:flex; align-items:center; gap:8px; padding:6px 10px; min-height:44px; }
+.hud.aux11 .who{ width:30px; height:30px; border-radius:50%; background:var(--amber); color:#1d1a12; display:flex; align-items:center; justify-content:center; flex:none; } .hud.aux11 .who .ic{ width:18px; height:18px; }
+.hud.aux11 .msg{ flex:1; min-width:0; font-size:14.5px; line-height:1.25; }
+.hud.aux11 .msg em{ opacity:.7; font-style:normal; font-size:12.5px; }
+.hud.aux11 .chips{ display:flex; gap:4px; flex-wrap:wrap; }
+.hud.aux11 .chip{ display:inline-flex; align-items:center; gap:4px; padding:4px 8px; min-height:34px; font-size:13px; }
+.hud.aux11 .chip .ic{ width:18px; height:18px; } @media (max-width:640px){ .hud.aux11 .chip{ padding:3px 6px; font-size:12px; gap:2px; } .hud.aux11 .chip .ic{ width:15px; height:15px; } }
+.hud.aux11 .ph{ font-size:11px; padding:2px 6px; }
+.pb .ic, .ob .ic{ width:20px; height:20px; display:block; margin:0 auto 1px; }
+@media (max-width:640px){ .roster11{ grid-template-columns:repeat(3,1fr); } .rc{ min-height:88px; } .rc .nm{ font-size:13.5px; } .home.v11 .mode{ min-height:84px; } .home.v11 .mode small{ display:none; } .tabs11 button{ font-size:11.5px; } }
+@media (max-width:380px){ .tools11 button, .acts button{ font-size:10.5px; } }
+html, body{ overflow-x:hidden; }
+`; document.head.append(st); })();
+
+// ---------- 5x5: formato e leitura da defesa ----------
+DEF_TPL_BY[5] = {"alta":{"l":[[7.17,1.15],[9.08,0.96],[11.1,1.03],[12.99,1.03],[14.95,1.07],[16.82,1.06],[18.89,1.17],[20.73,1.32],[22.78,1.4],[24.52,1.42],[26.32,1.53],[27.86,1.79],[29.07,1.93],[30.2,2.3]],"m":[[0.49,0.17],[0.48,0.17],[0.5,0.17],[0.5,0.17],[0.5,0.17],[0.48,0.17],[0.47,0.18],[0.46,0.18],[0.45,0.19],[0.44,0.19],[0.43,0.2],[0.42,0.2],[0.42,0.2],[0.41,0.21]]},"media":{"l":[[7.08,1.02],[8.78,0.9],[10.47,0.86],[11.96,0.8],[12.71,0.8],[12.79,0.8],[13,0.8],[13.33,0.8],[13.65,0.8],[14.04,0.8],[14.55,0.86],[14.51,0.93],[15.19,0.95],[15.32,1.06]],"m":[[0.52,0.17],[0.53,0.17],[0.51,0.17],[0.49,0.17],[0.48,0.17],[0.48,0.17],[0.47,0.17],[0.46,0.17],[0.45,0.18],[0.44,0.18],[0.43,0.19],[0.42,0.19],[0.41,0.2],[0.4,0.2]]},"baixa":{"l":[[5.32,0.8],[5.65,0.8],[6.25,0.8],[6.51,0.8],[6.91,0.8],[7.17,0.8],[7.47,0.8],[7.73,0.8],[8.09,0.8],[8.22,0.8],[8.51,0.8],[8.81,0.8],[9.05,0.8],[9.36,0.8]],"m":[[0.59,0.17],[0.57,0.17],[0.5,0.17],[0.49,0.17],[0.49,0.17],[0.47,0.17],[0.46,0.17],[0.45,0.17],[0.44,0.18],[0.43,0.18],[0.42,0.18],[0.41,0.19],[0.4,0.19],[0.39,0.2]]},"homem":{"l":[[6.74,1.15],[8.56,1.05],[10.43,1.05],[12.31,1.1],[14.21,1.15],[15.91,1.2],[18.25,1.4],[19.25,1.5],[20.89,1.6],[23.02,1.7],[25.29,1.8],[26.45,2],[29,2.1],[30.18,2.3]],"m":[[0.63,0.15],[0.62,0.15],[0.63,0.15],[0.65,0.15],[0.62,0.15],[0.63,0.15],[0.62,0.15],[0.61,0.16],[0.6,0.16],[0.6,0.16],[0.59,0.17],[0.58,0.17],[0.57,0.17],[0.56,0.17]]}};
+S.size = (() => { try { const v = +localStorage.getItem("prancheta_size"); return [5, 6, 7].includes(v) ? v : 5; } catch (e) { return 5; } })();
+cfg7 = function () { cfgSoc7(); if (S.size === 6) setPitch(6); else if (S.size === 5) setPitch(5); setCfg({ rt: 1.5 }); };
+cfg7();
+(() => { const sel = $("#sizeSel"); if (sel && !sel.querySelector('option[value="5"]')) sel.append(el("option", { value: "5", text: "5 contra 5 (goleiro e 4)" })); if (sel) sel.value = String(S.size); })();
+
+// ---------- escalação: N-1 de 12, todos os times com as mesmas habilidades ----------
+const NPICK = () => SIZE - 1;
+const rosterOf = id => ROSTER.find(r => r.id === id);
+function rScore(id, att, def) { const sk = skOf(rosterOf(id)); let v = 0; if (att) for (const k in ATT_SK[att]) v += ATT_SK[att][k] * (sk[k] - 64); if (def) for (const k in DEF_SK[def]) v += 0.6 * DEF_SK[def][k] * (sk[k] - 64); return v; }
+function bestFor(id) { const a = Object.keys(ATT_SK).sort((x, y) => rScore(id, y) - rScore(id, x))[0], d = Object.keys(DEF_SK).sort((x, y) => rScore(id, null, y) - rScore(id, null, x))[0]; return { a, d }; }
+function autoPick(T) {
+  const att = T.plan ? T.plan.att : "dentro", def = T.plan ? T.plan.def : "media", ids = ROSTER.map(r => r.id), need = SIZE >= 6 ? 2 : 1;
+  const sc = id => rScore(id, att, def), pick = ids.filter(id => ROLE_OF[id] === "D").sort((a, b) => sc(b) - sc(a)).slice(0, need);
+  ids.filter(id => !pick.includes(id)).sort((a, b) => sc(b) - sc(a)).forEach(id => { if (pick.length < NPICK()) pick.push(id); });
+  return pick;
+}
+function applyPicks(T, picks) {
+  const cur = Math.max(0, T.cur | 0), keep = {}; (T.players || []).forEach(p => { if (p.rid) keep[p.rid] = { arrow: p.arrow, zact: p.zact }; });
+  rosterTeam(T, picks);
+  T.players.forEach(p => { const k = keep[p.rid]; if (k) { if (k.arrow) p.arrow = k.arrow; if (k.zact) p.zact = k.zact; } });
+  if (T.plans) { T.cur = -1; usePlan(T, cur); } T._S = null;
+  const nums = T.players.map(p => p.num); if (T.userLinks) T.userLinks = T.userLinks.filter(([a, b]) => nums.includes(a) && nums.includes(b));
+}
+function ensureRoster(T) { if (!T) return; if (!T.picks || T.picks.length !== NPICK() || T.players.some(p => p.role !== "G" && !p.sk)) applyPicks(T, autoPick(T)); }
+const newOpponentV10 = newOpponent;
+newOpponent = function () { newOpponentV10(); const T = S.teams[1]; if (T) applyPicks(T, autoPick(T)); };
+
+// ---------- online: escalação, setas, ligações e ações por zona vão no pacote ----------
+const packTeamV10 = packTeam;
+packTeam = function (T) { const o = packTeamV10(T); o.ri = T.players.map(p => p.rid || ""); o.br = (T.bench || []).map(b => b.rid || ""); o.pk = (T.picks || []).slice(0, 7);
+  o.ar = T.players.map(p => p.arrow ? [Math.round(p.arrow[0] * 1000) / 1000, Math.round(p.arrow[1] * 1000) / 1000] : 0);
+  o.za = T.players.map(p => p.zact ? [p.zact.zone, p.zact.act, p.zact.to | 0] : 0); o.ul = (T.userLinks || []).slice(0, 6); return o; };
+const unpackTeamV10 = unpackTeam;
+unpackTeam = function (o) {
+  const T = unpackTeamV10(o), ok = id => !!rosterOf(id);
+  if (Array.isArray(o.ri)) T.players.forEach((p, i) => { const id = o.ri[i]; if (id === "gk") { p.rid = "gk"; p.sk = { ...GK_SK }; } else if (ok(id)) { const r = rosterOf(id); p.rid = id; p.trait = id; p.name = r.n; p.sk = skOf(r); } });
+  if (Array.isArray(o.br)) T.bench = o.br.filter(ok).map(id => { const r = rosterOf(id); return { role: ROLE_OF[id], name: r.n, trait: id, rid: id, sk: skOf(r), fichas: 0 }; });
+  if (Array.isArray(o.pk)) T.picks = o.pk.filter(ok);
+  if (Array.isArray(o.ar)) T.players.forEach((p, i) => { const a = o.ar[i]; p.arrow = Array.isArray(a) ? [clamp(+a[0] || 0.5, 0, 1), clamp(+a[1] || 0.5, 0, 1)] : undefined; });
+  if (Array.isArray(o.za)) T.players.forEach((p, i) => { const z = o.za[i]; p.zact = Array.isArray(z) && ZONES[z[0]] && ACT[z[1]] ? { zone: z[0], act: z[1], to: z[2] | 0 } : undefined; });
+  if (Array.isArray(o.ul)) T.userLinks = o.ul.filter(l => Array.isArray(l) && l.length === 2).map(([a, b]) => [a | 0, b | 0]).slice(0, 6);
+  return T;
+};
+
+// ---------- início: três modos, formato em fichas, ajustes recolhidos ----------
+(() => {
+  const home = $("#scrHome .home"); if (!home || home.classList.contains("v11")) return; home.classList.add("v11");
+  const h1 = home.querySelector(".hero h1"); if (h1) { h1.textContent = "Prancheta"; h1.after(el("span", { class: "tag", text: "escale, desenhe, preveja" })); }
+  const MODE = { treino: ["robot", "Treino", "contra o computador"], online: ["globe", "Online", "cada um no seu celular"], contra: ["phone", "Lado a lado", "dois no mesmo aparelho"] };
+  document.querySelectorAll("#scrHome .mode").forEach(b => { const m = MODE[b.dataset.mode]; if (!m) return; b.innerHTML = ""; b.append(ico(m[0]), el("b", { text: m[1] }), el("small", { text: m[2] })); });
+  const panel = home.querySelector(".panel"), modes = panel.querySelector(".modes");
+  const NOTE = { 5: "Comece aqui: poucas peças, jogo apertado e a escalação pesa.", 6: "Meio-termo: mais gols, mas a escalação pesa menos.", 7: "Para quem já lê o jogo: mais combinações e mais recompensa para quem prepara." };
+  const fmt = el("div", { class: "fmt11" }, el("span", { class: "lbl11", text: "Formato" }),
+    el("div", { class: "chips3", role: "group", "aria-label": "Formato" }, ...[5, 6, 7].map(n => el("button", { "data-size": String(n), "aria-pressed": S.size === n ? "true" : "false", onclick: () => setSize11(n) },
+      el("b", { text: `${n}×${n}` }), el("span", { class: "dots" }, ...Array.from({ length: n - 1 }, () => el("i"))), el("small", { text: `goleiro + ${n - 1}` })))),
+    el("div", { class: "note", id: "fmtNote", text: NOTE[S.size] }));
+  modes.after(fmt);
+  window.setSize11 = n => { S.size = n; try { localStorage.setItem("prancheta_size", n); } catch (e) { } const sel = $("#sizeSel"); if (sel) sel.value = String(n); cfg7(); renderPlacar();
+    fmt.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.size === String(n) ? "true" : "false")); $("#fmtNote").textContent = NOTE[n]; };
+  const det = el("details", { class: "cfg11" }, el("summary", {}, ico("gear"), el("span", { text: "Nome do time e nível do computador" })));
+  ["#nameA", "#nameB", "#diff"].forEach(sel => { const f = $(sel) && $(sel).closest(".field"); if (f) det.append(f); });
+  const fs = $("#fSize"); if (fs) det.append(fs);
+  fmt.after(det);
+  const go = $("#go"); if (go) { go.innerHTML = ""; go.append(ico("play"), el("span", { text: "Jogar" })); }
+  const hw = $("#howto"), rk = $("#openRank");
+  if (hw && rk) { const row = el("div", { class: "icorow" }); hw.closest(".row").before(row); hw.innerHTML = ""; hw.append(ico("help"), el("span", { text: "Como jogar" })); rk.innerHTML = ""; rk.append(ico("trophy"), el("span", { text: "Ranking" })); hw.closest(".row").remove(); rk.closest(".row").remove(); row.append(hw, rk); }
+})();
+
+// ---------- prancheta: ferramentas ----------
+S.ptab = "escalar"; S.t11 = "mover"; S.zSel = null;
+playOn = function () { return S.phase === "board" && (!S.M || S.editingHalf) && ((S.ptab === "prancheta" && S.t11 === "jogada") || S.ptab === "jogadas") && S.teams[S.edit]; };
+const tool11 = () => S.phase === "board" && (!S.M || S.editingHalf) && S.ptab === "prancheta" && ["seta", "ligar", "zona"].includes(S.t11) && S.teams[S.edit];
+const pnum = (T, n) => T.players.find(p => p.num === n);
+const zoneRect = z => { const Z = ZONES[z]; return [fromNrm([Z.x[0], Z.y[0]]), fromNrm([Z.x[1], Z.y[1]])]; };
+const zoneMid = z => { const Z = ZONES[z]; return fromNrm([(Z.x[0] + Z.x[1]) / 2, (Z.y[0] + Z.y[1]) / 2]); };
+const where = ([nx, ny]) => `${nx > 0.78 ? "a área" : nx > 0.55 ? "o ataque" : nx > 0.35 ? "o meio" : "a defesa"}${ny < 0.3 ? " pela esquerda" : ny > 0.7 ? " pela direita" : ""}`;
+function edited11() { const T = S.teams[S.edit]; T._S = null; if (S.M && S.editingHalf) { try { syncTeam(S.M, S.M.teams.indexOf(T)); } catch (e) { } if (isGuest()) netSendTeam(); } }
+cv.addEventListener("pointerdown", e => {
+  if (!tool11()) return; const T = S.teams[S.edit], [wx, wy] = evPos(e), n = hitNum(T, wx, wy);
+  if (S.t11 === "zona") { if (n != null && pnum(T, n).role !== "G") { S.zSel = n; const z = pnum(T, n).zact; S.zZone = z ? z.zone : null; S.zAct = z ? z.act : null; renderSide(); draw(); return; }
+    if (S.zSel != null) { const [nx, ny] = toNrm(wx, wy), z = Object.keys(ZONES).find(k => inZone(k, nx, ny)); if (z) { S.zZone = z; saveZone11(); } } return; }
+  if (n == null || (S.t11 === "seta" && pnum(T, n).role === "G")) return; S.dFrom = n; S.dTo = [wx, wy]; try { cv.setPointerCapture(e.pointerId); } catch (er) { } draw();
+});
+cv.addEventListener("pointermove", e => { if (!tool11() || S.dFrom == null) return; S.dTo = evPos(e); draw(); });
+cv.addEventListener("pointerup", e => {
+  if (!tool11() || S.dFrom == null) return; const T = S.teams[S.edit], [wx, wy] = evPos(e), n = hitNum(T, wx, wy), from = S.dFrom, p = pnum(T, from); S.dFrom = null; S.dTo = null;
+  if (S.t11 === "seta") { const [ax, ay] = slotW(p.slot); if (dist(ax, ay, wx, wy) > 2.5 * K) p.arrow = toNrm(wx, wy); else delete p.arrow; }
+  if (S.t11 === "ligar" && n != null && n !== from) { T.userLinks = T.userLinks || []; const k = T.userLinks.findIndex(([a, b]) => (a === from && b === n) || (a === n && b === from));
+    if (k >= 0) T.userLinks.splice(k, 1); else { T.userLinks.push([from, n]); if (T.userLinks.length > 4) T.userLinks.shift(); } T.links = comboLinks(T, T.plan.combo); }
+  edited11(); renderSide(); draw();
+});
+function saveZone11() { const T = S.teams[S.edit], p = pnum(T, S.zSel); if (!p) return;
+  if (S.zZone && S.zAct && (S.zAct !== "pass" || S.zTo)) { p.zact = { zone: S.zZone, act: S.zAct, to: S.zAct === "pass" ? S.zTo : 0 }; edited11(); }
+  renderSide(); draw(); }
+
+const drawEditV10 = drawEdit;
+drawEdit = function () {
+  const T = S.teams[S.edit]; if (!S.easy || !T || playOn()) return drawEditV10();
+  const pos = {}; T.players.forEach(p => pos[p.num] = slotW(p.slot)); const full = S.ptab === "prancheta";
+  ctx.save(); ctx.lineCap = "round";
+  if (full && S.t11 === "zona") Object.keys(ZONES).forEach(z => { const [[x1, y1], [x2, y2]] = zoneRect(z), [c1x, c1y] = W2C(x1, y1), [c2x, c2y] = W2C(x2, y2), on = S.zZone === z && S.zSel != null;
+    ctx.fillStyle = on ? "rgba(240,178,58,.28)" : "rgba(238,235,225,.07)"; ctx.strokeStyle = on ? "rgba(240,178,58,.95)" : "rgba(238,235,225,.35)"; ctx.lineWidth = SC * .12 * K; ctx.setLineDash([SC * .5, SC * .4]);
+    ctx.fillRect(Math.min(c1x, c2x), Math.min(c1y, c2y), Math.abs(c2x - c1x), Math.abs(c2y - c1y)); ctx.strokeRect(Math.min(c1x, c2x), Math.min(c1y, c2y), Math.abs(c2x - c1x), Math.abs(c2y - c1y)); ctx.setLineDash([]);
+    const [mx, my] = zoneMid(z); chalkText(ZONE_SHORT[z], mx, my, 1.05, "rgba(238,235,225,.6)"); });
+  if (full) {
+    (T.userLinks || []).forEach(([a, b]) => { const A = pos[a], B = pos[b]; if (!A || !B) return; const [x1, y1] = W2C(...A), [x2, y2] = W2C(...B); ctx.strokeStyle = "rgba(240,178,58,.9)"; ctx.lineWidth = SC * .34 * K; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); });
+    T.players.forEach(p => { if (!p.arrow) return; const a = pos[p.num], b = fromNrm(p.arrow); arrow(a[0], a[1], b[0], b[1], "rgba(238,235,225,.92)", .24, [.6, .45]); });
+    T.players.forEach(p => { if (!p.zact) return; const [mx, my] = zoneMid(p.zact.zone), a = pos[p.num]; ctx.strokeStyle = "rgba(240,178,58,.45)"; ctx.lineWidth = SC * .1 * K; ctx.setLineDash([SC * .25, SC * .35]); const [x1, y1] = W2C(...a), [x2, y2] = W2C(mx, my); ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); ctx.setLineDash([]);
+      pill(mx, my + (p.num % 3 - 1) * 1.6 * K, `${p.num}: ${ACT[p.zact.act][1].toLowerCase()}${p.zact.act === "pass" && p.zact.to ? " p/ " + p.zact.to : ""}`, "rgba(29,26,18,.85)", "#F0B23A"); });
+    if (S.dFrom != null && S.dTo) { const a = pos[S.dFrom]; if (a) arrow(a[0], a[1], S.dTo[0], S.dTo[1], S.t11 === "ligar" ? "rgba(240,178,58,.7)" : "rgba(238,235,225,.6)", .22, [.4, .4]); }
+  }
+  ctx.restore();
+  T.players.forEach(p => { const [x, y] = pos[p.num]; magnet(x, y, T.color, p.num, { label: p.name, sel: (full && S.t11 === "zona" && S.zSel === p.num) || (S.dFrom === p.num) }); });
+  chalkText(ROT ? "ataque ↑" : "ataque →", ROT ? FL + 2 : FL - 8 * K, ROT ? FW / 2 : -2, 1.3);
+};
+
+// ---------- painéis ----------
+const TABS11 = [["escalar", "team", "Escalar"], ["prancheta", "board", "Prancheta"], ["defesa", "shield", "Defesa"], ["testar", "flask", "Testar"]];
+function tabs11() { const T = S.teams[S.edit], short = (S.draft || T.picks || []).length !== NPICK();
+  return el("div", { class: "tabs11", role: "tablist" }, ...TABS11.map(([k, ic, t], i) => el("button", { role: "tab", class: k === "escalar" && short ? "warn" : "", "aria-selected": S.ptab === k ? "true" : "false", onclick: () => { S.ptab = k; S.zSel = null; renderSide(); draw(); } }, el("span", { class: "n", text: i + 1 }), ico(ic), el("span", { text: t })))); }
+
+function fingerprint(sk) { const fp = el("div", { class: "fp" }), top = SK_ORDER.slice().sort((a, b) => sk[b] - sk[a]).slice(0, 2);
+  SK_ORDER.forEach(k => { const i = el("i", { class: top.includes(k) && sk[k] > 70 ? "hi" : "" }); i.style.height = `${Math.round(clamp((sk[k] - 30) / 66, 0.05, 1) * 100)}%`; i.title = `${SK_SHORT[k]} ${sk[k]}`; fp.append(i); });
+  return el("div", {}, fp, (() => { const l = el("div", { class: "fpl" }); SK_ORDER.forEach(k => l.append(ico(k))); return l; })()); }
+function escalarPanel(T) {
+  const box = el("div", { class: "esc11" }), n = NPICK(); if (!S.draft || S.draftT !== T) { S.draft = (T.picks || []).slice(); S.draftT = T; }
+  const d = S.draft, sc = id => rScore(id, T.plan.att, T.plan.def), ranked = ROSTER.map(r => r.id).sort((a, b) => sc(b) - sc(a)).slice(0, n);
+  box.append(el("div", { class: "cnt11" }, el("span", { class: "sub11", style: "margin:0", text: `Escolha ${n} de 12. O ponto verde: combina com ${ATT_SHORT[T.plan.att].toLowerCase()} e ${DEF_SHORT[T.plan.def].toLowerCase()}.` }),
+    el("b", { class: d.length === n ? "ok" : "", text: `${d.length}/${n}` })));
+  box.append(el("div", { class: "skleg" }, ...SK_ORDER.map(k => el("span", {}, ico(k), SK_SHORT[k]))));
+  const grid = el("div", { class: "roster11" });
+  ROSTER.forEach(r => { const on = d.includes(r.id), p = T.players.find(q => q.rid === r.id), sk = skOf(r), bf = bestFor(r.id);
+    grid.append(el("button", { class: "rc" + (on ? " on" : ""), "aria-pressed": on ? "true" : "false", title: r.d || "", onclick: () => {
+      if (on) d.splice(d.indexOf(r.id), 1); else if (d.length < n) d.push(r.id); else { S.escMsg = "Time completo: tire alguém primeiro."; renderSide(); return; }
+      S.escMsg = ""; if (d.length === n) { applyPicks(T, d); edited11(); } renderSide(); renderBar(); draw(); } },
+      el("span", { class: "nm", text: r.n }), on && p ? el("span", { class: "num", text: p.num }) : ranked.includes(r.id) ? el("span", { class: "fit", title: "combina com o plano" }) : null,
+      fingerprint(sk), el("span", { class: "bf" }, ico("a_" + bf.a), ico("d_" + bf.d), el("span", { text: ATT_SHORT[bf.a].replace("Por ", "").replace("Pelos ", "") })))); });
+  box.append(grid);
+  if (S.escMsg) box.append(el("div", { class: "sub11", style: "color:var(--red);margin-top:6px", text: S.escMsg }));
+  box.append(el("div", { class: "row", style: "margin-top:8px" }, el("button", { class: "btn ghost sm", onclick: () => { const pk = autoPick(T); S.draft = pk.slice(); applyPicks(T, pk); edited11(); renderSide(); renderBar(); draw(); } }, ico("spark"), " Sugerir para o plano")));
+  return box;
+}
+function planChips(T) { return el("div", { class: "plan11", role: "group", "aria-label": "Ataque inicial" }, ...ANS.map((a, k) => el("button", { "aria-pressed": Math.max(0, T.cur) === k ? "true" : "false", title: `${a.t}: contra ${a.vs.toLowerCase()}`, onclick: () => { T.cur = -1; usePlan(T, k); S.draft = null; renderSide(); draw(); } }, el("b", { text: PLAN_KEYS[k] }), ico("a_" + a.att), el("span", { text: ATT_SHORT[a.att] })))); }
+const TOOLS11 = [["mover", "move", "Mover"], ["seta", "arrow", "Seta"], ["ligar", "link", "Ligar"], ["zona", "pin", "Zona"], ["jogada", "pencil", "Jogada"]];
+const TOOL_HINT = { mover: "Arraste os jogadores para a posição de saída.", seta: "Arraste de um jogador até o espaço: é para lá que ele corre quando o seu time tem a bola. Toque nele para apagar.",
+  ligar: "Arraste de um jogador até outro: os dois tabelam mais entre si. Até 4 ligações.", zona: "Toque num jogador, depois na zona do campo e no que ele faz se receber a bola ali.", jogada: "Arraste de jogador a jogador (passe) ou até o espaço (corrida). Vira um botão no jogo." };
+function pranchetaPanel(T) {
+  const box = el("div", { class: "pr11" });
+  box.append(el("span", { class: "lbl11", text: "Ataque inicial (no jogo você troca em A·B·C·D)" }), planChips(T));
+  box.append(el("div", { class: "tools11", role: "group", "aria-label": "Ferramenta" }, ...TOOLS11.map(([k, ic, t]) => el("button", { "aria-pressed": S.t11 === k ? "true" : "false", onclick: () => { S.t11 = k; S.zSel = null; renderSide(); draw(); if (window.innerWidth < 700) setTimeout(() => cv.scrollIntoView({ block: "start", behavior: "smooth" }), 30); } }, ico(ic), el("span", { text: t })))));
+  box.append(el("div", { class: "sub11", text: TOOL_HINT[S.t11] }));
+  const nm = n => { const p = pnum(T, n); return p ? `${n} ${p.name}` : String(n); };
+  if (S.t11 === "seta") { const L = T.players.filter(p => p.arrow); box.append(L.length ? el("div", { class: "list11" }, ...L.map(p => el("span", { class: "tag11" }, ico("arrow"), `${nm(p.num)} → ${where(p.arrow)}`, el("button", { "aria-label": "apagar", onclick: () => { delete p.arrow; edited11(); renderSide(); draw(); } }, ico("x"))))) : el("div", { class: "sub11", text: "Nenhuma seta: cada um corre pelo plano." })); }
+  if (S.t11 === "ligar") { const L = T.userLinks || []; box.append(L.length ? el("div", { class: "list11" }, ...L.map(([a, b], i) => el("span", { class: "tag11" }, ico("link"), `${a} ⟷ ${b}`, el("button", { "aria-label": "apagar", onclick: () => { L.splice(i, 1); T.links = comboLinks(T, T.plan.combo); edited11(); renderSide(); draw(); } }, ico("x"))))) : el("div", { class: "sub11", text: "Sem ligações suas: o time usa as do plano." })); }
+  if (S.t11 === "zona") {
+    const p = S.zSel != null ? pnum(T, S.zSel) : null;
+    if (p) { box.append(el("span", { class: "lbl11", text: `Camisa ${p.num} · ${p.name}: se receber na…` }),
+      el("div", { class: "zg" }, ...["ae", "am", "ad", "ie", "im", "id"].map(z => el("button", { "aria-pressed": S.zZone === z ? "true" : "false", onclick: () => { S.zZone = z; saveZone11(); } }, ZONE_SHORT[z]))),
+      el("span", { class: "lbl11", text: "…ele vai" }),
+      el("div", { class: "acts" }, ...Object.keys(ACT).map(k => el("button", { "aria-pressed": S.zAct === k ? "true" : "false", onclick: () => { S.zAct = k; if (k !== "pass") S.zTo = 0; saveZone11(); } }, ico(ACT[k][0]), el("span", { text: ACT[k][1] })))));
+      if (S.zAct === "pass") box.append(el("span", { class: "lbl11", text: "…para quem" }), el("div", { class: "nums" }, ...T.players.filter(q => q.num !== p.num && q.role !== "G").map(q => el("button", { "aria-pressed": S.zTo === q.num ? "true" : "false", onclick: () => { S.zTo = q.num; saveZone11(); } }, String(q.num))))); }
+    const L = T.players.filter(q => q.zact); if (L.length) box.append(el("div", { class: "list11" }, ...L.map(q => el("span", { class: "tag11" }, ico(ACT[q.zact.act][0]), `${q.num} na ${ZONE_SHORT[q.zact.zone]}: ${ACT[q.zact.act][1].toLowerCase()}${q.zact.act === "pass" ? " p/ " + q.zact.to : ""}`, el("button", { "aria-label": "apagar", onclick: () => { delete q.zact; edited11(); renderSide(); draw(); } }, ico("x"))))));
+  }
+  if (S.t11 === "jogada") box.append(playPanel(T));
+  return box;
+}
+function defesaPanel(T) {
+  const cur = myDef(T);
+  return el("div", {}, el("div", { class: "sub11", text: "Como o time marca quando perde a bola. Cada uma fecha um tipo de ataque." }),
+    el("div", { class: "def11" }, ...DANS.map(x => el("button", { "aria-pressed": cur === x.d ? "true" : "false", onclick: () => { setMyDef(T, x.d); S.draft = null; } }, ico("d_" + x.d), el("b", { text: DEF_SHORT[x.d] }), el("small", {}, el("span", { text: "fecha" }), ico("a_" + x.vs), el("span", { text: ATT_SHORT[x.vs].toLowerCase() }))))));
+}
+
+// ---------- testar: o seu time contra o que ele pode fazer ----------
+function cloneT(T) { const c = JSON.parse(JSON.stringify(T)); c._S = null; c.npc = null; c.inMatch = false; return c; }
+function oppForTest() {
+  if (S.mode === "treino" && S.teams[1]) return { T: S.teams[1], real: true };
+  if (!S.testOpp || S.testOpp.size !== SIZE) { const O = makeTeam("Adversário", COLORS[1], "ancelotti"); applyPicks(O, autoPick(O)); O.size = SIZE; S.testOpp = O; }
+  return { T: S.testOpp, real: false };
+}
+function simOnce(A0, B0, oAtt, oDef, secs, strip) {
+  const A = cloneT(A0), B = cloneT(B0); if (strip) { A.players.forEach(p => { delete p.arrow; delete p.zact; }); A.userLinks = []; A.links = comboLinks(A, A.plan.combo); } setPlan(B, oAtt, oDef, B.plan.combo || "tri"); B.cur = -1;
+  const M = newMatch(A, B); let g = 0;
+  while (!M.over && M.t < secs && g++ < 20000) { step(M, 1 / 20); if (M.paused) { M.assim = [0, 0]; M.paused = false; M.halftime = false; M.checkpoint = null; M.timeoutBy = null; } }
+  const st = M.stats[0], lk = Object.values(st.links || {}).reduce((a, L) => a + L.n, 0);
+  return { me: st.xg, op: M.stats[1].xg, hd: st.hd || 0, zl: M.zactLog ? M.zactLog[0].length : 0, lk, sh: st.shots };
+}
+function runTest11(kind, strip) {
+  const T = S.teams[S.edit]; ensureRoster(T); const O = oppForTest(), rows = kind === "att" ? ["alta", "media", "baixa", "homem"] : ["dentro", "lados", "prof", "infil"], REPS = 4, SECS = 60;
+  const jobs = []; for (let k = 0; k < REPS; k++) rows.forEach(r => jobs.push(r));
+  const R = { kind, strip: !!strip, rows: {}, done: 0, total: jobs.length, run: true, real: O.real, base: kind === "att" ? O.T.plan.att : O.T.plan.def, myAtt: T.plan.att, myDef: T.plan.def, extra: { hd: 0, zl: 0, lk: 0 } };
+  rows.forEach(r => R.rows[r] = { me: 0, op: 0, n: 0 }); if (strip && S.test && S.test.kind === kind && !S.test.strip) R.prev = S.test; S.test = R;
+  const tick = () => { if (S.test !== R) return; const t0 = performance.now();
+    while (jobs.length && performance.now() - t0 < 35) { const r = jobs.shift(), x = kind === "att" ? simOnce(T, O.T, O.T.plan.att, r, SECS, strip) : simOnce(T, O.T, r, O.T.plan.def, SECS, strip);
+      const w = R.rows[r]; w.me += x.me; w.op += x.op; w.n++; R.extra.hd += x.hd; R.extra.zl += x.zl; R.extra.lk += x.lk; R.done++; }
+    if (!jobs.length) R.run = false; paintTest(); if (jobs.length) setTimeout(tick, 0); };
+  paintTest(); setTimeout(tick, 30);
+}
+function paintTest() {
+  const host = $("#test11"); if (!host) return; host.innerHTML = ""; const R = S.test; if (!R) return; const T = S.teams[S.edit];
+  if (R.run) host.append(el("div", { class: "prog11" }, (() => { const i = el("i"); i.style.width = `${Math.round(R.done / R.total * 100)}%`; return i; })()));
+  const keys = Object.keys(R.rows), val = k => { const w = R.rows[k]; return w.n ? (R.kind === "att" ? w.me : w.op) / w.n : 0; }, mx = Math.max(0.5, ...keys.map(val));
+  const done = keys.every(k => R.rows[k].n), order = keys.slice().sort((a, b) => val(b) - val(a)), best = R.kind === "att" ? order[0] : order[order.length - 1], worst = R.kind === "att" ? order[order.length - 1] : order[0];
+  host.append(el("div", { class: "sub11", style: "margin:0 0 2px", text: R.kind === "att" ? `Suas chances criadas em 1 minuto, com ${ATT_SHORT[R.myAtt].toLowerCase()}, se ele defender com…` : `Chances que ele cria em 1 minuto contra o seu ${DEF_SHORT[R.myDef].toLowerCase()}, se ele atacar…` }));
+  keys.forEach(k => { const v = val(k), cls = done ? (k === best ? " best" : k === worst ? " worst" : "") : "", bar = el("div", { class: "bar" }); bar.style.width = `${Math.round(v / mx * 100)}%`;
+    host.append(el("div", { class: "trow" + cls }, ico((R.kind === "att" ? "d_" : "a_") + k), el("div", { class: "nm" }, el("span", { text: (R.kind === "att" ? DEF_SHORT : ATT_SHORT)[k] }), bar),
+      el("span", { class: "v", text: R.rows[k].n ? dec(v) : "…" }), el("span", { class: "vd" }, done && k === best ? ico("check") : done && k === worst ? ico("x") : ""))); });
+  if (!done) return;
+  const n = R.total, ex = R.extra, what = el("div", { class: "what11" });
+  if (T.userLinks && T.userLinks.length) what.append(el("span", {}, ico("link"), `${dec(ex.lk / n)} tabelas por minuto`));
+  if (T.players.some(p => p.zact)) what.append(el("span", {}, ico("pin"), `${dec(ex.zl / n)} ações na zona`));
+  what.append(el("span", {}, ico("alt"), `${dec(ex.hd / n)} cabeceios`));
+  host.append(what);
+  const hasIns = T.userLinks && T.userLinks.length || T.players.some(p => p.zact || p.arrow);
+  if (R.prev) { const pv = k => { const w = R.prev.rows[k]; return w.n ? (R.kind === "att" ? w.me : w.op) / w.n : 0; }, tot = a => keys.reduce((s, k) => s + a(k), 0) / keys.length, d = tot(pv) - tot(val), good = R.kind === "att" ? d > 0.05 : d < -0.05, bad = R.kind === "att" ? d < -0.05 : d > 0.05;
+    host.append(el("div", { class: "sub11", style: "margin-top:8px" }, el("b", { text: good ? "As suas instruções ajudam" : bad ? "As suas instruções atrapalham" : "As instruções quase não mudam" }), ` · com: ${dec(tot(pv))} · sem: ${dec(tot(val))} por minuto (média das 4 linhas acima, que agora mostram o time sem instruções).`)); }
+  else if (hasIns && !R.strip) host.append(el("button", { class: "btn ghost sm", style: "margin-top:8px", onclick: () => runTest11(R.kind, true) }, ico("undo"), " Comparar sem setas, ligações e zonas"));
+  if (R.kind === "att") { const k = ANS.findIndex(a => a.d === worst), a = ANS[k];
+    host.append(el("div", { class: "pred11" }, el("span", { class: "lv", text: "Provável · 16 simulações" }),
+      el("span", {}, "Se ele ler o seu ataque, a resposta dele é ", el("b", { text: DEF_SHORT[worst].toLowerCase() }), `: você cria ${dec(val(worst))} contra ${dec(val(best))} no melhor caso. `),
+      a && a.att !== R.myAtt ? el("span", {}, "Tenha pronto o plano ", el("b", { text: `${PLAN_KEYS[k]} · ${ATT_SHORT[a.att]}` }), " para quando ele fizer isso.") : el("span", { text: "No papel o seu plano é a resposta para essa defesa, mas no teste rendeu pouco: confira a escalação e as instruções (setas, ligações, zonas)." }),
+      a && a.att !== R.myAtt ? el("button", { class: "btn ghost sm", style: "color:#EEEBE1;border-color:#EEEBE1", onclick: () => { T.cur = -1; usePlan(T, k); S.ptab = "testar"; runTest11("att"); renderSide(); draw(); } }, `Testar com ${PLAN_KEYS[k]}`) : null)); }
+  else { const x = DANS.find(d => d.vs === worst);
+    host.append(el("div", { class: "pred11" }, el("span", { class: "lv", text: "Provável · 16 simulações" }),
+      el("span", {}, "O ataque que mais machuca a sua defesa é ", el("b", { text: ATT_SHORT[worst].toLowerCase() }), ` (${dec(val(worst))}). `),
+      x && x.d !== R.myDef ? el("span", {}, "Se ele vier assim, troque para ", el("b", { text: DEF_SHORT[x.d].toLowerCase() }), ".") : el("span", { text: "No papel a sua defesa fecha esse ataque, mas no teste ele ainda criou: confira quem marca (escalação)." }),
+      x && x.d !== R.myDef ? el("button", { class: "btn ghost sm", style: "color:#EEEBE1;border-color:#EEEBE1", onclick: () => { setMyDef(T, x.d); S.ptab = "testar"; runTest11("def"); renderSide(); } }, `Testar com ${DEF_SHORT[x.d].toLowerCase()}`) : null)); }
+}
+function testarPanel(T) {
+  const O = oppForTest();
+  const box = el("div", { class: "test11" }, el("div", { class: "sub11", text: O.real ? `Treine contra o ${O.T.name}: veja o que acontece com cada coisa que ele pode fazer.` : "Treine contra um time padrão: veja o que acontece com cada coisa que o adversário pode fazer." }),
+    el("div", { class: "go2" }, el("button", { class: "btn" + (S.test && S.test.kind === "att" ? "" : " ghost"), onclick: () => runTest11("att") }, ico("a_" + T.plan.att), "Meu ataque"),
+      el("button", { class: "btn" + (S.test && S.test.kind === "def" ? "" : " ghost"), onclick: () => runTest11("def") }, ico("d_" + myDef(T)), "Minha defesa")),
+    el("div", { id: "test11" }));
+  if (S.test && (S.test.myAtt !== T.plan.att || S.test.myDef !== T.plan.def)) S.test = null;
+  setTimeout(paintTest, 0); return box;
+}
+
+// ---------- preparação: quatro abas ----------
+const renderSetupV10 = renderSetup;
+renderSetup = function () {
+  const T = S.teams[S.edit]; ensureEasy(T); if (!S.easy || !T) return renderSetupV10();
+  ensureRoster(T); ensurePlays(T); if (!TABS11.some(t => t[0] === S.ptab)) S.ptab = "escalar";
+  S.tab = S.ptab === "prancheta" && S.t11 === "mover" ? "form" : "v11"; // a ferramenta "mover" usa o arrastar da prancheta original
+  const side = $("#side"); side.innerHTML = ""; renderBar();
+  $("#hint").textContent = S.ptab === "prancheta" ? "" : S.ptab === "escalar" ? "Os escolhidos aparecem aqui." : "";
+  if (S.mode === "online") side.append(el("div", { class: "peer", text: NET.oppName ? `Sala ${NET.code}: contra ${NET.oppName}${NET.oppReady ? " (pronto)" : ""}` : `Sala ${NET.code}: passe o código para o adversário` }));
+  side.append(el("h2", { class: "t11" }, el("span", { text: S.mode === "contra" ? `Treinador ${S.edit + 1}` : "Prepare o time" }), el("small", { text: `${SIZE}×${SIZE}` })));
+  side.append(tabs11());
+  if (S.ptab === "escalar") side.append(escalarPanel(T));
+  if (S.ptab === "prancheta") side.append(pranchetaPanel(T));
+  if (S.ptab === "defesa") side.append(defesaPanel(T));
+  if (S.ptab === "testar") side.append(testarPanel(T));
+  const b = $("#barGo"); if (b) b.disabled = b.disabled || (S.draft && S.draftT === T && S.draft.length !== NPICK());
+};
+const renderBarV10 = renderBar;
+renderBar = function () {
+  renderBarV10(); const b = $("#barGo"), T = S.teams[S.edit]; if (b && T && S.draft && S.draftT === T && S.draft.length !== NPICK()) { b.disabled = true; b.textContent = `Escale ${NPICK()} jogadores`; }
+  const M = S.M; if (!M || S.phase !== "board" || S.timeoutEnd || M.over) return;
+  (S.mode === "contra" ? [0, 1] : [mySide()]).forEach(s => { const Tm = M.teams[s];
+    PLAN_KEYS.forEach((k, i) => { const bt = $(`#pb${s}${i}`); if (!bt || !Tm.plans[i]) return; const want = "a_" + Tm.plans[i].att; if (bt.dataset.ic !== want) { bt.dataset.ic = want; const old = bt.querySelector(".ic"); if (old) old.remove(); bt.prepend(ico(want)); } });
+    const OI = { foco: "target", jogada0: "pencil", jogada1: "pencil", pressao: "flame", segurar: "hold" };
+    Object.keys(OI).forEach(k => { const bt = $(`#ob${s}${k}`); if (bt && !bt.querySelector(".ic")) bt.prepend(ico(OI[k])); }); });
+};
+
+// ---------- auxiliar: uma frase por vez ----------
+renderHud = function () {
+  const hud = $("#hud"), M = S.M; if (!hud) return;
+  if (!M || M.over || S.timeoutEnd) { hud.classList.add("hidden"); return; } hud.classList.remove("hidden"); hud.className = "hud aux11";
+  const s = mySide(), ph = phaseOf(M, s), A = assistantNotes(M, s), q = askRead(M, s);
+  const key = [ph, A.op, q && q.open, q && q.ans, Math.floor(M.t / 3)].join("#"); if (hud.dataset.k === key) return; hud.dataset.k = key; hud.innerHTML = "";
+  const PH = { ataque: ["Atacando", "at"], recuperou: ["Recuperou", "rc"], defesa: ["Defendendo", "df"], perdeu: ["Perdeu", "pd"], neutro: ["Disputa", "nt"] }[ph] || ["", "nt"];
+  hud.append(el("span", { class: "who", title: "Auxiliar técnico" }, ico("talk")));
+  if (q && q.open && !q.ans) { hud.append(el("div", { class: "msg" }, el("div", { text: "Como ele defende agora?" }),
+    el("div", { class: "chips" }, ...DEF_GUESS.map(([k]) => el("button", { class: "chip", title: DEF_SHORT[k], onclick: () => { q.ans = k; S.reads.n++; if (k === q.k) S.reads.ok++; hud.dataset.k = ""; renderHud(); } }, ico("d_" + k), el("span", { text: { alta: "Pressão", media: "Médio", baixa: "Baixo", homem: "Encaixe" }[k] }))),
+      el("button", { class: "chip ghost", title: "pular", "aria-label": "pular", onclick: () => { q.ans = "pulou"; hud.dataset.k = ""; renderHud(); } }, ico("x"))))); return; }
+  const msg = el("div", { class: "msg" });
+  if (q && q.ans && q.ans !== "pulou" && M.t - q.at < 14) { const tl = tellOf(M, s); msg.append(el("div", { text: q.ans === q.k ? `Concordo: ${tl ? tl.txt : ""}.` : `Eu vejo ${tl ? tl.txt : "outra coisa"}.` })); }
+  else if (A.op) msg.append(el("div", { text: A.op }), el("em", { text: `${PH[0]} · a decisão é sua` }));
+  else msg.append(el("div", { text: A.notes.length ? `${A.notes[0].t}: ${A.notes[0].v}` : "Observando…" }), el("em", { text: PH[0] }));
+  hud.append(msg);
+  if (S.reads.n) hud.append(el("span", { class: "ph ph-" + PH[1], text: `leitura ${S.reads.ok}/${S.reads.n}` }));
+};
+
+// ---------- tutorial: quatro cartões ----------
+tutSeen = function () { try { return localStorage.getItem("prancheta_tut11") === "1"; } catch (e) { return false; } };
+const TUT11 = [
+  { ic: "team", t: "Escale", d: () => `Escolha ${NPICK()} de 12. Todos os times têm os mesmos 12: ganha quem escala para o plano. Alto cabeceia, rápido ataca as costas, quem tem toque joga por dentro.` },
+  { ic: "board", t: "Desenhe", d: () => "Na prancheta: seta (para onde corre), ligar (quem tabela com quem), zona (o que fazer se receber ali) e jogada ensaiada." },
+  { ic: "flask", t: "Teste", d: () => "Antes do jogo, teste seu ataque contra as quatro defesas que ele pode usar, e a sua defesa contra os quatro ataques. O pior caso é o que ele vai tentar." },
+  { ic: "play", t: "Jogue e leia", d: () => "No jogo, troque de ataque em A·B·C·D quando ele mudar a defesa. O auxiliar pergunta o que você vê antes de opinar." }
+];
+tutorial = function (after) {
+  let i = 0; const done = () => { try { localStorage.setItem("prancheta_tut11", "1"); } catch (e) { } closeOv(); if (after) after(); };
+  const show = () => { const s = TUT11[i], art = el("div", { class: "tutart t11" }, ico(s.ic)); art.style.cssText = "display:flex;justify-content:center;margin:8px 0;color:var(--amber)"; art.firstChild.style.cssText = "width:72px;height:72px";
+    overlay(el("div", { class: "tutstep", text: `${i + 1} de ${TUT11.length}` }), el("h2", { text: s.t }), art, el("p", { text: s.d() }),
+      el("div", { class: "row" }, el("button", { class: "btn red", text: i < TUT11.length - 1 ? "Próximo" : (after ? "Escalar o time" : "Entendi"), onclick: () => { if (i < TUT11.length - 1) { i++; show(); } else done(); } }),
+        i ? el("button", { class: "btn ghost", text: "Voltar", onclick: () => { i--; show(); } }) : null, i < TUT11.length - 1 ? el("button", { class: "btn ghost", text: "Pular", onclick: done }) : null)); };
+  show();
+};
+
+// ---------- paradas: os mesmos ícones das escolhas ----------
+const ICO_TXT = [["Linha alta", "d_alta"], ["Pressão alta", "d_alta"], ["Linha média", "d_media"], ["Bloco médio", "d_media"], ["Linha baixa", "d_baixa"], ["Bloco baixo", "d_baixa"], ["Individual", "d_homem"], ["Encaixe", "d_homem"],
+  ["Por dentro", "a_dentro"], ["Pelos lados", "a_lados"], ["Bola nas costas", "a_prof"], ["Infiltração", "a_infil"]];
+function iconize(root) { (root || document).querySelectorAll("#side button").forEach(b => { if (b.querySelector(".ic")) return; const t = b.textContent; const m = ICO_TXT.find(([w]) => t.includes(w)); if (m) b.prepend(ico(m[1])); }); }
+const renderStopV10b = renderStop;
+renderStop = function () { renderStopV10b(); iconize(); };
 </script></body></html>
