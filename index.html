@@ -403,28 +403,35 @@ svg.chart.corr,svg.chart.shots{ max-width:420px; margin:4px 0 8px; }
   let dbOk = null;
   const dbProbe = async () => { if (dbOk === null) { try { const { error } = await sb.from(T).select("id").limit(1); dbOk = !error; } catch (e) { dbOk = false; } } return dbOk ? db : null; };
   const room = { join: async name => {
-    const me = rid(6), ch = sb.channel("prancheta-" + name, { config: { broadcast: { self: false, ack: false }, presence: { key: me } } });
-    const L = {}, PL = [], snaps = {}; let lastTrack = null;
-    const peersArr = () => { const st = ch.presenceState(), out = []; for (const k in st) { const m = st[k][st[k].length - 1] || {}, p = { ...m }; delete p.presence_ref; if (snaps[k]) p.s = snaps[k]; out.push({ peer: k, isMe: k === me, sameTab: k === me, presence: p }); } return out; };
+    const me = rid(6), L = {}, PL = [], snaps = {}; let ch = null, lastTrack = null, lastP = null, healing = false;
+    const peersArr = () => { const st = ch ? ch.presenceState() : {}, out = []; for (const k in st) { const m = st[k][st[k].length - 1] || {}, p = { ...m }; delete p.presence_ref; if (snaps[k]) p.s = snaps[k]; out.push({ peer: k, isMe: k === me, sameTab: k === me, presence: p }); } return out; };
     const fire = () => { const arr = peersArr(); PL.forEach(f => { try { f({ peers: arr }); } catch (e) { console.error(e); } }); };
-    ch.on("presence", { event: "sync" }, fire);
-    ch.on("broadcast", { event: "*" }, msg => { const ev = msg.event, d = msg.payload;
+    const onB = msg => { const ev = msg.event, d = msg.payload;
       if (ev === "__snap") { if (d && d.k) { snaps[d.k] = d.s; fire(); } return; }
-      (L[ev] || []).forEach(f => { try { f({ topic: ev, data: d, sameTab: false, isMe: false }); } catch (e) { console.error(e); } }); });
-    let lastP = null, first = true; // ao voltar de segundo plano (celular), o canal reconecta e é preciso se anunciar de novo
-    await new Promise((res, rej) => { const to = setTimeout(() => rej(new Error("tempo esgotado")), 12000); ch.subscribe(s => {
-      if (s === "SUBSCRIBED") { if (first) { first = false; clearTimeout(to); res(); } else if (lastP) ch.track(lastP).catch(() => { }); }
-      else if ((s === "CHANNEL_ERROR" || s === "TIMED_OUT") && first) { first = false; clearTimeout(to); rej(new Error(s)); } }); });
-    const wake = () => { if (document.visibilityState !== "visible") return; try { if (!sb.realtime.isConnected()) sb.realtime.connect(); } catch (e) { } setTimeout(() => { if (lastP) ch.track(lastP).catch(() => { }); fire(); }, 800); };
+      (L[ev] || []).forEach(f => { try { f({ topic: ev, data: d, sameTab: false, isMe: false }); } catch (e) { console.error(e); } }); };
+    // abre (ou reabre) o canal da sala; ao reabrir, anuncia de novo quem você é
+    const build = () => new Promise((res, rej) => {
+      if (ch) { try { sb.removeChannel(ch); } catch (e) { } }
+      ch = sb.channel("prancheta-" + name, { config: { broadcast: { self: false, ack: false }, presence: { key: me } } });
+      ch.on("presence", { event: "sync" }, fire); ch.on("broadcast", { event: "*" }, onB);
+      let done = false; const to = setTimeout(() => { if (!done) { done = true; rej(new Error("tempo esgotado")); } }, 12000);
+      ch.subscribe(st => { if (st === "SUBSCRIBED") { if (lastP) ch.track(lastP).catch(() => { }); if (!done) { done = true; clearTimeout(to); res(); } }
+        else if ((st === "CHANNEL_ERROR" || st === "TIMED_OUT") && !done) { done = true; clearTimeout(to); rej(new Error(st)); } });
+    });
+    const heal = async () => { if (healing) return; healing = true; try { try { if (!sb.realtime.isConnected()) sb.realtime.connect(); } catch (e) { } await build(); fire(); } catch (e) { } healing = false; };
+    await build();
+    // a cada 5 s (e ao voltar para a tela) confirma o anúncio; se o servidor recusar, reabre a sala sozinho
+    const retrack = async () => { if (!lastP || document.visibilityState !== "visible" || healing) return; let r = "error"; try { r = await ch.track(lastP); } catch (e) { } if (r !== "ok") heal(); };
+    const wake = () => { if (document.visibilityState === "visible") setTimeout(retrack, 600); };
     document.addEventListener("visibilitychange", wake); window.addEventListener("focus", wake); window.addEventListener("pageshow", wake);
-    const beat = setInterval(() => { if (lastP && document.visibilityState === "visible") ch.track(lastP).catch(() => { }); }, 5000); // se o servidor esqueceu a gente, anuncia de novo
+    const beat = setInterval(retrack, 5000);
     return {
-      emit: async (t, d) => { await ch.send({ type: "broadcast", event: t, payload: d }); },
+      emit: async (t, d) => { const r = await ch.send({ type: "broadcast", event: t, payload: d }); if (r !== "ok") heal(); },
       on: (t, f) => { (L[t] = L[t] || []).push(f); return () => { L[t] = (L[t] || []).filter(x => x !== f); }; },
       presence: async p => { const { s, ...rest } = p || {}; if (s) { snaps[me] = s; ch.send({ type: "broadcast", event: "__snap", payload: { k: me, s } }); }
-        const key = JSON.stringify(rest); lastP = rest; if (key !== lastTrack) { lastTrack = key; await ch.track(rest); } },
+        const key = JSON.stringify(rest); lastP = rest; if (key !== lastTrack) { lastTrack = key; const r = await ch.track(rest); if (r !== "ok") heal(); } },
       peers: () => peersArr(), onPeers: f => { PL.push(f); return () => { const i = PL.indexOf(f); if (i >= 0) PL.splice(i, 1); }; },
-      leave: async () => { clearInterval(beat); document.removeEventListener("visibilitychange", wake); lastP = null; try { await ch.untrack(); } catch (e) { } await sb.removeChannel(ch); }
+      leave: async () => { clearInterval(beat); document.removeEventListener("visibilitychange", wake); window.removeEventListener("focus", wake); window.removeEventListener("pageshow", wake); lastP = null; try { await ch.untrack(); } catch (e) { } await sb.removeChannel(ch); }
     };
   } };
   window.claude = { use: async n => n === "db" ? dbProbe() : n === "user" ? { id: async () => UID } : n === "room" ? room : null };
