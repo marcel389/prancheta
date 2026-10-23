@@ -417,7 +417,7 @@ svg.chart.corr,svg.chart.shots{ max-width:420px; margin:4px 0 8px; }
       else if ((s === "CHANNEL_ERROR" || s === "TIMED_OUT") && first) { first = false; clearTimeout(to); rej(new Error(s)); } }); });
     const wake = () => { if (document.visibilityState !== "visible") return; try { if (!sb.realtime.isConnected()) sb.realtime.connect(); } catch (e) { } setTimeout(() => { if (lastP) ch.track(lastP).catch(() => { }); fire(); }, 800); };
     document.addEventListener("visibilitychange", wake); window.addEventListener("focus", wake); window.addEventListener("pageshow", wake);
-    const beat = setInterval(() => { if (lastP && document.visibilityState === "visible" && !ch.presenceState()[me]) ch.track(lastP).catch(() => { }); }, 4000); // se o servidor esqueceu a gente, anuncia de novo
+    const beat = setInterval(() => { if (lastP && document.visibilityState === "visible") ch.track(lastP).catch(() => { }); }, 5000); // se o servidor esqueceu a gente, anuncia de novo
     return {
       emit: async (t, d) => { await ch.send({ type: "broadcast", event: t, payload: d }); },
       on: (t, f) => { (L[t] = L[t] || []).push(f); return () => { L[t] = (L[t] || []).filter(x => x !== f); }; },
