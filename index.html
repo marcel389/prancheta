@@ -263,6 +263,26 @@ table.imp{ width:100%; border-collapse:collapse; font-size:14px; } table.imp td{
 .cact.plan{ background:var(--red); } .cact.def{ background:var(--blue); } .cact.ord{ background:var(--amber); color:#1d1a12; }
 .coach p:nth-child(n+4){ display:none; } @media (max-width:640px){ .coach p{ font-size:13.5px; } .coach p:nth-child(n+3){ display:none; } .coach .cph small{ display:none; } .cact{ min-height:40px; font-size:14px; padding:6px 9px; } .hud.easy .minis .mini:nth-child(3){ display:none; } }
 .legend9{ display:grid; gap:4px; font-size:14px; margin-bottom:6px; } .legend9 div{ display:grid; grid-template-columns:14px 1fr; gap:8px; align-items:center; } .legend9 i{ width:12px; height:12px; border-radius:3px; display:block; }
+
+.hud.aux{ display:block; padding:6px 10px; }
+.auxh{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; } .auxh b{ font-family:var(--disp); font-size:17px; } .auxh small{ color:var(--ink2); margin-left:auto; font-size:12.5px; }
+.ph{ font-family:var(--disp); font-weight:700; font-size:13px; padding:2px 8px; border-radius:999px; color:#fff; background:var(--ink2); } .ph-at,.ph-rc{ background:var(--ok); } .ph-df,.ph-pd{ background:var(--red); }
+.ask{ margin-top:4px; font-size:14.5px; display:grid; gap:4px; } .ask .chips{ display:flex; flex-wrap:wrap; gap:5px; } .ask .chip{ min-height:34px; } .chip.ghost{ border-style:dashed; color:var(--ink2); }
+.verdict{ margin-top:4px; font-size:14px; font-weight:700; padding:3px 8px; border-radius:6px; } .verdict.ok{ background:color-mix(in srgb, var(--ok) 18%, transparent); } .verdict.no{ background:color-mix(in srgb, var(--amber) 25%, transparent); }
+.notes{ display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:3px 12px; margin-top:4px; } .note{ font-size:13.5px; line-height:1.25; } .note span{ color:var(--ink2); display:block; font-size:12px; } .note b{ font-weight:600; }
+.op{ margin-top:5px; font-size:14px; border-top:1px dashed var(--line); padding-top:4px; } .op span{ font-weight:700; } .op em{ color:var(--ink2); font-style:normal; font-size:12.5px; }
+@media (max-width:640px){ .notes{ grid-template-columns:1fr 1fr; } .note:nth-child(n+3){ display:none; } .note{ font-size:12.5px; } .op{ font-size:13px; } }
+.ptabs3{ display:grid; grid-template-columns:repeat(3,1fr); gap:4px; margin:8px 0; } .ptabs3 button{ border:1.5px solid var(--line); background:transparent; border-radius:8px; padding:8px 4px; font-family:var(--disp); font-weight:700; font-size:16px; color:var(--ink2); }
+.ptabs3 button[aria-selected="true"]{ background:var(--ink); color:var(--panel); border-color:var(--ink); }
+.sq10{ display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:6px; } .sq10 .pl{ text-align:left; border:1.5px solid var(--line); background:transparent; border-radius:8px; padding:5px 7px; display:grid; grid-template-columns:22px 1fr; column-gap:6px; color:inherit; }
+.sq10 .pl b{ font-family:var(--disp); font-size:18px; grid-row:span 3; } .sq10 .pl .nm{ font-weight:700; font-size:14px; } .sq10 .pl small{ font-size:12px; color:var(--ink2); } .sq10 .pl em{ font-style:normal; font-size:11.5px; color:var(--ok); }
+.sq10 .pl.good{ border-color:var(--ok); } .sq10 .pl.on{ box-shadow:inset 0 0 0 2px var(--amber); } .swap{ grid-column:1/-1; display:grid; gap:4px; padding:6px; border:1px dashed var(--line); border-radius:8px; } .swap .btn{ text-align:left; }
+.playpanel{ display:grid; gap:6px; } .pname input{ width:100%; border:1.5px solid var(--line); background:var(--wall); border-radius:6px; padding:6px 8px; font-size:15px; color:var(--ink); }
+.steps{ margin:0; padding-left:22px; font-size:14px; display:grid; gap:3px; } .steps em{ display:block; font-style:normal; font-size:12.5px; color:var(--ink2); } .tpl{ border:1.5px solid var(--line); background:var(--wall); border-radius:6px; padding:5px; font-size:14px; color:var(--ink); flex:1; }
+.patbox{ font-size:14px; padding:6px 8px; border-left:4px solid var(--amber); background:color-mix(in srgb, var(--amber) 12%, transparent); border-radius:4px; } .patbox em{ font-style:normal; font-weight:700; }
+.pres{ font-size:13.5px; padding:4px 0; border-bottom:1px dashed var(--line); } .how summary{ cursor:pointer; color:var(--ink2); margin-top:8px; }
+.obtns{ grid-template-columns:repeat(5,1fr) !important; } .ob b{ font-size:clamp(13px,3.4vw,16px) !important; } .ob small{ font-size:10.5px !important; overflow:hidden; text-overflow:ellipsis; max-width:100%; }
+svg.chart.corr,svg.chart.shots{ max-width:420px; margin:4px 0 8px; }
 @media (max-width:520px){ .meters{ display:none !important; } .placar{ padding:6px 10px; } .placar .tm{ font-size:15px; } .wrap{ padding:10px 10px 0; } .frame{ padding:8px; } .plans button{ min-height:76px; padding:7px 5px; } .actbar{ margin-left:-10px; margin-right:-10px; border-radius:0; } .actbar .stopbtn{ min-width:118px; } .hint{ display:none; } }
 .next{ background:var(--ink); color:var(--panel); border-radius:8px; padding:10px 12px; margin:8px 0 6px; display:grid; gap:6px; }
 .next small{ font-family:var(--disp); font-weight:700; letter-spacing:.06em; color:var(--amber); font-size:13px; }
@@ -412,13 +432,16 @@ const PITCH = {
   11: { n: "Campo, 11 contra 11", L: 105, W: 68, goal: 7.32, boxL: 16.5, boxW: 40.3, sixL: 5.5, sixW: 18.3, pen: 11, arc: 9.15, maxPer: 10 },
   7:  { n: "Society, 7 contra 7", L: 50, W: 32, goal: 5, boxL: 9, boxW: 22, sixL: 3.5, sixW: 11, pen: 8, arc: 5, maxPer: 12 },
   4:  { n: "4 contra 4", L: 40, W: 26, goal: 4, boxL: 7, boxW: 16, sixL: 0, sixW: 0, pen: 7, arc: 3.5, maxPer: 15 },
+  6:  { n: "Society, 6 contra 6", L: 44, W: 28, goal: 4.6, boxL: 8, boxW: 19, sixL: 3, sixW: 9.5, pen: 7, arc: 4.5, maxPer: 13 },
   5:  { n: "Futsal, 5 contra 5", L: 40, W: 24, goal: 3, boxL: 6, boxW: 14, sixL: 0, sixW: 0, pen: 6, arc: 3, maxPer: 15 }
 };
 let SIZE = 11;
-const CFG = { prd: true, slope: 1.5, half: 180, fk: 3.4, linkPull: false, x4: 0, f4: 2.2, rt: 2, sep: 0.3, mx: 2, cx: 1, x7: -0.35, f7: 1.6, noFichas: false, flat: 15, assim: 6, assimF: 0.6, noGoal: 0, cps: [], subDl: 75, ordCd: 8, focoB: 0.03, focoD: 0.04, focoC: 0.6, shape: 0, longB: 0.05 };
+const CFG = { prd: true, slope: 1.5, half: 180, fk: 3.4, linkPull: false, x4: 0, f4: 2.2, rt: 2, sep: 0.3, mx: 2, cx: 1, x7: -0.35, f7: 1.6, noFichas: false, flat: 15, assim: 6, assimF: 0.6, noGoal: 0, cps: [], subDl: 75, ordCd: 8, focoB: 0.03, focoD: 0.04, focoC: 0.6, shape: 0, longB: 0.05, x6: -0.6, playB: 0.06, playWait: 1.2, playMax: 30, playBoostT: 16, playBoostK: 1.2 };
 const SHAPE = { alta: { back: 0.1, press: 1, mk: null, w: 1 }, media: { back: 0, press: 0, mk: 0.1, w: 0.75 }, baixa: { back: -0.08, press: -9, mk: 0.1, w: 0.9 }, homem: { back: 0.02, press: 0, mk: 0.9, w: 1.15 } }; // formas bem diferentes à vista: dá para ler a defesa olhando o campo
 function setCfg(o) { Object.assign(CFG, o); HALF = CFG.half; }
-function cfg7() { setPitch(7); setCfg({ half: 120, noFichas: true, noGoal: 40, subDl: 68, shape: 1, x7: 0.3, sep: 0.24, mx: 2.5, assim: 10, assimF: 0.5, cps: [{ id: "cp1", t: 40, n: "Análise dos 20 s" }, { id: "cp3", t: 180, n: "Análise dos 30 s do 2º tempo" }] }); }
+function cfg6() { cfgSoc7(); setPitch(6); }
+function cfg7() { cfgSoc7(); }
+function cfgSoc7() { setPitch(7); setCfg({ half: 120, noFichas: true, noGoal: 40, subDl: 68, shape: 1, x7: 0.3, sep: 0.24, mx: 2.5, assim: 10, assimF: 0.5, cps: [{ id: "cp1", t: 40, n: "Análise dos 20 s" }, { id: "cp3", t: 180, n: "Análise dos 30 s do 2º tempo" }] }); }
 function setPitch(n) { const p = PITCH[n]; SIZE = n; FL = p.L; FW = p.W; GOAL_W = p.goal; BOX_L = p.boxL; BOX_W = p.boxW; SIX_L = p.sixL; SIX_W = p.sixW; PEN = p.pen; ARC = p.arc; MAX_PER = p.maxPer; }
 const sig = x => 1 / (1 + Math.exp(-x));
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -436,6 +459,10 @@ const FORMATIONS = {
   ,"2-3-1": { era: "Society clássico", n: 7, s: [["G","GOL",0,.5],["D","ZAG",.2,.3],["D","ZAG",.2,.7],["M","ALD",.52,.12],["M","MEI",.48,.5],["M","ALE",.52,.88],["A","PIV",.86,.5]] }
   ,"3-2-1": { era: "Society seguro", n: 7, s: [["G","GOL",0,.5],["D","ZAG",.2,.22],["D","LIB",.15,.5],["D","ZAG",.2,.78],["M","MC",.5,.35],["M","MC",.5,.65],["A","PIV",.86,.5]] }
   ,"2-2-2": { era: "Society ofensivo", n: 7, s: [["G","GOL",0,.5],["D","ZAG",.2,.3],["D","ZAG",.2,.7],["M","MC",.5,.3],["M","MC",.5,.7],["A","ATA",.84,.32],["A","ATA",.84,.68]] }
+  ,"2-2-1": { era: "Society 6: dois meias", n: 6, s: [["G","GOL",0,.5],["D","ZAG",.2,.3],["D","ZAG",.2,.7],["M","MC",.5,.32],["M","MC",.5,.68],["A","PIV",.86,.5]] }
+  ,"1-2-2": { era: "Society 6: alas", n: 6, s: [["G","GOL",0,.5],["D","LIB",.18,.5],["M","ALD",.48,.14],["M","ALE",.48,.86],["A","ATA",.82,.35],["A","ATA",.82,.65]] }
+  ,"2-1-2": { era: "Society 6: dois atacantes", n: 6, s: [["G","GOL",0,.5],["D","ZAG",.2,.3],["D","ZAG",.2,.7],["M","VOL",.45,.5],["A","ATA",.82,.3],["A","ATA",.82,.7]] }
+  ,"1-3-1": { era: "Society 6: meio cheio", n: 6, s: [["G","GOL",0,.5],["D","LIB",.18,.5],["M","MD",.5,.18],["M","MC",.46,.5],["M","ME",.5,.82],["A","PIV",.86,.5]] }
   ,"3-1-2": { era: "Losango de society", n: 7, s: [["G","GOL",0,.5],["D","LD",.24,.15],["D","ZAG",.16,.5],["D","LE",.24,.85],["M","VOL",.46,.5],["A","ATA",.82,.3],["A","ATA",.82,.7]] }
   ,"1-2": { era: "Triângulo: um atrás, dois na frente", n: 4, s: [["G","GOL",0,.5],["D","FIX",.24,.5],["A","ALA",.78,.2],["A","ALA",.78,.8]] }
   ,"2-1": { era: "Triângulo invertido: dois atrás, um pivô", n: 4, s: [["G","GOL",0,.5],["D","ZAG",.26,.22],["D","ZAG",.26,.78],["A","PIV",.84,.5]] }
@@ -482,15 +509,15 @@ const STYLES = {
 // ===== PLANOS: a decisão central (com bola x sem bola), com efeito medido em xG =====
 // ===== PLANOS 7x7: 4 ataques x 4 defesas (quadrado latino: cada ataque vence uma defesa, perde para uma, empata com duas) =====
 const ATT = {
-  dentro: { n: "Por dentro", d: "Passes curtos entre as linhas.", traits: ["armador", "driblador"], v: { largura: 45, aprox: 80, ritmo: 60, risco: 55, rotacoes: 70, contra: 50 } },
-  lados:  { n: "Pelos lados", d: "Amplitude e cruzamento para a área.", traits: ["finalizador", "pulmao"], v: { largura: 92, aprox: 30, ritmo: 55, risco: 50, rotacoes: 40, contra: 55 } },
-  prof:   { n: "Em profundidade", d: "Bola longa nas costas da defesa.", traits: ["velocista", "finalizador"], v: { largura: 65, aprox: 35, ritmo: 85, risco: 85, rotacoes: 30, contra: 90 } },
-  infil:  { n: "Infiltração", d: "Meias entram na área por trás da linha.", traits: ["driblador", "pulmao"], v: { largura: 60, aprox: 55, ritmo: 70, risco: 72, rotacoes: 60, contra: 65 } }
+  dentro: { n: "Por dentro", d: "Passes curtos entre as linhas.", traits: ["armador", "driblador", "volante"], v: { largura: 45, aprox: 80, ritmo: 60, risco: 55, rotacoes: 70, contra: 50 } },
+  lados:  { n: "Pelos lados", d: "Amplitude e cruzamento para a área.", traits: ["ponta", "pivo", "pulmao"], v: { largura: 92, aprox: 30, ritmo: 55, risco: 50, rotacoes: 40, contra: 55 } },
+  prof:   { n: "Em profundidade", d: "Bola longa nas costas da defesa.", traits: ["velocista", "chutao", "finalizador"], v: { largura: 65, aprox: 35, ritmo: 85, risco: 85, rotacoes: 30, contra: 90 } },
+  infil:  { n: "Infiltração", d: "Meias entram na área por trás da linha.", traits: ["chegada", "driblador", "finalizador"], v: { largura: 60, aprox: 55, ritmo: 70, risco: 72, rotacoes: 60, contra: 65 } }
 };
 const DEF = {
   alta:  { n: "Pressão alta", d: "Linha adiantada, rouba no campo de ataque. Cansa.", traits: ["pulmao", "velocista"], v: { linha: 85, pressao: 90, compacto: 62, contrap: 92 } },
-  media: { n: "Bloco médio", d: "Fecha o meio e espera o erro.", traits: ["armador", "xerife"], v: { linha: 52, pressao: 55, compacto: 80, contrap: 60 } },
-  baixa: { n: "Bloco baixo", d: "Linha na área, nega espaço nas costas.", traits: ["xerife", "pulmao"], v: { linha: 22, pressao: 35, compacto: 95, contrap: 35 } },
+  media: { n: "Bloco médio", d: "Fecha o meio e espera o erro.", traits: ["volante", "armador"], v: { linha: 52, pressao: 55, compacto: 80, contrap: 60 } },
+  baixa: { n: "Bloco baixo", d: "Linha na área, nega espaço nas costas.", traits: ["xerife", "volante"], v: { linha: 22, pressao: 35, compacto: 95, contrap: 35 } },
   homem: { n: "Encaixe individual", d: "Cada um pega um. Ganha duelos, abre espaços.", traits: ["xerife", "velocista"], v: { linha: 60, pressao: 78, compacto: 30, contrap: 75 } }
 };
 const MXG = {
@@ -509,6 +536,8 @@ const COMBO = {
 const CMX = { tab: { alta: 0.9, media: 1.0, baixa: 1.1, homem: 1.1 }, tri: { alta: 1.2, media: 1.0, baixa: 0.9, homem: 1.0 }, qua: { alta: 1.0, media: 1.2, baixa: 0.9, homem: 1.0 } }; // média igual (1,025) para as três
 const ATT_BASE = { lados: 1.6 }, COMBO_BASE = { tab: 0.93, qua: 1.07 };
 const COUNTER_COMBO = { alta: "tri", media: "qua", baixa: "tab", homem: "tab" };
+const PLAN_FORM6 = { dentro: "2-2-1", lados: "1-2-2", prof: "2-1-2", infil: "1-3-1" };
+const SOC = () => SIZE === 7 || SIZE === 6, PFORM = () => SIZE === 6 ? PLAN_FORM6 : PLAN_FORM7;
 const PLAN_FORM7 = { dentro: "2-3-1", lados: "2-2-2", prof: "3-1-2", infil: "3-2-1" };
 function comboLinks(T, combo) { // liga os jogadores mais adiantados conforme a combinação
   const out = T.players.filter(p => p.role !== "G").sort((a, b) => b.slot.x - a.slot.x).map(p => p.i);
@@ -521,7 +550,7 @@ function setPlan(T, att, def, combo) {
   T.plan = { att: ATT[att] ? att : "dentro", def: DEF[def] ? def : "media", combo: COMBO[combo] ? combo : (T.plan && T.plan.combo) || "tri" };
   Object.assign(T.tact, ATT[T.plan.att].v, DEF[T.plan.def].v);
   if (SIZE === 4 && T.players && T.players.length === 4 && T.formation !== PLAN_FORM4[T.plan.att]) { setFormation(T, PLAN_FORM4[T.plan.att]); T.links = [[1, 2], [2, 3], [1, 3]]; T._S = null; }
-  if (SIZE === 7 && T.players && T.players.length === 7) { if (T.formation !== PLAN_FORM7[T.plan.att]) setFormation(T, PLAN_FORM7[T.plan.att]); T.links = comboLinks(T, T.plan.combo); T._S = null; }
+  if (SOC() && T.players && T.players.length === SIZE) { if (T.formation !== PFORM()[T.plan.att]) setFormation(T, PFORM()[T.plan.att]); T.links = comboLinks(T, T.plan.combo); T._S = null; }
 }
 // 4 planos preparados (A a D); trocar é um toque
 const PLAN_KEYS = ["A", "B", "C", "D"];
@@ -533,15 +562,15 @@ function fitShare(T, roles, traits, M, side) {
   return ps.length ? ps.filter(p => traits.includes(p.trait)).length / ps.length : 0;
 }
 function planReport(T, O, M, sA, sO) { // o que o técnico lê: quanto o seu plano rende contra o dele
-  const a = T.plan.att, d = O.plan.def, fa = fitShare(T, ["M", "A"], ATT[a].traits, M, sA), fd = fitShare(O, ["D", "M"], DEF[d].traits, M, sO);
+  const a = T.plan.att, d = O.plan.def, fa = fitShare(T, ["D", "M", "A"], ATT[a].traits, M, sA), fd = fitShare(O, ["D", "M"], DEF[d].traits, M, sO);
   const S_ = T._S || (T._S = structures(T)), tri = S_.tri.filter(t => t.filter(i => T.players[i] && (T.players[i].role === "M" || T.players[i].role === "A")).length >= 2).length;
-  const tb = SIZE <= 7 ? 0 : Math.min(0.36, 0.12 * tri), m = Math.pow(MXG[a][d], CFG.mx), fit = 0.8 + 0.45 * fa, oppFit = 1.12 - 0.3 * fd, cm = SIZE === 7 ? Math.pow(CMX[T.plan.combo || "tri"][d], CFG.cx) : 1;
-  const base = SIZE === 7 ? (ATT_BASE[a] || 1) * (COMBO_BASE[T.plan.combo] || 1) : 1; // correção medida no teste de equilíbrio
+  const tb = SIZE <= 7 ? 0 : Math.min(0.36, 0.12 * tri), m = Math.pow(MXG[a][d], CFG.mx), fit = 0.8 + 0.45 * fa, oppFit = 1.12 - 0.3 * fd, cm = SOC() ? Math.pow(CMX[T.plan.combo || "tri"][d], CFG.cx) : 1;
+  const base = SOC() ? (ATT_BASE[a] || 1) * (COMBO_BASE[T.plan.combo] || 1) : 1; // correção medida no teste de equilíbrio
   return { m, fit, oppFit, tri, tb, cm, base, total: m * fit * oppFit * (1 + tb) * cm * base, fa, fd };
 }
 function applyPlans(M) { M.pm = [0, 1].map(s => planReport(M.teams[s], M.teams[1 - s], M, s, 1 - s).total); }
 function syncTeam(M, side) { // depois de mudar o plano no meio do jogo, o time assume a nova formação
-  const T = M.teams[side]; M.ps.filter(p => p.side === side).forEach(p => { const tp = T.players[p.i]; if (!tp) return; p.slot = tp.slot; p.role = tp.role; p.lbl = tp.lbl; p.rot = null; tp.name = p.name; tp.trait = p.trait; }); T._S = null;
+  const T = M.teams[side]; M.ps.filter(p => p.side === side).forEach(p => { const tp = T.players[p.i]; if (!tp) return; p.slot = tp.slot; p.role = tp.role; p.lbl = tp.lbl; p.rot = null; tp.name = p.name; tp.trait = p.trait; tp.num = tp.num0 = p.num; }); T._S = null;
 }
 function planChange(M, side, att, def, combo) {
   const T = M.teams[side], before = T.plan.att + T.plan.def + T.plan.combo; setPlan(T, att, def, combo); syncTeam(M, side); applyPlans(M);
@@ -560,11 +589,12 @@ const NPC_ORD = { amador: 0, pro: 0.6, selecao: 0.9 };
 function npcOrders(M, side) { // ordens ao vivo do NPC: Profissional e Seleção usam bem; Amador não usa
   const T = M.teams[side], q = NPC_ORD[T.diff] || 0; if (!q || M.ordCd[side] > M.t || rnd() > 0.04) return;
   if (rnd() > q) return;
+  { const h = M.ball.owner; if (h && h.side === side && toN(side, h.x, h.y)[0] < 0.55 && rnd() < 0.5) { const k = npcPickPlay(M, side); if (giveOrder(M, side, "jogada", k)) return; } }
   const L = M.ps.filter(p => p.side === side && p.role !== "G").map(p => ["foco", p.i, orderPreview(M, side, "foco", p.i)]).concat(["tabela", "pressao"].map(k => [k, null, orderPreview(M, side, k)])).map(x => [x[0], x[1], x[2].my / x[2].opp]).sort((a, b) => b[2] - a[2]);
   const lead = M.score[side] - M.score[1 - side];
   if (lead > 0 && M.half === 2 && M.t > 2 * HALF - 40) giveOrder(M, side, "segurar"); else if (L[0][2] > 1.05) giveOrder(M, side, L[0][0], L[0][1]);
 }
-function styleFormation(k, n) { const s = STYLES[k]; if (n === 4) { const v = s.v; return v.contra > 80 ? "2-1" : v.largura > 80 ? "1-2" : "1-1-1"; } return n === 11 ? s.f : n === 7 ? s.f7 : s.f5; }
+function styleFormation(k, n) { const s = STYLES[k]; if (n === 4) { const v = s.v; return v.contra > 80 ? "2-1" : v.largura > 80 ? "1-2" : "1-1-1"; } return n === 11 ? s.f : n === 7 ? s.f7 : n === 6 ? "2-2-1" : s.f5; }
 const PLAN_FORM4 = { dentro: "1-1-1", lados: "1-2", prof: "2-1" };
 const SHOUTS = [
   { k: "press", n: "Pressiona!", d: "+pressão e linha alta por 20 s", mod: {pressao:+25,linha:+18,contrap:+20} },
@@ -577,20 +607,26 @@ const NAMES_B = ["Mirandinha","Dario","Paulo Isidoro","Éder","Leandro","Tato","
 const BASE = { G:{pas:55,dri:40,fin:20,def:72,pac:55}, D:{pas:58,dri:50,fin:38,def:70,pac:63}, M:{pas:69,dri:62,fin:54,def:58,pac:64}, A:{pas:60,dri:69,fin:71,def:36,pac:71} };
 const MAX_FICHAS = 50; let MAX_PER = 10;
 // habilidades de cada atleta (o lado fantasy): o técnico escala quem tem a habilidade certa para o plano
-const TRAITS = {
-  velocista:  { n: "Velocista", d: "+12 velocidade: ataca as costas da linha", m: { pac: 12 } },
-  armador:    { n: "Armador", d: "+12 passe: quebra linhas", m: { pas: 12 } },
-  driblador:  { n: "Driblador", d: "+12 drible: vence o 1x1", m: { dri: 12 } },
-  finalizador:{ n: "Finalizador", d: "+12 finalização: converte meia chance", m: { fin: 12 } },
-  xerife:     { n: "Xerife", d: "+12 marcação: ganha o duelo defensivo", m: { def: 12 } },
-  pulmao:     { n: "Pulmão", d: "Cansa 40% mais devagar: aguenta a pressão alta", m: {}, sta: 0.6 },
-  coringa:    { n: "Coringa", d: "+5 em tudo: joga em qualquer setor", m: { pas: 5, dri: 5, fin: 5, def: 5, pac: 5 } },
-  muralha:    { n: "Muralha", d: "Goleiro: +12 defesa e reflexo", m: { def: 12 } }
+const TRAITS = { // características por posição, cada uma com efeito real no motor
+  muralha:    { n: "Muralha", pos: "G", d: "Goleiro: +12 defesa e reflexo", m: { def: 12 } },
+  libero:     { n: "Goleiro-líbero", pos: "G", d: "Sai jogando com os pés: +15 passe. Bom contra pressão alta", m: { pas: 15 } },
+  xerife:     { n: "Xerife", pos: "D", d: "+12 marcação: ganha o duelo defensivo", m: { def: 12 } },
+  chutao:     { n: "Zagueiro lançador", pos: "D", d: "Lançamento longo certeiro: a bola nas costas sai dele", m: { pas: 4 }, long: 0.4 },
+  velocista:  { n: "Velocista", pos: "DMA", d: "+12 velocidade: ataca as costas e recupera atrás", m: { pac: 12 } },
+  armador:    { n: "Armador", pos: "DM", d: "+12 passe: quebra linhas por dentro", m: { pas: 12 } },
+  volante:    { n: "Volante marcador", pos: "M", d: "+10 marcação e corta mais passes", m: { def: 10 }, cut: 1.35 },
+  pulmao:     { n: "Pulmão", pos: "M", d: "Cansa 40% mais devagar: aguenta pressão e vai e volta pelo lado", m: {}, sta: 0.6 },
+  driblador:  { n: "Driblador", pos: "MA", d: "+12 drible: vence o 1x1", m: { dri: 12 } },
+  chegada:    { n: "Meia de chegada", pos: "M", d: "Entra na área por trás: +8 finalização e velocidade", m: { fin: 8, pac: 6 } },
+  pivo:       { n: "Atacante alto", pos: "A", d: "Cabeceia o cruzamento (+75% de chance) e segura a bola de costas", m: { def: 6 }, aerial: 1.75 },
+  finalizador:{ n: "Finalizador", pos: "A", d: "+12 finalização: converte meia chance", m: { fin: 12 } },
+  ponta:      { n: "Ponta aberto", pos: "A", d: "Fica na linha lateral e cruza bem", m: { pac: 6, pas: 6 }, cross: 0.35 },
+  coringa:    { n: "Coringa", pos: "", d: "+5 em tudo: joga em qualquer setor", m: { pas: 5, dri: 5, fin: 5, def: 5, pac: 5 } }
 };
-const ROLE_TRAITS = { G: ["muralha"], D: ["xerife", "velocista", "armador", "pulmao"], M: ["armador", "pulmao", "driblador", "coringa", "xerife"], A: ["velocista", "finalizador", "driblador", "coringa"] };
-const OUT7 = ["velocista", "armador", "driblador", "finalizador", "xerife", "pulmao", "coringa"];
-const pickTrait = r => { const a = SIZE === 7 && (r === "M" || r === "A") ? OUT7 : ROLE_TRAITS[r]; return a[Math.floor(rnd() * a.length)]; }; // no 7x7, meias e atacantes sorteiam entre as 7: todo plano tem a mesma chance de encaixe
-const BENCH_ROLES = { 4: ["D", "M", "A"], 11: ["G", "D", "M", "M", "A"], 7: ["D", "M", "A", "M", "D"], 5: ["D", "M", "A", "M", "A"] };
+const ROLE_TRAITS = { G: ["muralha", "libero"], D: ["xerife", "chutao", "velocista", "armador"], M: ["volante", "armador", "pulmao", "driblador", "chegada"], A: ["pivo", "velocista", "finalizador", "driblador", "ponta"] };
+const OUT7 = null;
+const pickTrait = r => { const a = ROLE_TRAITS[r]; return a[Math.floor(rnd() * a.length)]; };
+const BENCH_ROLES = { 6: ["D", "M", "A", "M", "D"], 4: ["D", "M", "A"], 11: ["G", "D", "M", "M", "A"], 7: ["D", "M", "A", "M", "D"], 5: ["D", "M", "A", "M", "A"] };
 const BENCH_LEVEL = 4; // reserva entra com o equivalente a 4 fichas
 function makeBench(t, names) {
   t.bench = BENCH_ROLES[SIZE].map((r, k) => ({ role: r, name: names[k] || "Reserva " + (k + 1), trait: pickTrait(r), fichas: BENCH_LEVEL }));
@@ -605,13 +641,16 @@ function makeTeam(name, color, styleKey, pool) {
   t.players.forEach(p => p.trait = pickTrait(p.role));
   const v = st.v; setPlan(t, v.contra > 80 ? "prof" : v.largura > 80 ? "lados" : "dentro", v.linha > 70 ? "alta" : v.linha < 35 ? "baixa" : "media");
   makeBench(t, names.slice(t.players.length));
-  if (SIZE === 7) { t.plans = defaultPlans(); usePlan(t, 0); }
+  if (SOC()) { t.plans = defaultPlans(); usePlan(t, 0); }
   return t;
 }
 function setFormation(t, f, names) {
   const s = FORMATIONS[f].s; t.formation = f;
   const old = t.players;
-  t.players = s.map((r, i) => ({ i, role: r[0], lbl: r[1], num: i + 1, slot: { x: r[2], y: r[3] }, fichas: old[i] ? old[i].fichas : 0, name: old[i] ? old[i].name : (names ? names[i] : NAMES[i]), trait: old[i] ? old[i].trait : null }));
+  let src = old; // cada jogador vai para o setor dele: o zagueiro lançador continua zagueiro quando a formação muda
+  if (old && old.length === s.length) { const left = old.slice(), fitsR = (p, r) => p.role === r || (TRAITS[p.trait] && TRAITS[p.trait].pos.includes(r));
+    src = s.map(r => { let k = left.findIndex(p => p.role === r[0]); if (k < 0) k = left.findIndex(p => fitsR(p, r[0])); if (k < 0) k = 0; return left.splice(k, 1)[0]; }); }
+  t.players = s.map((r, i) => ({ i, role: r[0], lbl: r[1], num: src[i] && src[i].num0 ? src[i].num0 : i + 1, num0: src[i] && src[i].num0 ? src[i].num0 : i + 1, slot: { x: r[2], y: r[3] }, fichas: src[i] ? src[i].fichas : 0, name: src[i] ? src[i].name : (names ? names[i] : NAMES[i]), trait: src[i] ? src[i].trait : null }));
   t.links = t.links.filter(([a, b]) => a < s.length && b < s.length); t._S = null; if (t.captain >= s.length) t.captain = -1; t.spine = t.spine.filter(i => i < s.length);
 }
 function fichasUsed(t) { return t.players.reduce((s, p) => s + p.fichas, 0); }
@@ -676,7 +715,7 @@ function buildNpc(key, diffKey, name, pool) {
     near.forEach(n => addLink(t, s, n.i)); if (near.length === 2) addLink(t, near[0].i, near[1].i);
   });
   const AK = Object.keys(ATT), DK = Object.keys(DEF), CK = Object.keys(COMBO);
-  if (SIZE === 7) { t.plans = [0, 1, 2, 3].map(() => ({ att: AK[Math.floor(rnd() * AK.length)], def: DK[Math.floor(rnd() * DK.length)], combo: CK[Math.floor(rnd() * CK.length)] })); usePlan(t, 0); }
+  if (SOC()) { t.plans = [0, 1, 2, 3].map(() => ({ att: AK[Math.floor(rnd() * AK.length)], def: DK[Math.floor(rnd() * DK.length)], combo: CK[Math.floor(rnd() * CK.length)] })); usePlan(t, 0); }
   else setPlan(t, AK[Math.floor(rnd() * AK.length)], DK[Math.floor(rnd() * DK.length)]);
   t.npc = d; t.diff = diffKey; return t;
 }
@@ -719,6 +758,7 @@ const ORDERS = {
   foco:    { n: "Bola no jogador", d: "Por 8 s o time procura o jogador escolhido. Rende se ele vence o duelo (acima de 60%); atrapalha se perde.", dur: 16 },
   tabela:  { n: "Tabelinha", d: "Por 8 s quem passa arranca para receber de volta. Forte contra encaixe individual e pressão alta, fraca contra bloco baixo.", dur: 16, link: 2.2 },
   pressao: { n: "Pressão", d: "Por 8 s sobe a linha e pressiona. Rouba a saída curta por dentro, mas abre as costas para a bola longa. Cansa mais.", dur: 16, mod: { pressao: 28, linha: 18, contrap: 25 }, sta: 1.6 },
+  jogada:  { n: "Jogada ensaiada", d: "O time executa a jogada que você desenhou: passes e corridas em ordem.", dur: 24 },
   segurar: { n: "Segurar", d: "Por 8 s toca de lado e fecha o bloco. Os dois times criam 40% menos: protege o placar.", dur: 16, mod: { risco: -35, ritmo: -30, linha: -18, compacto: 15 } }
 };
 const ORD_TAB = { homem: 1.3, alta: 1.15, media: 1.0, baixa: 0.8 }, ORD_PRESS_MY = { dentro: 1.25, infil: 1.1, lados: 0.95, prof: 0.8 }, ORD_PRESS_OP = { prof: 1.25, lados: 1.05, dentro: 0.85, infil: 0.95 };
@@ -730,13 +770,14 @@ function orderPreview(M, side, k, target) { // efeito previsto, mostrado antes d
   if (k === "segurar") return { my: 0.6, opp: 0.6 };
   return { my: 1, opp: 1 };
 }
-function ordMult(M, side) { const a = orderOf(M, side), b = orderOf(M, 1 - side); return (a ? a.my : 1) * (b ? b.opp : 1); }
+function ordMult(M, side) { const a = orderOf(M, side), b = orderOf(M, 1 - side), pb = M.playBoost && M.playBoost[side]; return (a ? a.my : 1) * (b ? b.opp : 1) * (pb && pb.until > M.t ? pb.mult : 1); }
 function orderOf(M, side) { const o = M.order && M.order[side]; return o && o.until > M.t ? o : null; }
 function giveOrder(M, side, k, target) {
   if (!ORDERS[k] || M.over || M.paused) return false; if (M.ordCd[side] > M.t) return false;
+  if (k === "jogada" && !startPlay(M, side, target | 0)) return false;
   const O = ORDERS[k], ef = orderPreview(M, side, k, target); M.order[side] = { k, until: M.t + O.dur, target: target ?? null, my: ef.my, opp: ef.opp }; M.ordCd[side] = M.t + O.dur + CFG.ordCd;
-  const who = k === "foco" ? M.ps.find(p => p.side === side && p.i === target) : null;
-  M.ordLog[side].push({ t: M.t, k, target }); M.decisions.push({ t: M.t, side, k: "ordem", txt: who ? `Bola no ${who.name}` : O.n });
+  const who = k === "foco" ? M.ps.find(p => p.side === side && p.i === target) : null, jn = k === "jogada" && M.play && M.play[side] ? M.play[side].name : null;
+  M.ordLog[side].push({ t: M.t, k, target }); M.decisions.push({ t: M.t, side, k: "ordem", txt: who ? `Bola no ${who.name}` : jn ? `Jogada: ${jn}` : O.n });
   logE(M, side, `${M.teams[side].name}: ${who ? "bola no " + who.name : O.n.toLowerCase()}`, "shout"); return true;
 }
 function threatOf(M, p) { // ameaça de pôr a bola nele agora: duelo com o marcador, espaço, zona e finalização
@@ -783,8 +824,9 @@ function xG(M, p) {
   for (const q of M.ps) { if (q.side === p.side || q.role === "G") continue;
     const dx = gx - p.x, dy = gy - p.y, L2 = dx * dx + dy * dy, u = ((q.x - p.x) * dx + (q.y - p.y) * dy) / L2;
     if (u > 0 && u < 1) { const e = dist(q.x, q.y, p.x + u * dx, p.y + u * dy); block += Math.exp(-e * e / 2); } }
-  const z = (SIZE === 11 ? 0 : SIZE === 7 ? CFG.x7 : SIZE === 4 ? CFG.x4 : -0.8) - 1.8 - 0.12 * d + 1.3 * ang + (p.a.fin - 70) * 0.02 - press * 0.8 - block * 0.45 - (gk.a.def - 72) * 0.015;
-  return clamp(sig(z) * (M.pm ? M.pm[p.side] : 1) * (M.assim && M.t < M.assim[p.side] ? CFG.assimF : 1) * ordMult(M, p.side), 0.005, 0.9);
+  const z = (SIZE === 11 ? 0 : SOC() ? CFG.x7 + (SIZE === 6 ? CFG.x6 : 0) : SIZE === 4 ? CFG.x4 : -0.8) - 1.8 - 0.12 * d + 1.3 * ang + (p.a.fin - 70) * 0.02 - press * 0.8 - block * 0.45 - (gk.a.def - 72) * 0.015;
+  const air = p.crossAt && M.t - p.crossAt < 1.6 && TRAITS[p.trait] && TRAITS[p.trait].aerial ? TRAITS[p.trait].aerial : 1;
+  return clamp(sig(z) * air * (M.pm ? M.pm[p.side] : 1) * (M.assim && M.t < M.assim[p.side] ? CFG.assimF : 1) * ordMult(M, p.side), 0.005, 0.9);
 }
 // Probabilidade de passe: técnica, distância, linhas de interceptação, pressão, ligação tática
 function passProb(M, p, q, lofted) {
@@ -798,12 +840,15 @@ function passProb(M, p, q, lofted) {
     if (lofted && u < 0.75) continue; // bola alta só pode ser disputada na chegada
     const px = p.x + u * dx, py = p.y + u * dy, e = dist(o.x, o.y, px, py);
     const reach = 1.2 + u * d * 0.11 * (o.a.pac / 70);   // quanto mais longe a bola viaja, mais tempo o defensor tem
-    threat += Math.exp(-(e * e) / (2 * reach * reach)) * (0.6 + o.a.def / 160);
+    threat += Math.exp(-(e * e) / (2 * reach * reach)) * (0.6 + o.a.def / 160) * ((TRAITS[o.trait] && TRAITS[o.trait].cut) || 1);
   }
   const press = M.ps.filter(o => o.side !== p.side && dist(o.x, o.y, p.x, p.y) < 2.5).length;
   const lb = linkBonus(T, p.i, q.i) * te.link;
   const z = 2.7 + (p.a.pas - 68) * 0.045 * CFG.slope - d * (lofted ? 0.028 : 0.05) - threat * 2.6 - press * 0.45 + lb - (lofted ? 0.5 : 0);
-  return clamp(sig(z), 0.02, 0.98);
+  let pp = sig(z); const tp = TRAITS[p.trait];
+  if (tp && tp.long && d > 16) pp += (1 - pp) * tp.long; // lançador: a bola longa chega
+  if (tp && tp.cross) { const [, py] = toN(p.side, p.x, p.y), [qx] = toN(p.side, q.x, q.y); if (Math.abs(py - 0.5) > 0.28 && qx > 0.75) pp += (1 - pp) * tp.cross; } // ponta: cruzamento
+  return clamp(pp, 0.02, 0.98);
 }
 function luck(M, side, kind, p) {
   if (!CFG.prd) return rnd() < p;
@@ -813,6 +858,87 @@ function luck(M, side, kind, p) {
 function duelProb(att, def) { return clamp(sig(((att.a.dri - def.a.def) / 11 + (att.a.pac - def.a.pac) / 40) * CFG.slope + 0.15), 0.05, 0.95); }
 
 // ------------- decisão do portador (agente baseado em utilidade) -------------
+// ------------- jogadas desenhadas pelo técnico (giz): passes e corridas em ordem -------------
+// passo { k: "pass", from, to } ou { k: "run", who, to: [nx, ny] } — from/to/who são os NÚMEROS das camisas (nx: 0 = seu gol, 1 = gol dele; ny: 0 a 1 de um lado ao outro)
+// onde a jogada termina decide contra qual defesa ela é forte (o mesmo princípio dos planos)
+const PAT = { costas: "nas costas da linha", lado: "no lado do campo", entre: "entre as linhas", infiltra: "num meia chegando à área" };
+const PAT_DEF = { costas: { alta: 1.6, media: 1.0, baixa: 0.6, homem: 1.0 }, lado: { alta: 0.9, media: 1.0, baixa: 1.6, homem: 0.8 }, entre: { alta: 0.8, media: 1.6, baixa: 0.9, homem: 1.0 }, infiltra: { alta: 1.0, media: 0.9, baixa: 0.9, homem: 1.6 } };
+function patternOfPos(nx, ny, role) { if (role === "M" && nx > 0.74) return "infiltra"; if (Math.abs(ny - 0.5) > 0.27) return "lado"; if (nx > 0.8) return "costas"; return "entre"; }
+function patternOfPlay(T, steps) { // pelo desenho: o último passe e a corrida de quem recebe
+  const last = [...steps].reverse().find(s => s.k === "pass"); if (!last) return null;
+  const run = [...steps].reverse().find(s => s.k === "run" && s.who === last.to), p = T.players.find(q => q.num === last.to); if (!p) return null;
+  const [nx, ny] = run ? run.to : [0.04 + p.slot.x * 0.9, p.slot.y]; return patternOfPos(nx, ny, p.role);
+}
+function patternAt(side, p) { const [nx, ny] = toN(side, p.x, p.y); return patternOfPos(nx, ny, p.role); }
+function playOf(M, side) { const P = M.play && M.play[side]; return P && !P.done ? P : null; }
+function curPass(P) { for (let i = P.ptr; i < P.steps.length; i++) if (P.steps[i].k === "pass") return P.steps[i]; return null; }
+function startPlay(M, side, k) {
+  const T = M.teams[side], pl = T.plays && T.plays[k]; if (!pl || !pl.steps || !pl.steps.length) return false; if (!M.play) M.play = [null, null];
+  M.play[side] = { k, pat: patternOfPlay(T, pl.steps), tried: T.playTry || null, name: pl.name, steps: pl.steps.map(s => ({ ...s })), ptr: 0, t0: M.t, segT: M.t, idle: 0, xg0: M.stats[side].xg, done: false, okPass: 0, nPass: pl.steps.filter(s => s.k === "pass").length, x0: null };
+  return true;
+}
+function endPlay(M, side, why) {
+  const P = playOf(M, side); if (!P) return; P.done = true; P.why = why; P.t1 = M.t;
+  const T = M.teams[side], h = M.ball.owner, prog = h && h.side === side ? toN(side, h.x, h.y)[0] : 0;
+  P.res = { why, ok: P.okPass, n: P.nPass, prog, xg0: P.xg0 }; P.evalUntil = M.t + 6;
+  // jogada que encaixa vira chance: completa e perto do gol dá impulso; perdida no seu campo dá contra-ataque a ele
+  if (!M.playBoost) M.playBoost = [null, null];
+  const share = P.nPass ? P.okPass / P.nPass : 0;
+  if (why === "completa" && h && h.side === side && P.pat) { const pat = P.pat, od = M.teams[1 - side].plan.def, mult = PAT_DEF[pat][od];
+    P.res.pat = pat; P.res.mult = mult; M.playBoost[side] = { until: M.t + CFG.playBoostT, mult: 1 + (mult - 1) * CFG.playBoostK, pat }; }
+  else if (why === "perdeu a bola") { const b = M.ball, [lx] = toN(side, b.x, b.y); if (lx < 0.5) M.playBoost[1 - side] = { until: M.t + CFG.playBoostT * 0.75, mult: 1 + CFG.playBoostK * 0.45 }; } // o placar da jogada fecha 6 s depois (conta o chute que ela gerou)
+  (M.playLog || (M.playLog = [[], []]))[side].push(P);
+}
+function playTick(M, side, dt) {
+  const P = playOf(M, side), h = M.ball.owner;
+  if (M.playLog) M.playLog[side].forEach(L => { if (L.evalUntil && M.t >= L.evalUntil) { L.res.xg = M.stats[side].xg - L.res.xg0; L.evalUntil = 0; if (M.teams[side].npc) npcLearn(M, side, L); } });
+  if (!P) return;
+  if (M.t - P.t0 > CFG.playMax) return endPlay(M, side, "tempo");
+  if (h && h.side !== side) return endPlay(M, side, "perdeu a bola");
+  const T = M.teams[side], cp = curPass(P);
+  // a bola chegou em quem devia: avança o roteiro
+  if (cp && h && h.num === cp.to && h.side === side) { P.okPass++; P.ptr = P.steps.indexOf(cp) + 1; P.segT = M.t; P.idle = 0;
+    if (!curPass(P)) { for (let i = P.ptr; i < P.steps.length; i++) { const st = P.steps[i]; if (st.k !== "run") continue; const p = M.ps.find(q => q.side === side && q.num === st.who); if (p && p !== h) { const [x, y] = toW(side, clamp(st.to[0], 0.03, 0.97), clamp(st.to[1], 0.04, 0.96)); p.run = { x, y, until: M.t + 3, play: true }; } }
+      return endPlay(M, side, "completa"); } }
+  else if (cp && h && h.side === side && h.num !== cp.from && h.num !== cp.to) { const later = P.steps.findIndex((s, i) => i > P.steps.indexOf(cp) && s.k === "pass" && s.from === h.num);
+    if (later >= 0) { P.ptr = later; P.segT = M.t; } else if ((P.idle += dt) > 2.5) return endPlay(M, side, "o time saiu do roteiro"); }
+  // corridas do trecho atual: do começo do trecho até o próximo passe (inclusive as que vêm logo antes dele)
+  const end = curPass(P) ? P.steps.indexOf(curPass(P)) : P.steps.length;
+  for (let i = P.ptr; i < end; i++) { const s = P.steps[i]; if (s.k !== "run") continue; const p = M.ps.find(q => q.side === side && q.num === s.who); if (!p || p === h) continue;
+    const [x, y] = toW(side, clamp(s.to[0], 0.03, 0.97), clamp(s.to[1], 0.04, 0.96)); p.run = { x, y, until: M.t + 0.4, play: true }; }
+}
+// NPC: biblioteca de jogadas que aprende quais funcionam contra você e ajusta as corridas (subida de encosta)
+function npcPlays(T) { // quatro modelos, um para cada lugar onde a jogada termina
+  const P = T.players, byX = r => P.filter(p => p.role === r).sort((a, b) => a.slot.x - b.slot.x), D = byX("D"), Mi = byX("M"), A = byX("A");
+  const m0 = Mi[0] || D[0] || P[1], m1 = Mi[1] || m0, a0 = A[A.length - 1] || m1, d0 = D[0] || m0, wide = P.filter(p => p.role !== "G" && p !== m0).sort((a, b) => Math.abs(b.slot.y - 0.5) - Math.abs(a.slot.y - 0.5))[0] || a0;
+  return [
+    { name: "Bola nas costas", steps: [{ k: "pass", from: d0.num, to: m0.num }, { k: "run", who: a0.num, to: [0.9, 0.5] }, { k: "pass", from: m0.num, to: a0.num }] },
+    { name: "Abre no lado", steps: [{ k: "run", who: wide.num, to: [0.78, wide.slot.y < 0.5 ? 0.08 : 0.92] }, { k: "pass", from: m0.num, to: wide.num }] },
+    { name: "Entre as linhas", steps: [{ k: "run", who: a0.num, to: [0.68, 0.5] }, { k: "pass", from: m0.num, to: a0.num }] },
+    { name: "Meia infiltrando", steps: [{ k: "pass", from: m1.num, to: a0.num }, { k: "run", who: m1.num, to: [0.86, 0.56] }, { k: "pass", from: a0.num, to: m1.num }] }
+  ];
+}
+const NPC_LEARN = { amador: [0.4, 0.5], pro: [0.2, 0.25], selecao: [0.08, 0.12] }; // [exploração, tamanho do ajuste]
+function npcPickPlay(M, side) {
+  const T = M.teams[side]; T.plays = npcPlays(T); if (!T.playStat) T.playStat = T.plays.map(() => ({ n: 0, r: 0 })); if (!T.playLearn) T.playLearn = T.plays.map(() => null);
+  T.plays.forEach((pl, k) => { const L = T.playLearn[k]; if (L) pl.steps.forEach((s, j) => { if (s.k === "run" && L[j]) s.to = L[j].slice(); }); }); // corridas que já deram certo
+  const [eps, sz] = NPC_LEARN[T.diff] || NPC_LEARN.pro, st = T.playStat;
+  const k = rnd() < eps ? Math.floor(rnd() * T.plays.length) : st.map((x, i) => [x.n ? x.r / x.n : 0.05, i]).sort((a, b) => b[0] - a[0])[0][1];
+  const pl = T.plays[k], step = sz * 0.25; pl.steps.forEach(s => { if (s.k === "run") s.to = [clamp(s.to[0] + gauss() * step, 0.35, 0.95), clamp(s.to[1] + gauss() * step, 0.05, 0.95)]; }); // testa uma variação das corridas
+  T.playTry = pl.steps.map(s => s.k === "run" ? s.to.slice() : null);
+  return k;
+}
+function playReward(L) { return (L.res.xg || 0) * 3 + L.res.ok / Math.max(1, L.res.n) * 0.2 + L.res.prog * 0.1 - (L.why === "perdeu a bola" ? 0.15 : 0); }
+function npcLearn(M, side, L) {
+  const T = M.teams[side], st = T.playStat && T.playStat[L.k]; if (!st) return;
+  const r = playReward(L), avg = st.n ? st.r / st.n : r; st.n++; st.r += r;
+  if (r >= avg && L.tried) T.playLearn[L.k] = L.tried; // a variação foi melhor que a média: o NPC passa a correr assim
+}
+function npcPlayTick(M, side) {
+  const T = M.teams[side]; if (!T.npc || !(NPC_ORD[T.diff] > 0) || M.ordCd[side] > M.t || playOf(M, side)) return;
+  const h = M.ball.owner; if (!h || h.side !== side || toN(side, h.x, h.y)[0] > 0.55 || rnd() > 0.03) return;
+  const k = npcPickPlay(M, side); giveOrder(M, side, "jogada", k);
+}
 function decideHolder(M, p) {
   const side = p.side, te = tactEff(M, side), T = M.teams[side];
   const [nx, ny] = toN(side, p.x, p.y);
@@ -825,6 +951,7 @@ function decideHolder(M, p) {
   const xg = xG(M, p);
   const fo = orderOf(M, side), foco = fo && fo.k === "foco" ? fo.target : null;
   const shotBias = (p.role === "A" ? 1 : 0.85) * (foco === p.i ? 1.3 : 1);
+  const PL = playOf(M, side), pl = PL ? curPass(PL) : null;
   if (nx > 0.62) opts.push({ k: "shot", p: xg, score: xg * 2.1 * shotBias - (1 - xg) * 0.01, xg });
   // passes
   for (const q of team(M, side)) {
@@ -840,6 +967,7 @@ function decideHolder(M, p) {
     const back = qx < nx - 0.05;
     let score = P * V * riskW - (1 - P) * lossCost * (1.6 - te.risco / 100) - (back ? 0.004 * (te.ritmo / 50) : 0);
     if (foco === q.i && foco !== p.i) score += P * P * (CFG.focoB + Math.abs(score) * 0.6);
+    if (pl && pl.from === p.num && pl.to === q.num) score += P * P * (CFG.playB + Math.abs(score) * 0.8); // jogada ensaiada: o passe desenhado
     if (longFwd) score += CFG.longB * P; // bola nas costas: procura o lançamento
     opts.push({ k: "pass", q, p: P, lofted, score, V });
   }
@@ -856,6 +984,7 @@ function decideHolder(M, p) {
     const [fx, fy] = toN(side, p.x + dir * 4, p.y);
     opts.push({ k: "carry", p: 0.85, score: 0.85 * zoneValue(fx, fy) * riskW * 0.9 });
   }
+  if (pl && pl.from === p.num && M.t - PL.segT < CFG.playWait) { const q = M.ps.find(x => x.side === side && x.num === pl.to); if (q && q.run && dist(q.x, q.y, q.run.x, q.run.y) > 2.5) opts.push({ k: "carry", p: 0.9, score: 0.9 * zoneValue(nx, ny) + 0.05 }); } // segura até o companheiro chegar
   opts.forEach(o => o.noisy = o.score + gauss() * noise * 0.05);
   opts.sort((a, b) => b.noisy - a.noisy);
   const best = opts.reduce((a, b) => (b.score > a.score ? b : a), opts[0]), st = M.stats[side];
@@ -874,7 +1003,7 @@ function execute(M, p, o) {
     else if (M.mode === "habilidade") { M.bank[side] += o.xg; goal = M.bank[side] >= 1; if (goal) M.bank[side] -= 1; }
     else goal = r < o.xg;
     const onTarget = goal || r < o.xg + (1 - o.xg) * 0.42;
-    { const [sx, sy] = toN(side, p.x, p.y); M.zone[side].xg[corridor(sy)] += o.xg; }
+    { const [sx, sy] = toN(side, p.x, p.y); M.zone[side].xg[corridor(sy)] += o.xg; (M.shotMap || (M.shotMap = [[], []]))[side].push([+sx.toFixed(3), +sy.toFixed(3), +o.xg.toFixed(3), M.t]); }
     p.fp += o.xg * 6;
     const gx = side === 0 ? FL + 1 : -1;
     let ty = goal ? FW / 2 + (rnd() < .5 ? -1 : 1) * (1.2 + rnd() * 2.3) : onTarget ? gk.y + gauss() * .6 : FW / 2 + (rnd() < .5 ? -1 : 1) * (4.2 + rnd() * 6);
@@ -941,6 +1070,7 @@ function giveBall(M, p) {
     const gain = zoneValue(bx, by) - zoneValue(ax, ay);
     f.fp += Math.max(0, gain) * 40; p.fp += 0.2;
     if (ax < 2 / 3 && bx >= 2 / 3) M.zone[p.side].ent[corridor(by)]++;
+    if (Math.abs(ay - 0.5) > 0.28 && bx > 0.72) p.crossAt = M.t; // recebeu cruzamento na área
     if (linkBonus(T, f.i, p.i) > 0) { const L = M.stats[p.side].links[key] || (M.stats[p.side].links[key] = { n: 0, gain: 0 }); L.n++; L.gain += gain; }
     chainPush(M, p, "rec", { p: b.pass.p, from: f.name });
   } else if (prev !== p.side || !M.chain || M.chain.side !== p.side) {
@@ -965,7 +1095,7 @@ function targets(M) {
     }
     const spineSectors = new Set(T.spine.map(i => T.players[i].role));
     const shp = CFG.shape && T.plan ? SHAPE[T.plan.def] : null;
-    const pressN = att ? 0 : Math.max(1, Math.min(SIZE === 4 ? 2 : SIZE === 7 ? 3 : 9, Math.round((SIZE <= 7 ? 0.6 : 1) + te.pressao / (SIZE <= 7 ? 70 : 45) + ((M.t - M.lostAt[side] < 5) ? te.contrap / (SIZE <= 7 ? 90 : 40) : 0)) + (shp ? shp.press : 0)));
+    const pressN = att ? 0 : Math.max(1, Math.min(SIZE === 4 ? 2 : SOC() ? 3 : 9, Math.round((SIZE <= 7 ? 0.6 : 1) + te.pressao / (SIZE <= 7 ? 70 : 45) + ((M.t - M.lostAt[side] < 5) ? te.contrap / (SIZE <= 7 ? 90 : 40) : 0)) + (shp ? shp.press : 0)));
     const triggerZone = 1 - (0.35 + te.pressao / 100 * 0.6); // a partir de onde pressiona (coord do adversário)
     const oppBallNx = 1 - bnx;
     const pressers = att ? [] : mine.filter(p => p.role !== "G").sort((a, c) => dist(a.x, a.y, b.x, b.y) - dist(c.x, c.y, b.x, b.y)).slice(0, (oppBallNx > triggerZone || M.t - M.lostAt[side] < 5) ? pressN : 1);
@@ -976,7 +1106,7 @@ function targets(M) {
       T.nextDeep = M.t + 4 + rnd() * 2; }
     if (att && T.plan && T.plan.att === "infil" && (!T.nextInf || M.t > T.nextInf) && b.owner && b.owner.side === side) {
       const cand = mine.filter(p => (p.role === "M" || p.role === "A") && p !== b.owner && !(p.run && p.run.until > M.t)).sort((a, c) => toN(side, c.x, c.y)[0] - toN(side, a.x, a.y)[0]);
-      const r = cand[cand.length > 1 ? 1 : 0]; if (r) { const [ix, iy] = toW(side, 1 - (BOX_L * 0.55) / FL, 0.5 + (rnd() - 0.5) * 0.35); r.run = { x: ix, y: iy, until: M.t + 3.5, inf: true }; M.stats[side].inf = (M.stats[side].inf || 0) + 1; }
+      const ch = cand.find(p => p.trait === "chegada"), r = ch || cand[cand.length > 1 ? 1 : 0]; if (r) { const [ix, iy] = toW(side, 1 - (BOX_L * 0.55) / FL, 0.5 + (rnd() - 0.5) * 0.35); r.run = { x: ix, y: iy, until: M.t + 3.5, inf: true }; M.stats[side].inf = (M.stats[side].inf || 0) + 1; }
       T.nextInf = M.t + 4 + rnd() * 2; }
     for (const p of mine) {
       if (p.rotUntil && p.rotUntil < M.t) { p.rot = null; }
@@ -1038,7 +1168,8 @@ function targets(M) {
     if (att && CFG.shape && T.plan && b.owner && b.owner.side === side) { // forma do ataque, bem visível
       const ak = T.plan.att, out = mine.filter(p => p.role !== "G" && p !== b.owner && !(p.run && p.run.until > M.t));
       const bySide = out.slice().sort((u, v) => toN(side, u.tx, u.ty)[1] - toN(side, v.tx, v.ty)[1]);
-      if (ak === "lados" && bySide.length >= 2) { const lo = bySide[0], hi = bySide[bySide.length - 1];
+      if (ak === "lados" && bySide.length >= 2) { const pts = bySide.filter(p => p.trait === "ponta"); let lo = bySide[0], hi = bySide[bySide.length - 1];
+        if (pts.length) { const mid = 0.5; pts.forEach(p => { const [, py] = toN(side, p.tx, p.ty); if (py < mid) lo = p; else hi = p; }); if (lo === hi) hi = bySide[bySide.length - 1] === lo ? bySide[0] : bySide[bySide.length - 1]; }
         [[lo, 0.06], [hi, 0.94]].forEach(([p, yy]) => { const [nx] = toN(side, p.tx, p.ty); [p.tx, p.ty] = toW(side, Math.max(nx, Math.min(0.88, bnx + 0.12)), yy); }); }
       else if (ak === "dentro") out.forEach(p => { const [nx, ny] = toN(side, p.tx, p.ty); [p.tx, p.ty] = toW(side, nx, 0.5 + (ny - 0.5) * 0.55); });
       else if (ak === "prof") { const f = out.slice().sort((u, v) => toN(side, v.tx, v.ty)[0] - toN(side, u.tx, u.ty)[0])[0];
@@ -1072,7 +1203,7 @@ function targets(M) {
 
 function fatigue(M, p, dt) {
   const T = TRAITS[p.trait], sp = Math.hypot(p.vx, p.vy), te = M.teams[p.side].tact;
-  const d = (0.028 + 0.0022 * sp * sp + (te.pressao + te.contrap) / 200 * 0.03) * (T && T.sta ? T.sta : 1) * (p.role === "G" ? 0.3 : 1) * (SIZE === 11 ? 1 : SIZE === 7 ? CFG.f7 : SIZE === 4 ? CFG.f4 : 1.3);
+  const d = (0.028 + 0.0022 * sp * sp + (te.pressao + te.contrap) / 200 * 0.03) * (T && T.sta ? T.sta : 1) * (p.role === "G" ? 0.3 : 1) * (SIZE === 11 ? 1 : SOC() ? CFG.f7 : SIZE === 4 ? CFG.f4 : 1.3);
   const od = orderOf(M, p.side); p.en = Math.max(15, p.en - d * dt * (od && ORDERS[od.k].sta ? ORDERS[od.k].sta : 1));
   const f = 0.7 + 0.3 * p.en / 100; for (const k in p.a0) p.a[k] = p.a0[k] * (k === "pac" || k === "def" ? f : 0.85 + 0.15 * f);
 }
@@ -1089,6 +1220,7 @@ function step(M, dt) {
   if (M.over || M.paused) return;
   M.t += dt;
   if (M.t > CFG.noGoal * 0.5) for (let s = 0; s < 2; s++) if (M.teams[s].npc) npcOrders(M, s);
+  for (let s = 0; s < 2; s++) playTick(M, s, dt);
   const b = M.ball;
   // posse
   const possSide = b.owner ? b.owner.side : null; if (possSide !== null) M.stats[possSide].poss += dt;
@@ -1301,7 +1433,7 @@ function npcShouts(M, side) {
 }
 // Elo
 function eloUpdate(r, opp, res, k = 32) { const e = 1 / (1 + Math.pow(10, (opp - r) / 400)); return Math.round(r + k * (res - e)); }
-if (typeof module !== "undefined") module.exports = { npcOrders, orderPreview, ordMult, ORDERS, giveOrder, orderOf, threatOf, cfg7, switchPlan, usePlan, defaultPlans, savePlanSlots, npcCheckpoint, comboLinks, COMBO, CMX, COUNTER_COMBO, PLAN_FORM7, PLAN_KEYS, planChange, syncTeam, NPC_READ, CFG, PLAN_FORM4, setFormation, attrsOf, passProb, duelProb, xG, prepLever: (lv, A, B) => { if (lv === "plano") { B.plan || 0; const op = A.plan; setPlan(B, Object.keys(ATT).find(k => MXG[k][A.plan.def] < 0.8) || "dentro", Object.keys(DEF).find(k => MXG[A.plan.att][k] > 1.2) || "media"); setPlan(A, COUNTER_ATT[B.plan.def], COUNTER_DEF[B.plan.att]); } if (lv === "habilidades") { [A, B].forEach((T, k) => { const want = k ? [] : ATT[T.plan.att].traits; T.players.forEach(p => { if (p.role === "M" || p.role === "A") p.trait = k ? "xerife" : want[Math.floor(rnd() * want.length)]; }); }); } }, setPlan, applyPlans, npcReplan, planReport, ATT, DEF, MXG, COUNTER_ATT, COUNTER_DEF, shout, setCfg, doSub, callTimeout, insights, npcManage, TRAITS, buildNpc, setPitch, getMax: () => MAX_PER, makeTeam, npcCoach, newMatch, step, npcShouts, STYLES, FORMATIONS, structures, addLink, fichasUsed };
+if (typeof module !== "undefined") module.exports = { patternOfPlay, PAT, PAT_DEF, patternOfPos, toW, toN, team, startPlay, playOf, npcPlays, npcPickPlay, playReward, cfg6, SOC, npcOrders, orderPreview, ordMult, ORDERS, giveOrder, orderOf, threatOf, cfg7, switchPlan, usePlan, defaultPlans, savePlanSlots, npcCheckpoint, comboLinks, COMBO, CMX, COUNTER_COMBO, PLAN_FORM7, PLAN_KEYS, planChange, syncTeam, NPC_READ, CFG, PLAN_FORM4, setFormation, attrsOf, passProb, duelProb, xG, prepLever: (lv, A, B) => { if (lv === "plano") { B.plan || 0; const op = A.plan; setPlan(B, Object.keys(ATT).find(k => MXG[k][A.plan.def] < 0.8) || "dentro", Object.keys(DEF).find(k => MXG[A.plan.att][k] > 1.2) || "media"); setPlan(A, COUNTER_ATT[B.plan.def], COUNTER_DEF[B.plan.att]); } if (lv === "habilidades") { [A, B].forEach((T, k) => { const want = k ? [] : ATT[T.plan.att].traits; T.players.forEach(p => { if (p.role === "M" || p.role === "A") p.trait = k ? "xerife" : want[Math.floor(rnd() * want.length)]; }); }); } }, setPlan, applyPlans, npcReplan, planReport, ATT, DEF, MXG, COUNTER_ATT, COUNTER_DEF, shout, setCfg, doSub, callTimeout, insights, npcManage, TRAITS, buildNpc, setPitch, getMax: () => MAX_PER, makeTeam, npcCoach, newMatch, step, npcShouts, STYLES, FORMATIONS, structures, addLink, fichasUsed };
 // ===================== INTERFACE =====================
 const $ = s => document.querySelector(s);
 const el = (tag, attrs = {}, ...kids) => { const e = document.createElement(tag); for (const k in attrs) { const v = attrs[k]; if (v === null || v === undefined || v === false) continue; if (k === "class") e.className = v; else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else if (k === "text") e.textContent = v; else e.setAttribute(k, v === true ? "" : v); } kids.flat().forEach(c => c != null && c !== false && e.append(c.nodeType ? c : document.createTextNode(c))); return e; };
@@ -1362,7 +1494,7 @@ const cv = $("#board"), ctx = cv.getContext("2d");
 let VW = 113, VH = 76; const MX = 4, MY = 4;
 let SC = 10, bg = null, K = 1;
 function resize() {
-  ROT = window.innerWidth < 700 && window.innerHeight > window.innerWidth; // celular em pé: campo de pé, seu time ataca para cima
+  ROT = S.orient === "v" ? true : S.orient === "h" ? false : window.innerWidth < 700 && window.innerHeight > window.innerWidth; // celular em pé: campo de pé, seu time ataca para cima
   VW = ROT ? FW + 2 * MY : FL + 2 * MX; VH = ROT ? FL + 2 * MX : FW + 2 * MY; K = SIZE === 4 ? 0.95 : Math.sqrt(FL / 105) * 1.05; cv.style.aspectRatio = `${VW}/${VH}`;
   const r = cv.getBoundingClientRect(); if (!r.width) return;
   const dpr = Math.min(2, window.devicePixelRatio || 1);
@@ -1392,7 +1524,7 @@ function buildBg() {
 }
 function shade(hex, a) { const n = parseInt(hex.slice(1), 16); const r = clamp((n >> 16) + a, 0, 255), g = clamp(((n >> 8) & 255) + a, 0, 255), b = clamp((n & 255) + a, 0, 255); return `rgb(${r},${g},${b})`; }
 function magnet(x, y, color, num, opts = {}) {
-  const [cx, cy] = W2C(x, y), r = SC * 1.75 * K;
+  const [cx, cy] = W2C(x, y), r = SC * 1.75 * K * (S.mag || 1);
   ctx.save();
   ctx.fillStyle = "rgba(0,0,0,.35)"; ctx.beginPath(); ctx.arc(cx + r * .18, cy + r * .25, r, 0, 7); ctx.fill();
   const g = ctx.createRadialGradient(cx - r * .35, cy - r * .4, r * .1, cx, cy, r); g.addColorStop(0, shade(color, 40)); g.addColorStop(.7, color); g.addColorStop(1, shade(color, -40));
@@ -1666,7 +1798,7 @@ async function netOpen(code, host) {
   NET.offs.push(NET.room.on("shout", m => hostShout(m)));
   NET.offs.push(NET.room.on("again", m => { if (m.sameTab) return; }));
   if (host) {
-    S.size = 7; cfg7(); S.me = 0;
+    S.size = S.size === 6 ? 6 : 7; cfg7(); S.me = 0;
     await NET.room.presence({ r: "h", nm: name, z: S.size, elo: myElo, st: "lobby" });
     S.teams = [makeTeam(name, COLORS[0], "luisenrique"), null];
     onMsg(`Sala ${code} criada. Passe o código para o adversário.`);
@@ -1683,7 +1815,7 @@ function netPeers(peers) {
   if (other) {
     const nm = String(other.presence.nm || "Adversário").slice(0, 24), changed = nm !== NET.oppName; NET.oppName = nm; NET.oppElo = +other.presence.elo || 1200;
     if (!NET.host && !S.teams[1] && other.presence.z) { // convidado: monta o time no tamanho do anfitrião
-      cfg7(); S.size = 7;
+      S.size = other.presence.z === 6 ? 6 : 7; cfg7();
       S.teams = [null, makeTeam(($("#nameA").value || "Giz EC").slice(0, 24), COLORS[1], "ancelotti", NAMES_B)]; enterOnlineBoard();
     }
     if (!NET.host && NET.snap === null && other.presence.s) netGuestSnap(other.presence.s);
@@ -2396,7 +2528,7 @@ function hostShout(m) { // mensagens do convidado no anfitrião (com descarte de
 const netBroadcastV6 = netBroadcast;
 netBroadcast = function (now) {
   const M = S.M; if (!NET.room || now - NET.lastSend < 125) return;
-  NET.extra = { od: M.order.map(o => o && o.until > M.t ? [o.k, o.target ?? -1, Math.round((o.until - M.t) * 10), Math.round(o.my * 100), Math.round(o.opp * 100)] : 0), oc: M.ordCd.map(c => Math.round(Math.max(0, c - M.t) * 10)), dw: M.stats.map(st => [st.duels, st.duelsW]), rd: S.ready.map(Number), wr: NET.waitRejoin ? 1 : 0, rx: NET.readX || 0, ax: NET.areadX || 0 };
+  NET.extra = { od: M.order.map(o => o && o.until > M.t ? [o.k, o.target ?? -1, Math.round((o.until - M.t) * 10), Math.round(o.my * 100), Math.round(o.opp * 100)] : 0), oc: M.ordCd.map(c => Math.round(Math.max(0, c - M.t) * 10)), dw: M.stats.map(st => [st.duels, st.duelsW]), rd: S.ready.map(Number), wr: NET.waitRejoin ? 1 : 0, rx: NET.readX || 0, ax: NET.areadX || 0, py: NET.playX || 0 };
   netBroadcastV6(now);
 };
 const netInterpV6 = netInterp;
@@ -2768,7 +2900,7 @@ TUT.splice(1, 0, { t: "O treinador fala com você", d: "Acima do campo, o treina
 
 // ---------- leitura da defesa por padrão: para cada posição da bola, onde cada defesa costuma deixar a linha e quanto marca individual ----------
 // (padrões medidos em 160 jogos simulados; comparar o jogo com eles acerta 97% e percebe a troca em ~5 s)
-const DEF_TPL = {"alta":{"l":[[8.2,1.12],[10.8,1.4],[13.0,1.52],[15.5,1.53],[17.8,1.56],[20.1,1.59],[22.5,1.92],[24.8,1.87],[27.1,1.88],[28.8,2.45],[29.3,2.36],[29.2,2.3],[29.8,2.55],[29.7,2.3]],"m":[[0.4,0.16],[0.41,0.17],[0.42,0.16],[0.39,0.16],[0.38,0.18],[0.36,0.18],[0.28,0.16],[0.36,0.17],[0.41,0.18],[0.4,0.16],[0.42,0.17],[0.38,0.16],[0.39,0.17],[0.39,0.17]]},"media":{"l":[[7.9,1.36],[9.0,2.16],[10.5,3.1],[11.3,3.43],[11.4,3.78],[12.4,3.47],[13.6,3.44],[13.0,3.35],[13.3,3.25],[14.3,2.89],[15.3,2.36],[16.1,1.99],[16.6,2.14],[17.0,2.14]],"m":[[0.38,0.17],[0.39,0.16],[0.37,0.15],[0.35,0.17],[0.38,0.18],[0.36,0.18],[0.28,0.16],[0.37,0.18],[0.37,0.16],[0.33,0.15],[0.32,0.13],[0.31,0.12],[0.29,0.12],[0.28,0.15]]},"baixa":{"l":[[3.5,1.9],[3.9,2.04],[4.6,2.38],[4.9,2.13],[5.1,1.99],[5.7,2.49],[6.1,2.55],[6.7,2.76],[7.0,2.13],[7.6,2.5],[8.0,2.31],[8.7,3.17],[8.7,2.31],[9.4,3.18]],"m":[[0.38,0.16],[0.36,0.16],[0.36,0.17],[0.32,0.16],[0.29,0.15],[0.3,0.16],[0.24,0.12],[0.28,0.13],[0.29,0.15],[0.29,0.13],[0.28,0.13],[0.26,0.12],[0.24,0.13],[0.24,0.13]]},"homem":{"l":[[7.5,2.02],[9.7,2.36],[11.6,2.81],[13.8,3.45],[15.3,4.49],[18.1,4.27],[22.0,4.46],[21.1,5.22],[20.0,5.9],[21.7,6.6],[23.5,6.93],[25.2,7.05],[28.7,6.34],[30.1,5.94]],"m":[[0.73,0.14],[0.73,0.14],[0.72,0.13],[0.72,0.14],[0.69,0.14],[0.71,0.15],[0.68,0.14],[0.71,0.16],[0.73,0.15],[0.69,0.14],[0.7,0.13],[0.7,0.15],[0.71,0.15],[0.74,0.17]]}};
+const DEF_TPL_BY = {"6":{"alta":{"l":[[7.5,1.28],[9.7,1.22],[11.8,1.05],[13.7,1.16],[15.8,1.24],[17.9,1.16],[20.0,1.57],[22.0,1.52],[24.0,1.77],[25.8,1.83],[26.6,2.15],[27.5,2.39],[28.2,2.59],[28.3,2.69]],"m":[[0.45,0.21],[0.45,0.21],[0.45,0.2],[0.43,0.22],[0.42,0.22],[0.4,0.2],[0.34,0.2],[0.43,0.21],[0.47,0.2],[0.43,0.2],[0.45,0.22],[0.48,0.22],[0.47,0.2],[0.43,0.19]]},"media":{"l":[[7.0,1.17],[7.8,1.59],[8.8,2.12],[10.3,2.87],[11.1,3.12],[11.3,3],[12.4,2.96],[12.5,2.71],[12.7,2.46],[13.4,2.39],[14.2,1.87],[14.6,1.61],[14.8,1.93],[15.1,2.01]],"m":[[0.45,0.19],[0.44,0.18],[0.44,0.19],[0.44,0.21],[0.42,0.2],[0.43,0.21],[0.38,0.22],[0.44,0.21],[0.46,0.18],[0.44,0.17],[0.39,0.18],[0.35,0.16],[0.33,0.15],[0.35,0.18]]},"baixa":{"l":[[3.4,1.7],[3.6,1.81],[4.2,1.96],[4.5,2.04],[4.8,1.66],[5.4,2.14],[5.5,1.9],[6.0,2.09],[6.5,2.18],[6.8,1.96],[7.3,2.29],[7.7,2.33],[8.3,2.62],[8.6,3.34]],"m":[[0.48,0.19],[0.45,0.18],[0.43,0.2],[0.41,0.2],[0.39,0.18],[0.38,0.17],[0.33,0.17],[0.39,0.17],[0.4,0.18],[0.38,0.18],[0.36,0.15],[0.36,0.17],[0.33,0.16],[0.33,0.17]]},"homem":{"l":[[6.9,1.56],[8.8,1.82],[10.5,2.38],[12.6,2.41],[14.2,3.18],[16.2,3.47],[19.1,3.7],[19.0,4.48],[19.8,5.07],[21.7,5.32],[24.0,5.51],[25.4,5.83],[28.2,4.38],[29.6,4.64]],"m":[[0.7,0.15],[0.71,0.17],[0.71,0.17],[0.68,0.17],[0.68,0.17],[0.67,0.16],[0.64,0.15],[0.68,0.17],[0.71,0.16],[0.71,0.15],[0.72,0.17],[0.69,0.17],[0.72,0.18],[0.72,0.18]]}},"7":{"alta":{"l":[[8.2,1.34],[10.6,1.48],[13.2,1.41],[15.5,1.51],[17.8,1.66],[20.2,1.43],[22.6,1.93],[24.6,1.98],[27.3,1.85],[29,2.24],[29.9,2.59],[29.8,2.66],[30.1,2.71],[30.0,2.34]],"m":[[0.44,0.18],[0.44,0.18],[0.41,0.19],[0.45,0.2],[0.4,0.19],[0.38,0.2],[0.3,0.18],[0.4,0.2],[0.41,0.18],[0.41,0.16],[0.41,0.18],[0.43,0.17],[0.42,0.16],[0.39,0.15]]},"media":{"l":[[7.8,1.33],[9.0,2.08],[10.2,2.72],[11.6,3.43],[11.7,3.64],[12.3,3.64],[13.8,3.31],[13.4,3.46],[13.7,3.28],[15.0,2.99],[15.5,2.49],[16.4,2.47],[16.5,2.08],[16.9,2.1]],"m":[[0.39,0.16],[0.41,0.16],[0.36,0.15],[0.34,0.18],[0.34,0.19],[0.36,0.19],[0.29,0.18],[0.34,0.17],[0.36,0.15],[0.33,0.15],[0.31,0.14],[0.29,0.15],[0.28,0.11],[0.29,0.14]]},"baixa":{"l":[[3.8,1.85],[4.2,2.23],[4.6,2.14],[5.1,2.16],[5.6,2.45],[5.8,1.9],[6.0,2.64],[6.6,2.39],[7.2,2.78],[7.4,2.4],[8.2,3.13],[8.4,2.4],[8.8,2.72],[9.4,3.16]],"m":[[0.36,0.15],[0.35,0.15],[0.31,0.14],[0.3,0.14],[0.3,0.15],[0.27,0.13],[0.25,0.13],[0.31,0.13],[0.33,0.13],[0.29,0.12],[0.29,0.12],[0.26,0.12],[0.25,0.12],[0.25,0.13]]},"homem":{"l":[[7.6,2.05],[9.5,2.29],[11.6,2.99],[13.8,3.63],[15.5,4.18],[18.4,4.5],[21.3,5.1],[20.4,6.23],[21.1,6.59],[22.9,6.53],[22.4,7.2],[26.5,6.35],[28.0,6.41],[30.9,5.45]],"m":[[0.72,0.15],[0.72,0.14],[0.72,0.14],[0.74,0.14],[0.69,0.13],[0.68,0.13],[0.67,0.12],[0.7,0.14],[0.72,0.14],[0.69,0.14],[0.68,0.15],[0.68,0.15],[0.69,0.14],[0.71,0.15]]}}}; // padrões medidos no 6x6 e no 7x7 (campos de tamanhos diferentes)
 const updateReadV9b = updateRead;
 updateRead = function (M, dt) {
   updateReadV9b(M, dt); if (isGuest()) return;
@@ -2777,12 +2909,333 @@ updateRead = function (M, dt) {
   const defs = team(M, d).filter(p => p.role !== "G"), atk = team(M, h.side).filter(p => p.role !== "G"), tx = p => p.tx ?? p.x, ty = p => p.ty ?? p.y;
   const dep = defs.map(p => toN(d, tx(p), ty(p))[0] * FL).sort((x, y) => x - y), line = (dep[0] + dep[1]) / 2, man = atk.filter(q => defs.some(p => dist(tx(p), ty(p), q.x, q.y) < 2.5)).length / atk.length;
   const i = Math.min(13, Math.floor((bx - 0.15) / 0.05)); R.sc = R.sc || { alta: 0, media: 0, baixa: 0, homem: 0 }; R.sn = (R.sn || 0) + 1; const a = R.sn < 30 ? 1 / R.sn : Math.min(1, dt / 1.5);
-  for (const k in DEF_TPL) { const [ml, sl] = DEF_TPL[k].l[i], [mm, sm] = DEF_TPL[k].m[i]; const e = ((line - ml) / sl) ** 2 + ((man - mm) / sm) ** 2; R.sc[k] += (e - R.sc[k]) * a; }
+  const TPL = DEF_TPL_BY[SIZE] || DEF_TPL_BY[7]; for (const k in TPL) { const [ml, sl] = TPL[k].l[i], [mm, sm] = TPL[k].m[i]; const e = ((line - ml) / sl) ** 2 + ((man - mm) / sm) ** 2; R.sc[k] += (e - R.sc[k]) * a; }
 };
 const DEF_TXT = { alta: ["alta", "linha alta, colada na bola"], media: ["média", "linha média · por zona"], baixa: ["baixa", "linha baixa · por zona"], homem: [null, "marcação individual"] };
 tellOf = function (M, s) {
-  const R = M.read && M.read[1 - s]; if (!R || !R.sc || (R.sn || 0) < 40) return null;
+  const R = M.read && M.read[1 - s]; if (!R || !R.sc || (R.sn || 0) < 90) return null; // só opina depois de ver uns 3 s de jogo com a bola no meio
   const k = Object.keys(R.sc).sort((x, y) => R.sc[x] - R.sc[y])[0];
   return { k, line: DEF_TXT[k][0] || "média", man: k === "homem", m: Math.round(R.line), mk: R.man, txt: DEF_TXT[k][1] };
 };
+// ===================== V10: auxiliar técnico, jogadas a giz, elenco por posição, 6x6, ritmo mais lento =====================
+// Princípios do benchmark: o auxiliar descreve e opina, o técnico decide (FM); a jogada é desenhada como na prancheta (TacticalPad);
+// papéis por posição com efeito real (EA FC); só o essencial no campo, números nos jogadores (Tactical Vision).
+S.size = (() => { try { const v = localStorage.getItem("prancheta_size"); return v === "7" ? 7 : 6; } catch (e) { return 6; } })();
+S.mag = window.innerWidth < 700 ? 1 : 0.75; S.orient = "auto"; S.reads = { ok: 0, n: 0 }; S.ptab = "elenco"; S.pslot = 0;
+cfg7 = function () { cfgSoc7(); if (S.size === 6) setPitch(6); setCfg({ rt: 1.5 }); }; // 1,5 s de jogo por segundo: um tempo dura 80 s
+cfg7();
+const POS_N = { G: "Goleiro", D: "Zagueiro", M: "Meio", A: "Ataque" };
+const synergyOf = t => { const a = Object.keys(ATT).filter(k => ATT[k].traits.includes(t)).map(k => ATT[k].n.toLowerCase()), d = Object.keys(DEF).filter(k => DEF[k].traits.includes(t)).map(k => DEF[k].n.toLowerCase());
+  return [a.length ? "ataque " + a.join(", ") : "", d.length ? "defesa " + d.join(", ") : ""].filter(Boolean).join(" · "); };
+
+// ---------- formato e orientação na tela inicial ----------
+(() => { const fd = $("#fD"); if (!fd || $("#fSize")) return;
+  const f = el("div", { class: "field", id: "fSize" }, el("label", { for: "sizeSel", text: "Formato" }), el("select", { id: "sizeSel", onchange: e => { S.size = +e.target.value; try { localStorage.setItem("prancheta_size", S.size); } catch (er) { } cfg7(); renderPlacar(); } },
+    el("option", { value: "7", text: "7 contra 7 (goleiro e 6)" }), el("option", { value: "6", text: "6 contra 6 (goleiro e 5): mais espaço no campo" })));
+  fd.after(f); $("#sizeSel").value = String(S.size); })();
+const renderPlacarV9 = renderPlacar;
+renderPlacar = function () { renderPlacarV9(); if (!S.M && $("#clk") && S.mode !== "online") $("#clk").textContent = `${SIZE} contra ${SIZE}`; };
+
+// ---------- empacotar time: números das camisas e jogadas vão junto (online) ----------
+const packTeamV9 = packTeam;
+packTeam = function (T) { const o = packTeamV9(T); o.nu = T.players.map(p => p.num); o.py = (T.plays || []).slice(0, 2).map(P => ({ n: String(P.name || "Jogada").slice(0, 24), s: (P.steps || []).slice(0, 10) })); return o; };
+const unpackTeamV9 = unpackTeam;
+unpackTeam = function (o) {
+  const T = unpackTeamV9(o);
+  if (Array.isArray(o.nu)) T.players.forEach((p, i) => { const n = o.nu[i] | 0; if (n > 0 && n < 40) p.num = p.num0 = n; });
+  if (Array.isArray(o.py)) T.plays = o.py.map(P => ({ name: P.n, steps: (P.s || []).filter(s => s && (s.k === "pass" || s.k === "run")).map(s => s.k === "pass" ? { k: "pass", from: s.from | 0, to: s.to | 0 } : { k: "run", who: s.who | 0, to: [clamp(+s.to[0] || 0.5, 0, 1), clamp(+s.to[1] || 0.5, 0, 1)] }) }));
+  return T;
+};
+function ensurePlays(T) { if (T && !T.npc && (!T.plays || T.plays.length < 2)) { const L = npcPlays(T); T.plays = [{ name: L[0].name, steps: L[0].steps }, { name: L[1].name, steps: L[1].steps }]; } }
+function playPattern(T, P) { const k = patternOfPlay(T, P.steps || []); if (!k) return null;
+  const strong = Object.keys(PAT_DEF[k]).sort((a, b) => PAT_DEF[k][b] - PAT_DEF[k][a])[0], weak = Object.keys(PAT_DEF[k]).sort((a, b) => PAT_DEF[k][a] - PAT_DEF[k][b])[0];
+  return { k, txt: PAT[k], strong, weak };
+}
+
+// ---------- auxiliar técnico: dados e opinião; a decisão é sua ----------
+const sideWord = (k, mirror) => { const w = ["esquerda", "meio", "direita"][mirror ? 2 - k : k]; return k === 1 ? "pelo meio" : `pela sua ${w}`; };
+function corridorStats(M, s) { // por onde o time s entra e chuta (vista do técnico do time "você")
+  const ent = M.zone[s].ent || [0, 0, 0], sm = (M.shotMap && M.shotMap[s]) || [], sh = [0, 0, 0], xg = [0, 0, 0];
+  sm.forEach(([x, y, g]) => { const c = y < 1 / 3 ? 0 : y < 2 / 3 ? 1 : 2; sh[c]++; xg[c] += g; });
+  return { ent, sh, xg, nEnt: ent[0] + ent[1] + ent[2], nSh: sm.length };
+}
+function assistantNotes(M, s) {
+  const o = 1 - s, out = [], C = corridorStats(M, o), mine = corridorStats(M, s), tl = tellOf(M, s), at = attTellOf(M, s), R = M.read && M.read[o];
+  // ataque dele (lado espelhado: a esquerda dele é a sua direita)
+  if (C.nEnt >= 2) { const k = C.ent.indexOf(Math.max(...C.ent)); out.push({ t: "Ataque dele", v: `entra mais ${sideWord(k, true)}: ${C.ent[k]} de ${C.nEnt} entradas` }); }
+  if (C.nSh >= 2) { const parts = [0, 1, 2].filter(k => C.sh[k]).map(k => `${C.sh[k]} ${sideWord(k, true).replace("pela sua ", "pela ").replace("pelo ", "pelo ")}`); out.push({ t: "Chutes dele", v: parts.join(", ") }); }
+  if (at) out.push({ t: "Jeito de atacar", v: at.k === "lados" ? `abre o campo: ocupa ${pct(at.w)} da largura` : at.k === "dentro" ? `fecha por dentro: ocupa só ${pct(at.w)} da largura` : at.k === "prof" ? `${at.dp} corridas nas costas da sua linha em 20 s` : `${at.inf} infiltrações dos meias em 20 s` });
+  if (R && R.n > 30) { const gk = 0; out.push({ t: "Defesa dele", v: `linha a ${Math.round(R.line)} m do gol dele, ${R.man >= MAN_HI ? "marcando individual" : "marcando por zona"}` + (tl && tl.k === "alta" ? ": sobra espaço nas costas da linha" : tl && tl.k === "baixa" ? ": sobra espaço pelos lados" : tl && tl.k === "homem" ? ": um meia chegando de trás fica sem marcador" : ": sobra espaço entre as linhas") }); }
+  if (mine.nSh >= 2) { const k = mine.xg.indexOf(Math.max(...mine.xg)); out.push({ t: "Seus chutes", v: `as melhores chances saem ${sideWord(k, false)} (${dec(mine.xg[k])} de ${dec(mine.xg[0] + mine.xg[1] + mine.xg[2])})` }); }
+  let op = null; // opinião, com o grau de confiança
+  if (tl) { const ai = ANS.findIndex(x => x.d === tl.k), cur = Math.max(0, M.teams[s].cur); op = ai === cur ? `o plano ${PLAN_KEYS[cur]} encaixa na defesa dele; eu manteria.` : `contra ${tl.txt}, eu atacaria ${ANS[ai].t.toLowerCase()} (plano ${PLAN_KEYS[ai]}).`; }
+  if (at) { const dd = DANS.find(x => x.vs === at.k); if (dd && dd.d !== myDef(M.teams[s])) op = (op ? op + " " : "") + `Atrás, ${dd.t.toLowerCase()} ${dd.why}.`; }
+  return { notes: out.slice(0, 4), op };
+}
+// "pense antes": o auxiliar pergunta a sua leitura antes de mostrar a dele
+function askRead(M, s) {
+  const tl = tellOf(M, s); if (!tl) return null;
+  if (!S.ask || S.ask.M !== M) S.ask = { M, k: null, at: -99, ans: null };
+  if (S.ask.k !== tl.k && M.t - S.ask.at > 16) { S.ask.k = tl.k; S.ask.at = M.t; S.ask.ans = null; S.ask.open = true; }
+  return S.ask;
+}
+const DEF_GUESS = [["alta", "Linha alta"], ["media", "Linha média"], ["baixa", "Linha baixa"], ["homem", "Individual"]];
+renderHud = function () {
+  const hud = $("#hud"), M = S.M; if (!hud) return;
+  if (!M || M.over || S.timeoutEnd) { hud.classList.add("hidden"); return; } hud.classList.remove("hidden"); hud.className = "hud aux";
+  const s = mySide(), ph = phaseOf(M, s), A = assistantNotes(M, s), q = askRead(M, s);
+  const key = [ph, A.notes.map(n => n.v).join("|"), A.op, q && q.open, q && q.ans, Math.floor(M.t / 2)].join("#"); if (hud.dataset.k === key) return; hud.dataset.k = key; hud.innerHTML = "";
+  const PH = { ataque: ["Atacando", "at"], recuperou: ["Recuperou", "rc"], defesa: ["Defendendo", "df"], perdeu: ["Perdeu a bola", "pd"], neutro: ["Bola em disputa", "nt"] }[ph];
+  const head = el("div", { class: "auxh" }, el("span", { class: "ph ph-" + PH[1], text: PH[0] }), el("b", { text: "Auxiliar técnico" }), el("small", { text: S.reads.n ? `sua leitura: ${S.reads.ok} de ${S.reads.n}` : "" }));
+  hud.append(head);
+  if (q && q.open && !q.ans) { // primeiro você, depois ele
+    hud.append(el("div", { class: "ask" }, el("span", { text: "Antes de eu falar: como ele está defendendo agora?" }),
+      el("div", { class: "chips" }, ...DEF_GUESS.map(([k, t]) => el("button", { class: "chip", text: t, onclick: () => { q.ans = k; S.reads.n++; if (k === q.k) S.reads.ok++; hud.dataset.k = ""; renderHud(); } })),
+        el("button", { class: "chip ghost", text: "pular", onclick: () => { q.ans = "pulou"; hud.dataset.k = ""; renderHud(); } }))));
+    return;
+  }
+  if (q && q.ans && q.ans !== "pulou" && M.t - q.at < 14) hud.append(el("div", { class: "verdict " + (q.ans === q.k ? "ok" : "no"), text: q.ans === q.k ? `Concordo: ${tellOf(M, s).txt}.` : `Eu vejo diferente: ${tellOf(M, s).txt}.` }));
+  hud.append(el("div", { class: "notes" }, ...A.notes.map(n => el("div", { class: "note" }, el("span", { text: n.t }), el("b", { text: n.v })))));
+  if (A.op) hud.append(el("div", { class: "op" }, el("span", { text: "Minha opinião:" }), " " + A.op, el("em", { text: " A decisão é sua." })));
+};
+
+// ---------- campo: números só nos jogadores, ímãs menores, sem linhas de passe ----------
+drawMatch = function () {
+  if (S.detail) return drawMatchV8();
+  const M = S.M, b = M.ball, s = mySide(), h = b.owner; S.pillN = 0;
+  M.ps.forEach(p => { if (p.run && p.run.until > M.t) arrow(p.x, p.y, p.run.x, p.run.y, p.side === s ? "rgba(238,235,225,.55)" : "rgba(235,120,100,.8)", .16, [.5, .5]); });
+  const o = 1 - s, R = M.read && M.read[o];
+  if (R && R.n > 30 && h && h.side === s) { const [x0, y0] = toW(o, R.line / FL, 0.04), [x1, y1] = toW(o, R.line / FL, 0.96), [a0, b0] = W2C(x0, y0), [a1, b1] = W2C(x1, y1); ctx.save(); ctx.strokeStyle = "rgba(240,178,58,.6)"; ctx.lineWidth = SC * .2 * K; ctx.setLineDash([SC * .8, SC * .6]); ctx.beginPath(); ctx.moveTo(a0, b0); ctx.lineTo(a1, b1); ctx.stroke(); ctx.restore(); }
+  const P = playOf(M, s), cp = P ? curPass(P) : null;
+  M.ps.forEach(p => magnet(p.x, p.y, COLORS[p.side], p.num, { sel: h === p, en: p.side === s ? p.en : undefined }));
+  const chip = (p, t, bg, fg) => { S.pillN++; pill(p.x, p.y + 2.3 * K, t, bg, fg); };
+  if (h && h.side === s) { // quem tem a bola: os 2 melhores passes aparecem em quem recebe
+    const opts = team(M, s).filter(q => q !== h && q.role !== "G").map(q => { const d = dist(h.x, h.y, q.x, q.y); return { q, p: d > 34 ? 0 : passProb(M, h, q, d > 30) }; }).sort((a, c) => c.p - a.p).slice(0, 2);
+    opts.forEach(({ q, p }) => chip(q, pct(p), p >= .7 ? "#2F7A46" : p >= .5 ? "#B98317" : "#B8382A"));
+    const opp = M.ps.filter(q => q.side !== s && q.role !== "G").sort((a, c) => dist(a.x, a.y, h.x, h.y) - dist(c.x, c.y, h.x, h.y))[0];
+    if (opp && dist(opp.x, opp.y, h.x, h.y) < 5) { S.pillN++; pill(h.x, h.y - 2.4 * K, `1x1 ${pct(duelProb(h, opp))}`, "#16140F", "#F0B23A"); }
+    else { const [nx] = toN(s, h.x, h.y); if (nx > 0.62) { const x = xG(M, h); S.pillN++; pill(h.x, h.y - 2.4 * K, `chute ${pct(x)}`, "#F0B23A", "#1d1a12"); } }
+  }
+  if (cp) { const q = M.ps.find(x => x.side === s && x.num === cp.to); if (q) { const [cx, cy] = W2C(q.x, q.y); ctx.save(); ctx.strokeStyle = "#F0B23A"; ctx.lineWidth = SC * .25 * K; ctx.setLineDash([SC * .4, SC * .3]); ctx.beginPath(); ctx.arc(cx, cy, SC * 1.9 * K * S.mag, 0, 7); ctx.stroke(); ctx.restore(); } }
+  const od = orderOf(M, s); if (od && od.k === "foco") { const p = M.ps.find(q => q.side === s && q.i === od.target); if (p) { const [cx, cy] = W2C(p.x, p.y); ctx.save(); ctx.strokeStyle = "#F0B23A"; ctx.lineWidth = SC * .3 * K; ctx.beginPath(); ctx.arc(cx, cy, SC * 2 * K * S.mag, 0, 7); ctx.stroke(); ctx.restore(); } }
+  if (b.shot) chalkText("xG " + dec(b.shot.xg), b.x, b.y - 2.6 * K, 1.3, "rgba(240,178,58,1)");
+  if (M.t < CFG.noGoal) chalkText(`estudo: sem gol até ${STUDY_S()} s`, FL / 2, FW - 1.6, 1.3, "rgba(240,178,58,.9)");
+  const [sx, sy] = W2C(b.x + b.z * .25, b.y + b.z * .35), [bx, by] = W2C(b.x, b.y - b.z * .5);
+  ctx.fillStyle = "rgba(0,0,0,.4)"; ctx.beginPath(); ctx.ellipse(sx, sy, SC * .55 * K, SC * .36 * K, 0, 0, 7); ctx.fill();
+  ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(bx, by, SC * K * (.5 + b.z * .04), 0, 7); ctx.fill(); ctx.strokeStyle = "#222"; ctx.lineWidth = SC * .1; ctx.stroke();
+};
+
+// ---------- jogadas: desenhar a giz ----------
+const toNrm = (wx, wy) => [clamp(wx / FL, 0.02, 0.98), clamp(wy / FW, 0.02, 0.98)]; // na prancheta o seu time sempre ataca para a direita
+const fromNrm = ([nx, ny]) => [nx * FL, ny * FW];
+function playOn() { return S.phase === "board" && (!S.M || S.editingHalf) && S.ptab === "jogadas" && S.teams[S.edit]; }
+function editPos(T) { const pos = {}; T.players.forEach(p => { pos[p.num] = slotW(p.slot); }); return pos; }
+function playPreview(T, P) { // depois de cada passo: onde cada um está; e a chance de cada passe com o adversário congelado na análise
+  const pos = editPos(T), res = []; const M = S.M, side = M ? M.teams.indexOf(T) : -1;
+  (P.steps || []).forEach((st, k) => {
+    if (st.k === "run") { pos[st.who] = fromNrm(st.to); res.push({ k, st }); return; }
+    const a = pos[st.from], b = pos[st.to]; if (!a || !b) { res.push({ k, st }); return; }
+    let pp = null;
+    if (M && side >= 0 && S.editingHalf) { const pa = M.ps.find(q => q.side === side && q.num === st.from), pb = M.ps.find(q => q.side === side && q.num === st.to);
+      if (pa && pb) { const save = [pa.x, pa.y, pb.x, pb.y], [ax, ay] = toW(side, a[0] / FL, a[1] / FW), [bx2, by2] = toW(side, b[0] / FL, b[1] / FW); pa.x = ax; pa.y = ay; pb.x = bx2; pb.y = by2; pp = passProb(M, pa, pb, dist(ax, ay, bx2, by2) > 30); [pa.x, pa.y, pb.x, pb.y] = save; } }
+    res.push({ k, st, p: pp, a: a.slice(), b: b.slice(), goal: Math.round(dist(b[0], b[1], FL, FW / 2)) });
+  });
+  return { res, pos };
+}
+const drawEditV9 = drawEdit;
+drawEdit = function () {
+  if (!playOn() && !S.easy) return drawEditV9();
+  if (!playOn()) { // preparação limpa: só os jogadores, com nome e característica
+    const T = S.teams[S.edit]; T.players.forEach(p => { const [x, y] = slotW(p.slot); magnet(x, y, T.color, p.num, { sel: S.swap === T.players.indexOf(p), label: `${p.name}` }); });
+    chalkText(ROT ? "ataque ↑" : "ataque →", ROT ? FL + 2 : FL - 8 * K, ROT ? FW / 2 : -2, 1.3); return; }
+  const T = S.teams[S.edit]; ensurePlays(T); const P = T.plays[S.pslot], pos0 = editPos(T), pv = playPreview(T, P);
+  ctx.save(); ctx.lineCap = "round";
+  // corridas (giz branco tracejado) e passes (giz amarelo), numerados na ordem
+  const cur = {}; Object.keys(pos0).forEach(k => cur[k] = pos0[k].slice());
+  pv.res.forEach(({ st, k, p, goal }) => {
+    if (st.k === "run") { const a = cur[st.who], b = fromNrm(st.to); if (a) { arrow(a[0], a[1], b[0], b[1], "rgba(238,235,225,.9)", .22, [.6, .5]); numberDot((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, k + 1, "#EEEBE1"); cur[st.who] = b; } }
+    else { const a = cur[st.from], b = cur[st.to]; if (a && b) { arrow(a[0], a[1], b[0], b[1], "rgba(240,178,58,.95)", .3); numberDot((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, k + 1); } }
+  });
+  ctx.restore();
+  T.players.forEach(p => { const [x, y] = pos0[p.num]; magnet(x, y, T.color, p.num, { label: `${p.name}`, sel: S.drawFrom === p.num }); const c = cur[p.num]; if (c && (c[0] !== x || c[1] !== y)) { ctx.globalAlpha = .45; magnet(c[0], c[1], T.color, p.num, {}); ctx.globalAlpha = 1; } });
+  pv.res.filter(r => r.st.k === "pass" && r.p != null).forEach(r => { const q = cur[r.st.to]; if (q) pill(r.b[0], r.b[1] + 2.4 * K, pct(r.p), r.p >= .7 ? "#2F7A46" : r.p >= .5 ? "#B98317" : "#B8382A"); });
+  if (S.drawFrom != null && S.drawTo) { const a = pos0[S.drawFrom]; if (a) arrow(a[0], a[1], S.drawTo[0], S.drawTo[1], "rgba(240,178,58,.6)", .22, [.4, .4]); }
+  chalkText(ROT ? "ataque ↑" : "ataque →", ROT ? FL + 2 : FL - 8 * K, ROT ? FW / 2 : -2, 1.3);
+};
+const evPos = e => { const r = cv.getBoundingClientRect(); return C2W((e.clientX - r.left) * cv.width / r.width, (e.clientY - r.top) * cv.height / r.height); };
+function hitNum(T, wx, wy) { let best = null, bd = 3 * K; T.players.forEach(p => { const [x, y] = slotW(p.slot), d = dist(x, y, wx, wy); if (d < bd) { bd = d; best = p.num; } }); return best; }
+cv.addEventListener("pointerdown", e => { if (!playOn()) return; const T = S.teams[S.edit], [wx, wy] = evPos(e), n = hitNum(T, wx, wy); if (n == null) return; S.drawFrom = n; S.drawTo = [wx, wy]; try { cv.setPointerCapture(e.pointerId); } catch (er) { } draw(); });
+cv.addEventListener("pointermove", e => { if (!playOn() || S.drawFrom == null) return; S.drawTo = evPos(e); draw(); });
+cv.addEventListener("pointerup", e => {
+  if (!playOn() || S.drawFrom == null) return; const T = S.teams[S.edit], [wx, wy] = evPos(e), n = hitNum(T, wx, wy), from = S.drawFrom; S.drawFrom = null; S.drawTo = null;
+  const P = T.plays[S.pslot], a = slotW(T.players.find(p => p.num === from).slot);
+  if (n != null && n !== from) P.steps.push({ k: "pass", from, to: n });
+  else if (dist(a[0], a[1], wx, wy) > 2.5) P.steps.push({ k: "run", who: from, to: toNrm(wx, wy) });
+  P.steps = P.steps.slice(0, 10);
+  const PNAME = { costas: "Bola nas costas", lado: "Abre no lado", entre: "Entre as linhas", infiltra: "Meia infiltrando" }, pt = patternOfPlay(T, P.steps);
+  if (pt && (!P.name || Object.values(PNAME).includes(P.name) || /^Jogada/.test(P.name))) P.name = PNAME[pt]; // o nome acompanha o desenho, a menos que você tenha dado outro
+  if (isGuest() && S.M) netSendTeam(); renderSide(); draw();
+});
+function playPanel(T) {
+  ensurePlays(T); const P = T.plays[S.pslot], pv = playPreview(T, P), box = el("div", { class: "playpanel" });
+  box.append(el("div", { class: "chips" }, ...T.plays.map((pl, k) => el("button", { class: "chip", "aria-pressed": S.pslot === k ? "true" : "false", text: `Jogada ${k + 1}`, onclick: () => { S.pslot = k; renderSide(); draw(); } }))));
+  box.append(el("div", { class: "muted", text: "Arraste de um jogador até outro: passe. Até um espaço vazio: corrida. O que conta é onde a jogada termina: nas costas, no lado, entre as linhas ou num meia chegando à área." }));
+  const name = el("input", { value: P.name || "", maxlength: 24, "aria-label": "Nome da jogada", oninput: e => { P.name = e.target.value; } });
+  box.append(el("div", { class: "pname" }, name));
+  const nm = n => { const p = T.players.find(q => q.num === n); return p ? `${n} ${p.name}` : n; };
+  box.append(el("ol", { class: "steps" }, ...pv.res.map(r => el("li", {}, el("span", { text: r.st.k === "pass" ? `${nm(r.st.from)} passa para o ${nm(r.st.to)}` : `${nm(r.st.who)} corre para ${r.st.to[0] > 0.75 ? "a área" : r.st.to[0] > 0.5 ? "o ataque" : "o meio"} ${r.st.to[1] < 0.3 ? "pela esquerda" : r.st.to[1] > 0.7 ? "pela direita" : "por dentro"}` }),
+    r.st.k === "pass" ? el("em", { text: (r.p != null ? `${pct(r.p)} de acerto agora · ` : "") + `${r.goal} m do gol` }) : null))));
+  if (!pv.res.length) box.append(el("div", { class: "muted", text: "Nenhum passo ainda." }));
+  const pt = playPattern(T, P); if (pt) box.append(el("div", { class: "patbox" }, el("b", { text: `Termina ${pt.txt}.` }), el("span", { text: ` Forte contra ${DEF[pt.strong].n.toLowerCase()}, fraca contra ${DEF[pt.weak].n.toLowerCase()}.` }),
+    S.M && S.editingHalf ? el("em", { text: ` Ele defende agora com ${DEF[S.M.teams[1 - S.M.teams.indexOf(T)].plan.def].n.toLowerCase()}: ${PAT_DEF[pt.k][S.M.teams[1 - S.M.teams.indexOf(T)].plan.def] >= 1.3 ? "encaixa" : PAT_DEF[pt.k][S.M.teams[1 - S.M.teams.indexOf(T)].plan.def] < 0.95 ? "não encaixa" : "neutra"}.` }) : null));
+  box.append(el("div", { class: "row" }, el("button", { class: "btn ghost sm", text: "Desfazer", onclick: () => { P.steps.pop(); renderSide(); draw(); } }), el("button", { class: "btn ghost sm", text: "Limpar", onclick: () => { P.steps = []; renderSide(); draw(); } }),
+    el("select", { class: "tpl", onchange: e => { const L = npcPlays(T), k = +e.target.value; if (k >= 0) { P.steps = L[k].steps.map(s => ({ ...s })); P.name = L[k].name; } renderSide(); draw(); } }, el("option", { value: "-1", text: "Começar de um modelo…" }), ...npcPlays(T).map((L, k) => el("option", { value: String(k), text: L.name })))));
+  if (S.M && S.editingHalf) box.append(el("div", { class: "muted", text: "As porcentagens usam os adversários parados onde estão agora: mova as corridas para onde há espaço." }));
+  const log = S.M && S.M.playLog ? S.M.playLog[S.M.teams.indexOf(T)].filter(L => L.k === S.pslot) : [];
+  if (log.length) { const ok = log.reduce((a, L) => a + L.res.ok, 0), n = log.reduce((a, L) => a + L.res.n, 0), xg = log.reduce((a, L) => a + (L.res.xg || 0), 0);
+    box.append(el("div", { class: "pres", text: `No jogo: usada ${log.length} vez${log.length > 1 ? "es" : ""}, ${ok} de ${n} passes certos, ${dec(xg)} de chances criadas logo depois.` })); }
+  return box;
+}
+
+// ---------- elenco: características por posição, troca antes do jogo ----------
+function squadPanel(T) {
+  const box = el("div", { class: "sq10" }), cur = T.plan;
+  T.players.forEach((p, i) => { const tr = TRAITS[p.trait] || {}, sy = synergyOf(p.trait), good = ATT[cur.att].traits.includes(p.trait) || DEF[cur.def].traits.includes(p.trait);
+    box.append(el("button", { class: "pl" + (good ? " good" : "") + (S.swap === i ? " on" : ""), onclick: () => { S.swap = S.swap === i ? null : i; renderSide(); } },
+      el("b", { text: p.num }), el("span", { class: "nm", text: p.name }), el("small", { text: `${POS_N[p.role]} · ${tr.n || ""}` }), sy ? el("em", { text: sy }) : null)); });
+  if (S.swap != null && T.players[S.swap]) { const p = T.players[S.swap], opts = (T.bench || []).map((b, k) => ({ b, k })).filter(({ b }) => (b.role === "G") === (p.role === "G"));
+    box.append(el("div", { class: "swap" }, el("div", { class: "muted", text: `Trocar ${p.name} (${TRAITS[p.trait] ? TRAITS[p.trait].n : ""}) por:` }),
+      ...opts.map(({ b, k }) => el("button", { class: "btn ghost sm", onclick: () => { [p.name, b.name] = [b.name, p.name]; [p.trait, b.trait] = [b.trait, p.trait]; S.swap = null; renderSide(); draw(); } }, `${b.name}: ${TRAITS[b.trait] ? TRAITS[b.trait].n : b.trait}`, el("small", { text: synergyOf(b.trait) ? ` (${synergyOf(b.trait)})` : "" }))))); }
+  return box;
+}
+
+// ---------- preparação em abas: Elenco | Jogadas | Defesa ----------
+renderSetup = function () {
+  const T = S.teams[S.edit]; ensureEasy(T); if (T) ensurePlays(T);
+  if (!S.easy || !T) { renderSetupV7(); return; }
+  const side = $("#side"); side.innerHTML = ""; renderBar(); S.tab = S.ptab === "jogadas" ? "jogadas" : "form";
+  $("#hint").textContent = S.ptab === "jogadas" ? "Desenhe com o dedo ou o mouse." : "Arraste os ímãs para mudar a posição.";
+  if (S.mode === "online") side.append(el("div", { class: "peer", text: NET.oppName ? `Sala ${NET.code}: contra ${NET.oppName}${NET.oppReady ? " (pronto)" : ""}` : `Sala ${NET.code}: passe o código para o adversário` }));
+  side.append(el("h2", { text: S.mode === "contra" ? `Treinador ${S.edit + 1}` : "Prepare o time" }));
+  side.append(el("div", { class: "ptabs3", role: "tablist" }, ...[["elenco", "Elenco"], ["jogadas", "Jogadas"], ["defesa", "Defesa"]].map(([k, t]) => el("button", { role: "tab", "aria-selected": S.ptab === k ? "true" : "false", text: t, onclick: () => { S.ptab = k; S.swap = null; renderSide(); draw(); if (k === "jogadas" && window.innerWidth < 700) setTimeout(() => cv.scrollIntoView({ block: "start" }), 30); } }))));
+  if (S.ptab === "elenco") side.append(el("div", { class: "muted", text: "Toque num jogador para trocar pelo reserva. Verde: a característica combina com o plano em campo." }), squadPanel(T));
+  if (S.ptab === "jogadas") side.append(playPanel(T));
+  if (S.ptab === "defesa") side.append(el("div", { class: "muted", text: "Você pode mudar a defesa no jogo e nas paradas." }), defPicker(T, null));
+  side.append(el("details", { class: "how" }, el("summary", { text: "Como se joga (30 segundos)" }), el("div", { class: "anslist" }, ...ANS.map((a, k) => el("div", { class: "ans" }, el("b", { text: PLAN_KEYS[k] }), el("span", {}, el("strong", { text: a.vs }), el("small", { text: ` → ${a.t.toLowerCase()}` })))))),
+    el("button", { class: "linkbtn", text: "Modo completo", onclick: () => setEasy(false) }));
+};
+
+// ---------- parada: primeiro a sua leitura, depois o auxiliar ----------
+const renderStopV9 = renderStop;
+renderStop = function () {
+  if (!S.easy) return renderStopV9();
+  const M = S.M, s = S.edit, T = M.teams[s], O = M.teams[1 - s]; ensurePlays(T);
+  if (!S.guess || S.guess.k !== S.stopKind + M.half) S.guess = { k: S.stopKind + M.half, d: null, a: null };
+  const G = S.guess;
+  if (S.mode !== "contra" && (G.d == null || G.a == null)) {
+    const side = $("#side"); side.innerHTML = ""; renderBar(); renderHud();
+    side.append(el("h2", { text: KINDS[S.stopKind] || "Parada" }), el("div", { class: "muted", text: "O auxiliar vai mostrar os números. Antes, a sua leitura:" }));
+    side.append(el("h3", { text: "Como ele defende?" }), el("div", { class: "chips" }, ...DEF_GUESS.map(([k, t]) => el("button", { class: "chip", "aria-pressed": G.d === k ? "true" : "false", text: t, onclick: () => { G.d = k; renderSide(); } }))));
+    side.append(el("h3", { text: "Como ele ataca?" }), el("div", { class: "chips" }, ...[["dentro", "Por dentro"], ["lados", "Pelos lados"], ["prof", "Bola nas costas"], ["infil", "Infiltração"]].map(([k, t]) => el("button", { class: "chip", "aria-pressed": G.a === k ? "true" : "false", text: t, onclick: () => { G.a = k; if (G.d) { S.reads.n += 2; S.reads.ok += (G.d === O.plan.def) + (G.a === O.plan.att); } renderSide(); } }))));
+    side.append(el("button", { class: "linkbtn", text: "Pular e ver os números", onclick: () => { G.d = G.d || "-"; G.a = G.a || "-"; renderSide(); } }));
+    return;
+  }
+  renderStopV9();
+  const side = $("#side"), h2 = side.querySelector("h2");
+  if (G.d && G.d !== "-") { const okD = G.d === O.plan.def, okA = G.a === O.plan.att;
+    h2.after(el("div", { class: "verdict " + (okD && okA ? "ok" : "no"), text: `Sua leitura: defesa ${okD ? "certa" : "errada (era " + DEF[O.plan.def].n.toLowerCase() + ")"}, ataque ${okA ? "certo" : "errado (era " + ATT[O.plan.att].n.toLowerCase() + ")"}.` })); }
+  const C = corridorStats(M, 1 - s);
+  side.append(el("h3", { text: "Gráficos do jogo" }), corridorChart(M, s), shotMapSvg(M, s));
+  side.append(el("h3", { text: "Suas jogadas" }), el("div", { class: "chips" }, ...[["form", "Plano"], ["jogadas", "Editar jogadas"]].map(([k, t]) => el("button", { class: "chip", "aria-pressed": (S.ptab === "jogadas") === (k === "jogadas") ? "true" : "false", text: t, onclick: () => { S.ptab = k === "jogadas" ? "jogadas" : "elenco"; renderSide(); draw(); } }))));
+  if (S.ptab === "jogadas") side.append(playPanel(T));
+};
+
+// ---------- gráficos ----------
+function corridorChart(M, s) { // por onde cada time entra no último terço: esquerda, meio, direita (na sua visão)
+  const ns = "http://www.w3.org/2000/svg", W = 340, H = 118, a = corridorStats(M, s), b = corridorStats(M, 1 - s);
+  const mine = a.ent, his = [b.ent[2], b.ent[1], b.ent[0]], mx = Math.max(1, ...mine, ...his), labels = ["sua esquerda", "meio", "sua direita"];
+  const svg = document.createElementNS(ns, "svg"); svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.setAttribute("class", "chart corr"); svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", labels.map((l, i) => `${l}: você ${mine[i]}, ele ${his[i]}`).join("; "));
+  const mk = (t, at, txt) => { const e = document.createElementNS(ns, t); for (const k in at) e.setAttribute(k, at[k]); if (txt != null) e.textContent = txt; svg.append(e); return e; };
+  mk("text", { x: 4, y: 12, class: "lg" }, "Entradas no último terço");
+  mk("rect", { x: 200, y: 4, width: 9, height: 9, rx: 2, fill: COLORS[0] }); mk("text", { x: 212, y: 12, class: "lab" }, "você");
+  mk("rect", { x: 250, y: 4, width: 9, height: 9, rx: 2, fill: COLORS[1] }); mk("text", { x: 262, y: 12, class: "lab" }, "ele (contra você)");
+  labels.forEach((l, i) => { const x = 20 + i * 108, base = 96, hA = mine[i] / mx * 62, hB = his[i] / mx * 62;
+    const ra = mk("rect", { x, y: base - hA, width: 34, height: Math.max(1.5, hA), rx: 3, fill: COLORS[0] }); ra.append(Object.assign(document.createElementNS(ns, "title"), { textContent: `Você, ${l}: ${mine[i]}` }));
+    const rb = mk("rect", { x: x + 38, y: base - hB, width: 34, height: Math.max(1.5, hB), rx: 3, fill: COLORS[1] }); rb.append(Object.assign(document.createElementNS(ns, "title"), { textContent: `Ele, ${l}: ${his[i]}` }));
+    mk("text", { x: x + 17, y: base - hA - 3, "text-anchor": "middle", class: "val" }, String(mine[i])); mk("text", { x: x + 55, y: base - hB - 3, "text-anchor": "middle", class: "val" }, String(his[i]));
+    mk("text", { x: x + 36, y: 112, "text-anchor": "middle", class: "lab" }, l); });
+  return svg;
+}
+function shotMapSvg(M, s) { // onde cada time chutou, no seu campo de ataque (você → direita)
+  const ns = "http://www.w3.org/2000/svg", W = 340, H = 150, svg = document.createElementNS(ns, "svg"); svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.setAttribute("class", "chart shots"); svg.setAttribute("role", "img");
+  const mk = (t, at, txt) => { const e = document.createElementNS(ns, t); for (const k in at) e.setAttribute(k, at[k]); if (txt != null) e.textContent = txt; svg.append(e); return e; };
+  const fx = 10, fy = 22, fw = 320, fh = 120; mk("text", { x: 4, y: 13, class: "lg" }, "Onde cada time chutou (bolinha maior: chance maior)");
+  mk("rect", { x: fx, y: fy, width: fw, height: fh, rx: 6, fill: "var(--board)" }); mk("line", { x1: fx + fw / 2, x2: fx + fw / 2, y1: fy, y2: fy + fh, stroke: "rgba(238,235,225,.5)" });
+  [[fx, 0], [fx + fw, 1]].forEach(([x, r]) => mk("rect", { x: r ? x - 34 : x, y: fy + fh * 0.2, width: 34, height: fh * 0.6, fill: "none", stroke: "rgba(238,235,225,.5)" }));
+  const sm = M.shotMap || [[], []]; let n = [0, 0];
+  [s, 1 - s].forEach((side, j) => (sm[side] || []).forEach(([x, y, g]) => { const px = j === 0 ? fx + x * fw : fx + (1 - x) * fw, py = j === 0 ? fy + y * fh : fy + (1 - y) * fh; n[j]++;
+    const c = mk("circle", { cx: px, cy: py, r: 3 + g * 14, fill: COLORS[j === 0 ? 0 : 1], "fill-opacity": .8, stroke: "#fff", "stroke-width": 1 }); c.append(Object.assign(document.createElementNS(ns, "title"), { textContent: `${j === 0 ? "Você" : "Ele"}: chute de ${pct(g)}` })); }));
+  mk("text", { x: fx + fw - 4, y: fy + fh - 6, "text-anchor": "end", class: "lab", fill: "#EEEBE1" }, `você: ${n[0]} chutes → `); mk("text", { x: fx + 4, y: fy + fh - 6, class: "lab", fill: "#EEEBE1" }, `← ele: ${n[1]}`);
+  return svg;
+}
+
+// ---------- painel durante o jogo: gráficos e jogadas; sem repetir o que está no campo ----------
+renderMatchSide = function () {
+  if (!S.easy) return renderMatchSideV7();
+  const M = S.M, side = $("#side"); side.innerHTML = ""; renderBar(); const s = mySide();
+  side.append(el("h2", { text: "Números do jogo" }), el("div", { id: "g10" }), el("h3", { text: "Suas jogadas" }), el("div", { id: "pl10" }));
+  side.append(el("details", {}, el("summary", { text: "Mais números" }), el("div", { id: "cmp" }), el("div", { id: "xgc" }), el("div", { id: "rd" + s })),
+    el("div", { class: "legend9" }, el("div", {}, el("i", { style: "background:#2F7A46" }), "Número verde num jogador seu: passe com 70% ou mais"), el("div", {}, el("i", { style: "background:#B8382A" }), "Setas vermelhas: corridas dele"), el("div", {}, el("i", { style: "background:#F0B23A" }), "Linha amarela: a defesa dele · anel amarelo: quem recebe na sua jogada")),
+    el("button", { class: "linkbtn", text: S.detail ? "Campo simples" : "Ver todos os números no campo", onclick: () => { S.detail = !S.detail; renderMatchSide(); draw(); } }));
+  updateMatchSide(true);
+};
+const updateMatchSideV9 = updateMatchSide;
+updateMatchSide = function (force) {
+  updateMatchSideV9(force); const M = S.M; if (!M || !S.easy) return; const s = mySide();
+  const g = $("#g10"), k = Math.floor(M.t / 4) + "|" + (M.shotMap ? M.shotMap[0].length + M.shotMap[1].length : 0); if (g && (force || g.dataset.k !== k)) { g.dataset.k = k; g.innerHTML = ""; g.append(corridorChart(M, s), shotMapSvg(M, s)); }
+  const pb = $("#pl10"); if (pb) { const T = M.teams[s], log = M.playLog ? M.playLog[s] : [], kk = log.length + "|" + log.filter(L => !L.evalUntil).length; if (force || pb.dataset.k !== kk) { pb.dataset.k = kk; pb.innerHTML = "";
+    (T.plays || []).forEach((P, j) => { const L = log.filter(x => x.k === j), ok = L.reduce((a, x) => a + x.res.ok, 0), n = L.reduce((a, x) => a + x.res.n, 0), xg = L.reduce((a, x) => a + (x.res.xg || 0), 0);
+      const pt = playPattern(T, P); pb.append(el("div", { class: "pres" }, el("b", { text: `Jogada ${j + 1}: ${P.name || ""}` }), pt ? el("small", { text: ` (termina ${pt.txt}, forte contra ${DEF[pt.strong].n.toLowerCase()})` }) : null, el("span", { text: L.length ? ` ${L.length}x · ${ok} de ${n} passes · ${dec(xg)} de chances` : " ainda não usada" }))); }); } }
+};
+
+// ---------- barra: ordens com as duas jogadas ----------
+ORD_KEYS.length = 0; ORD_KEYS.push("foco", "jogada0", "jogada1", "pressao", "segurar");
+ORD_SHORT.jogada0 = "Jogada 1"; ORD_SHORT.jogada1 = "Jogada 2";
+ORDERS.jogada0 = { n: "Jogada 1", d: "Executa a Jogada 1 que você desenhou.", dur: 24 }; ORDERS.jogada1 = { n: "Jogada 2", d: "Executa a Jogada 2 que você desenhou.", dur: 24 };
+const pressOrderV9 = pressOrder;
+pressOrder = function (s, k, target) { if (k === "jogada0" || k === "jogada1") { const M = S.M; if (M && M.teams[s].plays) return pressOrderV9(s, "jogada", k === "jogada0" ? 0 : 1); return; } return pressOrderV9(s, k, target); };
+const renderBarV9 = renderBar;
+renderBar = function () {
+  renderBarV9(); const M = S.M; if (!M || S.phase !== "board" || S.timeoutEnd || M.over) return;
+  (S.mode === "contra" ? [0, 1] : [mySide()]).forEach(s => [0, 1].forEach(j => { const id = "jogada" + j, b = $(`#ob${s}${id}`); if (!b) return; const od = orderOf(M, s), on = od && od.k === "jogada" && od.target === j, T = M.teams[s], P = T.plays && T.plays[j];
+    b.classList.toggle("on", !!on); const sm = $(`#obs${s}${id}`), t = on ? "rodando" : M.ordCd[s] > M.t ? `espera ${Math.ceil((M.ordCd[s] - M.t) / CFG.rt)} s` : P ? (P.name || "").split(" ").slice(0, 2).join(" ") : "desenhe"; if (sm && sm.textContent !== t) sm.textContent = t; }));
+};
+// online: o anfitrião aceita a ordem "jogada" do convidado com o índice da jogada
+// (hostShout da v7 já repassa o alvo; o motor usa a jogada da cópia do time do convidado, que chega no pacote do time)
+
+// ---------- tamanho dos ímãs e orientação ----------
+S.orientCheck = () => ROT;
+
+// ---------- online: jogadas do convidado chegam ao anfitrião e o placar das jogadas volta ----------
+const applyOppTeamV9 = applyOppTeam;
+applyOppTeam = function (d) { applyOppTeamV9(d); try { const B = unpackTeam(d); if (B.plays && S.M) S.M.teams[1].plays = B.plays; } catch (e) { } };
+const netBroadcastV10 = netBroadcast;
+netBroadcast = function (now) { const M = S.M; NET.playX = M && M.playLog ? M.playLog.map(L => L.slice(-8).map(x => [x.k, x.res.ok, x.res.n, Math.round((x.res.xg || 0) * 100), x.evalUntil ? 1 : 0])) : 0; netBroadcastV10(now); };
+const netInterpV10 = netInterp;
+netInterp = function (dt) { netInterpV10(dt); const M = S.M, s = NET.snap; if (M && s && s.py) M.playLog = s.py.map(L => L.map(([k, ok, n, xg, ev]) => ({ k, res: { ok, n, xg: xg / 100 }, evalUntil: ev }))); };
+// ---------- o NPC guarda o que aprendeu entre partidas (neste aparelho) ----------
+const npcKey = T => `prancheta_npc_${T.diff || "pro"}_${SIZE}`;
+const newOpponentV9 = newOpponent;
+newOpponent = function () { newOpponentV9(); const T = S.teams[1]; try { const o = JSON.parse(localStorage.getItem(npcKey(T)) || "null"); if (o) { T.playStat = o.st; T.playLearn = o.ln; } } catch (e) { } };
+const finishV9 = finish;
+finish = async function (...a) { try { const M = S.M; if (M) M.teams.forEach(T => { if (T.npc && T.playStat) localStorage.setItem(npcKey(T), JSON.stringify({ st: T.playStat, ln: T.playLearn })); }); } catch (e) { } return finishV9.apply(this, a); };
+// ---------- tutorial: auxiliar técnico e jogadas a giz ----------
+TUT[1] = { t: "O auxiliar técnico ajuda na leitura", d: "Acima do campo, o auxiliar mostra dados: por onde ele ataca, onde chuta, a altura da linha dele. Antes de opinar, ele pergunta a sua leitura: pense primeiro. A decisão é sempre sua.",
+  svg: `<svg viewBox="0 0 320 170" role="img" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="170" rx="10" fill="#ECE6D8"/><text x="16" y="30" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="16" font-weight="700" fill="#1F201C">Auxiliar técnico</text><text x="16" y="56" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="13.5" fill="#55574F">Ataque dele: entra mais pela sua direita (4 de 6)</text><text x="16" y="78" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="13.5" fill="#55574F">Chutes dele: 3 pelo meio, 1 pela esquerda</text><text x="16" y="100" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="13.5" fill="#55574F">Defesa dele: linha a 21 m, sobra espaço nas costas</text><rect x="16" y="116" width="288" height="38" rx="6" fill="#F0B23A" opacity=".25"/><text x="24" y="140" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="13.5" fill="#1F201C">Antes de eu falar: como ele está defendendo?</text></svg>` };
+TUT.splice(3, 0, { t: "Desenhe as jogadas a giz", d: "Na preparação e nas paradas, arraste de um jogador até outro para um passe, e até um espaço vazio para uma corrida. O que conta é onde a jogada termina: nas costas da linha vence a pressão alta, no lado vence o bloco baixo, entre as linhas vence o bloco médio, um meia chegando vence o encaixe. No jogo, toque em Jogada 1 ou 2.",
+  svg: `<svg viewBox="0 0 320 170" role="img" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="170" rx="10" fill="#2D4A3A"/>${[[60, 120, 2], [150, 85, 5], [250, 50, 7]].map(([x, y, n]) => mag(x, y, red, n)).join("")}<path d="M70 115 L140 90" stroke="#F0B23A" stroke-width="3"/><path d="M250 120 Q 270 80 255 58" stroke="#EEEBE1" stroke-width="2.5" stroke-dasharray="6 5" fill="none"/>${mag(250, 128, red, 7)}<path d="M160 82 L240 55" stroke="#F0B23A" stroke-width="3"/>${lab(105, 92, "1", "#F0B23A", 14)}${lab(275, 95, "2", "#EEEBE1", 14)}${lab(200, 60, "3", "#F0B23A", 14)}${lab(160, 160, "passe (amarelo) · corrida (branco tracejado)", "#cfc6a8", 11)}</svg>` });
+try { if (localStorage.getItem("prancheta_tut10") !== "1") { localStorage.removeItem("prancheta_tut7"); } } catch (e) { }
+const tutorialV9 = tutorial;
+tutorial = function (after) { tutorialV9(after ? () => { try { localStorage.setItem("prancheta_tut10", "1"); } catch (e) { } after(); } : null); };
 </script></body></html>
