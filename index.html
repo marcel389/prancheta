@@ -389,7 +389,7 @@ svg.chart.corr,svg.chart.shots{ max-width:420px; margin:4px 0 8px; }
 <script>// Fora do claude.ai: sala online pelo Supabase Realtime (broadcast + presença) e ranking por RPC
 (() => {
   const SB_URL = "https://xauurljpjyhyjvburecz.supabase.co", SB_KEY = "sb_publishable_uLTgKg79CDe3suP3KFZIYg_HnZAwOJh";
-  const sb = supabase.createClient(SB_URL, SB_KEY, { auth: { persistSession: false, autoRefreshToken: false } });
+  const sb = supabase.createClient(SB_URL, SB_KEY, { auth: { persistSession: false, autoRefreshToken: false } }); window.__sb = sb;
   const rid = n => Array.from(crypto.getRandomValues(new Uint8Array(n)), b => b.toString(16).padStart(2, "0")).join("");
   const keep = (k, f) => { try { let v = localStorage.getItem(k); if (!v) { v = f(); localStorage.setItem(k, v); } return v; } catch (e) { return f(); } };
   const UID = keep("prancheta_uid", () => "u" + rid(8)), SECRET = keep("prancheta_sec", () => rid(16));
@@ -411,14 +411,20 @@ svg.chart.corr,svg.chart.shots{ max-width:420px; margin:4px 0 8px; }
     ch.on("broadcast", { event: "*" }, msg => { const ev = msg.event, d = msg.payload;
       if (ev === "__snap") { if (d && d.k) { snaps[d.k] = d.s; fire(); } return; }
       (L[ev] || []).forEach(f => { try { f({ topic: ev, data: d, sameTab: false, isMe: false }); } catch (e) { console.error(e); } }); });
-    await new Promise((res, rej) => { const to = setTimeout(() => rej(new Error("tempo esgotado")), 12000); ch.subscribe(s => { if (s === "SUBSCRIBED") { clearTimeout(to); res(); } else if (s === "CHANNEL_ERROR" || s === "TIMED_OUT") { clearTimeout(to); rej(new Error(s)); } }); });
+    let lastP = null, first = true; // ao voltar de segundo plano (celular), o canal reconecta e é preciso se anunciar de novo
+    await new Promise((res, rej) => { const to = setTimeout(() => rej(new Error("tempo esgotado")), 12000); ch.subscribe(s => {
+      if (s === "SUBSCRIBED") { if (first) { first = false; clearTimeout(to); res(); } else if (lastP) ch.track(lastP).catch(() => { }); }
+      else if ((s === "CHANNEL_ERROR" || s === "TIMED_OUT") && first) { first = false; clearTimeout(to); rej(new Error(s)); } }); });
+    const wake = () => { if (document.visibilityState !== "visible") return; try { if (!sb.realtime.isConnected()) sb.realtime.connect(); } catch (e) { } setTimeout(() => { if (lastP) ch.track(lastP).catch(() => { }); fire(); }, 800); };
+    document.addEventListener("visibilitychange", wake); window.addEventListener("focus", wake); window.addEventListener("pageshow", wake);
+    const beat = setInterval(() => { if (lastP && document.visibilityState === "visible" && !ch.presenceState()[me]) ch.track(lastP).catch(() => { }); }, 4000); // se o servidor esqueceu a gente, anuncia de novo
     return {
       emit: async (t, d) => { await ch.send({ type: "broadcast", event: t, payload: d }); },
       on: (t, f) => { (L[t] = L[t] || []).push(f); return () => { L[t] = (L[t] || []).filter(x => x !== f); }; },
       presence: async p => { const { s, ...rest } = p || {}; if (s) { snaps[me] = s; ch.send({ type: "broadcast", event: "__snap", payload: { k: me, s } }); }
-        const key = JSON.stringify(rest); if (key !== lastTrack) { lastTrack = key; await ch.track(rest); } },
+        const key = JSON.stringify(rest); lastP = rest; if (key !== lastTrack) { lastTrack = key; await ch.track(rest); } },
       peers: () => peersArr(), onPeers: f => { PL.push(f); return () => { const i = PL.indexOf(f); if (i >= 0) PL.splice(i, 1); }; },
-      leave: async () => { try { await ch.untrack(); } catch (e) { } await sb.removeChannel(ch); }
+      leave: async () => { clearInterval(beat); document.removeEventListener("visibilitychange", wake); lastP = null; try { await ch.untrack(); } catch (e) { } await sb.removeChannel(ch); }
     };
   } };
   window.claude = { use: async n => n === "db" ? dbProbe() : n === "user" ? { id: async () => UID } : n === "room" ? room : null };
@@ -3238,4 +3244,12 @@ TUT.splice(3, 0, { t: "Desenhe as jogadas a giz", d: "Na preparação e nas para
 try { if (localStorage.getItem("prancheta_tut10") !== "1") { localStorage.removeItem("prancheta_tut7"); } } catch (e) { }
 const tutorialV9 = tutorial;
 tutorial = function (after) { tutorialV9(after ? () => { try { localStorage.setItem("prancheta_tut10", "1"); } catch (e) { } after(); } : null); };
+
+// ---------- convidado: se a sala não aparece, diz o que fazer ----------
+const netOpenV9 = netOpen;
+netOpen = async function (code, host) {
+  const r = await netOpenV9(code, host);
+  if (!host) { clearTimeout(NET.findT); NET.findT = setTimeout(() => { if (!NET.oppName && NET.room && !NET.started) onMsg(`Ainda não achei a sala ${code}. Confira o código e peça para quem criou a sala voltar para a tela do jogo e deixá-la aberta: no celular, sair do jogo para mandar o código derruba a conexão por alguns segundos. Assim que ela voltar, você entra sozinho.`); }, 7000); }
+  return r;
+};
 </script></body></html>
