@@ -3259,4 +3259,6 @@ netOpen = async function (code, host) {
   if (!host) { clearTimeout(NET.findT); NET.findT = setTimeout(() => { if (!NET.oppName && NET.room && !NET.started) onMsg(`Ainda não achei a sala ${code}. Confira o código e peça para quem criou a sala voltar para a tela do jogo e deixá-la aberta: no celular, sair do jogo para mandar o código derruba a conexão por alguns segundos. Assim que ela voltar, você entra sozinho.`); }, 7000); }
   return r;
 };
+const netPeersV10 = netPeers;
+netPeers = function (peers) { netPeersV10(peers); try { if (!NET.host && NET.oppName && !NET.started && $("#onMsg")) onMsg(`Você está na sala com ${NET.oppName}. Prepare o time e toque em Pronto.`); } catch (e) { } };
 </script></body></html>
