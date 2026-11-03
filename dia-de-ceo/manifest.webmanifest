@@ -1,0 +1,19 @@
+{
+  "name": "Um Dia de CEO",
+  "short_name": "Dia de CEO",
+  "description": "Viva a rotina de um CEO de uma grande farmacêutica brasileira: construa a torre da empresa, cuide do Bento e resolva os pedidos do dia a dia.",
+  "lang": "pt-BR",
+  "id": "./",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ebe8f3",
+  "theme_color": "#ef6a2a",
+  "categories": ["games", "education", "business"],
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
