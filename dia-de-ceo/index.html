@@ -389,6 +389,24 @@ button{touch-action:manipulation}
 .t3nav button{min-width:48px;min-height:44px;border-radius:12px;border:1px solid var(--line);background:#fffffff2;font-weight:800;font-size:14px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.15)}
 .t3nav button:disabled{opacity:.4}
 .twwrap.focus{height:min(50vh,430px);min-height:320px}
+
+/* ---------- V13: Modo Império ---------- */
+.imphead{display:flex;gap:8px;align-items:stretch}
+.impcash{flex:1;display:flex;align-items:center;gap:10px;background:#1b1f2a;color:#fff;border-radius:16px;padding:8px 12px;min-width:0}
+.impcash .coin{width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffe27a,#f2b822 60%,#c98a00);color:#7a4e00;display:grid;place-items:center;font-weight:900;font-size:20px;flex-shrink:0;box-shadow:inset 0 -2px 0 #b07800}
+.impcash b{display:block;font-size:20px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.impcash small{display:block;color:#9be3b4;font-size:13px;font-weight:700}
+.tyc.live{min-width:118px}.tyc.live.on{border-color:#d64545;background:#ffe9e9;animation:glow 1s ease-in-out infinite}
+.chapbar{display:flex;flex-direction:column;gap:4px}
+.impw{height:min(42vh,360px);min-height:280px}
+.st3{font-size:11.5px}.st3 .ggb{background:#d64545;color:#fff;border-radius:6px;padding:0 5px;font-size:10.5px;font-weight:800}
+.pile{position:absolute;left:0;top:0;pointer-events:auto;border:3px solid #fff;background:radial-gradient(circle at 35% 35%,#ffe27a,#f2b822 60%,#c98a00);color:#3a2600;font:900 14px var(--f-body);border-radius:99px;padding:8px 14px;min-height:44px;box-shadow:0 4px 12px rgba(0,0,0,.3);cursor:pointer}
+.pile span{display:block;animation:bob 1s ease-in-out infinite}
+.chapnav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.chapnav button{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:8px 10px;text-align:left;font-weight:800;font-size:13px;cursor:pointer;min-height:52px}
+.chapnav button small{display:block;font-weight:600;color:var(--muted);font-size:12px}
+.chapnav button[aria-pressed="true"]{border:2px solid #f2b822;background:#fff7e0}.chapnav button:disabled{opacity:.45}
+.iquest{display:flex;gap:10px;align-items:center;border:2px solid #1f9a55;background:#eafaf1;border-radius:14px;padding:8px 10px}.iquest .qi{font-size:24px}.iquest b{font-size:14px}.iquest small{display:block;font-size:12px;color:var(--muted)}
 </style>
 </head><body>
 
@@ -416,6 +434,7 @@ button{touch-action:manipulation}
     </section>
     <aside class="card side" id="side">
       <nav class="tabs" role="tablist" id="tabs">
+        <button role="tab" data-tab="imperio" aria-selected="false">Império</button>
         <button role="tab" data-tab="painel" aria-selected="false">Painel</button>
         <button role="tab" data-tab="torre" aria-selected="false">Torre <span class="badge" data-badge="torre" hidden></span></button>
         <button role="tab" data-tab="agenda" aria-selected="true">Agenda <span class="badge" data-badge="agenda" hidden></span></button>
@@ -431,7 +450,7 @@ button{touch-action:manipulation}
 
   <nav class="bnav" id="bnav" aria-label="Navegação">
     <button data-nav="map" aria-current="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></svg>Mapa</button>
-    <button data-nav="torre"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 21V4h12v17M3 21h18M9 8h2M13 8h2M9 12h2M13 12h2M10 21v-4h4v4"/></svg>Torre<span class="badge" data-badge="torre" hidden></span></button>
+    <button data-nav="imperio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 10l2-6h14l2 6M4 10h16v10H4zM9 20v-5h6v5M3 10c0 1.5 1.3 2.5 3 2.5S9 11.5 9 10c0 1.5 1.3 2.5 3 2.5s3-1 3-2.5c0 1.5 1.3 2.5 3 2.5s3-1 3-2.5"/></svg>Império<span class="badge" data-badge="torre" hidden></span></button>
     <button data-nav="agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Agenda<span class="badge" data-badge="agenda" hidden></span></button>
     <button data-nav="chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg>Conversas<span class="badge" data-badge="chat" hidden></span></button>
     <button data-nav="bento"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Bento</button>
@@ -1070,7 +1089,7 @@ function freshState(){const rel={};Object.keys(PEOPLE).forEach(k=>{if(k!=="bento
   f:{liq:1.2,acoes:34,imovel:4,medio:0,longo:.8,aporte:false},
   k:{jur:10,fin:15,log:12,pes:18,sau:20,men:15,fam:25,dia:15},rel,
   b:{loc:"casa",trip:null,busyUntil:0,busyEv:null,sleeping:false,sleepStart:0,wakeAt:0},
-  cal:[],mail:[],queue:[],log:[],lessons:[],hist:[],seen:{},flags:{},proj:{},up:{},xp:0,lvl:0,ach:{},quests:{},chats:{},diff:"real",onboarded:false,tw:freshTower(),autoGo:true,simple:true,haptics:true,goals:{treino:0,leitura:0,jantar:0,week:0},
+  cal:[],mail:[],queue:[],log:[],lessons:[],hist:[],seen:{},flags:{},proj:{},up:{},xp:0,lvl:0,ach:{},quests:{},chats:{},diff:"real",onboarded:false,tw:freshTower(),imp:freshImp(),autoGo:true,simple:true,haptics:true,goals:{treino:0,leitura:0,jantar:0,week:0},
   streak:{treino:0,leitura:0,jantar:0,hobby:0},today:null,aiOn:true,aiNext:null,over:false,mailN:0,evN:0}}
 const dayKey=d=>new Intl.DateTimeFormat("en-CA",{timeZone:"America/Sao_Paulo"}).format(d);
 function realMin(){const p=new Intl.DateTimeFormat("pt-BR",{timeZone:"America/Sao_Paulo",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date());const g=t=>+p.find(x=>x.type===t).value;return(g("hour")%24)*60+g("minute")}
@@ -1769,7 +1788,7 @@ function go(s){if(s==="mais"){screen="mais";tab=maisTab}else{screen=s;if(s!=="ma
   if(screen==="map")setTimeout(resize,30);
   if(tab==="bento")quest("bento");if(tab==="agenda"&&screen!=="map")quest("agenda");
   renderSide(true)}
-function setTab(t){tab=t;if(isMobile()){screen=["agenda","chat","bento","torre"].includes(t)?t:"mais";if(screen==="mais")maisTab=t}go(screen==="mais"?"mais":isMobile()?screen:t)}
+function setTab(t){tab=t;if(isMobile()){screen=["agenda","chat","bento","imperio"].includes(t)?t:"mais";if(screen==="mais")maisTab=t}go(screen==="mais"?"mais":isMobile()?screen:t)}
 let sideT=0;
 function renderSide(force){if(!S)return;if(!force&&typeof ptrDown!=="undefined"&&ptrDown)return;const n=performance.now();if(!force&&n-sideT<500)return;sideT=n;
   const pendMail=S.mail.filter(m=>m.kind==="decisao"&&!m.done).length;const unread=S.mail.filter(m=>!m.read).length;
@@ -1779,11 +1798,12 @@ function renderSide(force){if(!S)return;if(!force&&typeof ptrDown!=="undefined"&
   const rb=S.tw?S.tw.receber:0;const nt=(S.tasks||[]).filter(t=>!t.done&&!t.fail).length;document.querySelectorAll('[data-badge="torre"]').forEach(b=>{b.hidden=!nt&&rb<1&&!(twL("estudio")&&S.tw.ativDay!==S.day);b.textContent=nt?"⚡"+nt:rb>=1?"$":"!"});
   if(isMobile()&&screen==="map")return;
   if(tab==="torre"&&!force&&$("twc")){twHeadUpdate();return}
+  if(tab==="imperio"&&!force&&$("impwrap")){impHead();return}
   const body=$("tabBody");const st=body.scrollTop;
-  const T={painel:tabPainel,torre:tabTorre,agenda:tabAgenda,chat:tabChat,bento:tabBento,empresa:tabEmpresa,pessoas:tabPessoas,caderno:tabCaderno,manual:tabManual};
+  const T={imperio:tabImperio,painel:tabPainel,torre:tabTorre,agenda:tabAgenda,chat:tabChat,bento:tabBento,empresa:tabEmpresa,pessoas:tabPessoas,caderno:tabCaderno,manual:tabManual};
   let html=(T[tab]||tabAgenda)();
-  if(isMobile()&&screen==="mais")html=`<div class="subnav">${[["painel","Painel"],["empresa","Empresa"],["pessoas","Pessoas"],["caderno","Caderno"],["manual","Manual"]].map(([k,n])=>`<button data-sub="${k}" aria-pressed="${tab===k}">${n}</button>`).join("")}</div>`+html;
-  body.innerHTML=html;wireSide();wireTasks();wireNextStep();wireInteract();document.querySelectorAll("#tabBody [data-cash]").forEach(b=>b.onclick=()=>setTab("painel"));if(tab==="torre")wireTower();
+  if(isMobile()&&screen==="mais")html=`<div class="subnav">${[["torre","Torre"],["painel","Painel"],["empresa","Empresa"],["pessoas","Pessoas"],["caderno","Caderno"],["manual","Manual"]].map(([k,n])=>`<button data-sub="${k}" aria-pressed="${tab===k}">${n}</button>`).join("")}</div>`+html;
+  body.innerHTML=html;if(tab==="imperio")wireImperio();wireSide();wireTasks();wireNextStep();wireInteract();document.querySelectorAll("#tabBody [data-cash]").forEach(b=>b.onclick=()=>setTab("painel"));if(tab==="torre")wireTower();
   if(renderSide.last!==tab+thread){renderSide.last=tab+thread;body.scrollTop=0;if(tab==="agenda"){const f=body.querySelector(".ev.now")||body.querySelector(".ev:not(.done)");if(f)body.scrollTop=Math.max(0,f.getBoundingClientRect().top-body.getBoundingClientRect().top-60)}}else body.scrollTop=st}
 
 // ---------- Agenda ----------
@@ -2233,7 +2253,7 @@ function twHeadUpdate(){const r=$("twrec");if(r)r.textContent=mi(S.tw.receber);c
 function wireTower(){t3mount();
   document.querySelectorAll("[data-tw]").forEach(b=>b.onclick=()=>{const a=b.dataset.tw,id=b.dataset.id;
     if(a==="cobrar")twCollect();if(a==="ativ")twAtiv();if(a==="era")twEra();if(a==="build"){twBuild=false;twBuy(id)}if(a==="up")twBuy(id);if(a==="hire")twHire(id);if(a==="desk")twDesk(id);if(a==="chest")openChest();if(a==="turbo")twTurbo();if(a==="many")twBuyMany(id);if(a==="bx"){buyX=b.dataset.x==="max"?"max":+b.dataset.x;renderSide(true)}});wireTasks()}
-function migrate(s){if(s.autoGo===undefined)s.autoGo=true;if(s.simple===undefined)s.simple=true;s.tw=s.tw||freshTower();s.tw.desk=s.tw.desk||{};s.tasks=s.tasks||[];Object.keys(PEOPLE).forEach(k=>{if(k!=="bento"&&s.rel[k]==null)s.rel[k]=58});
+function migrate(s){s.imp=s.imp||freshImp();if(s.autoGo===undefined)s.autoGo=true;if(s.simple===undefined)s.simple=true;s.tw=s.tw||freshTower();s.tw.desk=s.tw.desk||{};s.tasks=s.tasks||[];Object.keys(PEOPLE).forEach(k=>{if(k!=="bento"&&s.rel[k]==null)s.rel[k]=58});
   s.xp=s.xp||0;s.lvl=s.lvl||0;s.ach=s.ach||{};s.quests=s.quests||{};s.chats=s.chats||{};s.diff=s.diff||"real";if(s.onboarded===undefined)s.onboarded=true;return s}
 // ======================= V7: TOM POSITIVO, PEDIDOS RELÂMPAGO, MESAS, TEMPORADAS =======================
 // 1. Tom: o jogo homenageia o dia a dia da empresa. Sai tudo que seja conduta negativa da empresa, da família ou do time.
@@ -2830,6 +2850,190 @@ function t3navWire(){document.querySelectorAll("[data-t3]").forEach(b=>b.onclick
   if(a==="all"){T3.camY=(T3.fy||0)+1.5;T3.focus=null;twSel=null}else{const j=a==="up"?i+1:i-1;if(o[j]){T3.focus=o[j];twSel=o[j]}}vibe(8);renderSide(true)})}
 const _tt2=tabTorre;tabTorre=function(){return _tt2().replace('<div class="twwrap" id="twwrap">',`<div class="twwrap ${T3.focus?"focus":""}" id="twwrap">`).replace('<span class="t3hint">Arraste para subir e descer a torre · toque num andar</span>',`<span class="t3hint">${T3.focus?"Toque nos balões para atender o time":"Arraste para subir e descer · toque num andar para entrar"}</span>${t3navHtml()}`)};
 const _wt2=wireTower;wireTower=function(){_wt2();t3navWire()};
+// ======================= V13: MODO IMPÉRIO — DO BALCÃO AO IMPÉRIO AMARELO (tycoon em tempo real) =======================
+// Modelo: cadeia de estações (Idle Supermarket / Idle Miner) + clientes andando (Codigames) + capítulos com meta (Township) + live do CEO como impulso.
+const fmtR=v=>{const a=Math.abs(v);const u=[[1e15,"qa"],[1e12,"tri"],[1e9,"bi"],[1e6,"mi"],[1e3,"mil"]];for(const [d,s] of u)if(a>=d)return"R$ "+(v/d).toFixed(v/d<10?2:v/d<100?1:0).replace(".",",")+" "+s;return"R$ "+v.toFixed(a<10?2:0).replace(".",",")};
+const CHAPS=[
+ {id:"farmacia",n:"A farmácia do bairro",cap:"Capítulo 1",unit:"cliente",goal:3e5,floor:"#d8a46a",wall:"#a9d9bb",
+  intro:{who:"ze",t:"Bento tem 15 anos e começa como vendedor no balcão do Seu Zé. \"Aqui a gente aprende o principal: atender bem, ter o produto na prateleira e cobrar certo. Vamos ver se você leva jeito?\""},
+  st:[{id:"porta",n:"Vitrine e porta",k:"porta",t:0,v:0},{id:"gondola",n:"Gôndola de vitaminas",k:"gondola",t:2.4,v:3},{id:"caixa",n:"Caixa",k:"caixa",t:2,v:3},{id:"balcao",n:"Balcão do farmacêutico",k:"balcao",t:4,v:5,lock:400},{id:"perfum",n:"Corredor de higiene",k:"gondola2",t:3,v:6,lock:3000}],
+  beats:[[.1,"ze","Primeiro cliente fiel! Quem é bem atendido volta e traz a vizinha."],[.35,"ze","Repara: quando a fila trava num lugar só, a loja inteira para. Esse é o gargalo."],[.6,"lara","A Lara, que você conheceu no balcão, disse que o atendimento daqui é o melhor do bairro."],[.85,"ze","Você vende bem, garoto. Já pensou em levar remédio para outras farmácias?"]]},
+ {id:"distrib",n:"A distribuidora",cap:"Capítulo 2",unit:"pedido",goal:5e8,floor:"#c9ccd4",wall:"#b9c0cf",
+  intro:{who:"marcao",t:"O Bento agora abastece as farmácias da região. O Marcão explica: \"Caminhão parado é dinheiro parado. Confere, guarda, separa e despacha. Rápido e sem erro.\""},
+  st:[{id:"doca",n:"Doca de recebimento",k:"doca",t:0,v:0},{id:"confer",n:"Conferência",k:"mesa",t:3,v:40},{id:"estoque",n:"Estoque",k:"estante",t:2.6,v:40},{id:"separa",n:"Separação",k:"esteira",t:2.2,v:50,lock:2e4},{id:"exped",n:"Expedição",k:"caminhao",t:3,v:70,lock:1.5e5}],
+  beats:[[.15,"marcao","Rota nova aberta! Farmácia longe também é cliente."],[.4,"bia","Separação certa na primeira vez economiza a viagem de volta."],[.7,"adriano","As redes querem comprar direto da gente. Que tal ter produto próprio?"]]},
+ {id:"fabrica",n:"O laboratório e a fábrica",cap:"Capítulo 3",unit:"lote",goal:2e10,floor:"#cfdcf5",wall:"#a9bde6",
+  intro:{who:"rose",t:"Um laboratório pequeno em Minas vira a primeira fábrica. A Rose avisa: \"Aqui qualidade não se negocia. Cada lote passa pelo controle antes de sair.\""},
+  st:[{id:"insumo",n:"Recebimento de insumo",k:"tanque",t:0,v:0},{id:"mistura",n:"Mistura",k:"tanque2",t:3.5,v:1e3},{id:"envase",n:"Envase",k:"envase",t:2.8,v:1.2e3},{id:"embala",n:"Embalagem amarela",k:"caixas",t:2.2,v:1.3e3,lock:3e6},{id:"quali",n:"Controle de qualidade",k:"lab",t:4,v:2e3,lock:2.5e7}],
+  beats:[[.2,"jonas","Lote aprovado de primeira! Processo bom dá menos retrabalho."],[.5,"kenzo","E se a embalagem fosse amarela? Ninguém na prateleira é amarelo."],[.8,"brutao","Bento! Produto bom eu já vi. Agora deixa eu contar isso pro Brasil."]]},
+ {id:"conteudo",n:"A máquina de conteúdo",cap:"Capítulo 4",unit:"post",goal:3e11,floor:"#ffd9e4",wall:"#f5b3c7",
+  intro:{who:"brutao",t:"\"Produto não fala, pessoas falam!\" O Brutão monta o estúdio: roteiro, gravação, edição e o ritual de postagem com milhares de funcionários no mesmo horário."},
+  st:[{id:"pauta",n:"Pauta do dia",k:"roteiro",t:0,v:0},{id:"set",n:"Set de gravação",k:"set",t:4,v:2e4},{id:"edicao",n:"Edição",k:"edicao",t:3,v:2.5e4},{id:"ritual",n:"Ritual de postagem",k:"celular",t:2,v:3e4,lock:5e8},{id:"live",n:"Live com as farmácias",k:"live",t:3.5,v:5e4,lock:6e9}],
+  beats:[[.15,"brutao","Esse take ficou monstro! Mais um, que a câmera gostou de você."],[.45,"duda","Mil funcionários postaram no mesmo minuto. O alcance foi lá em cima."],[.75,"karina","Varejo é todo dia: se não vende hoje, não recupera amanhã. A live de hoje bateu recorde."],[.95,"kenzo","Bento, a seleção quer a gente na Copa. É o império amarelo."]]},
+];
+const STAR_BONUS=.15;
+function freshImp(){return{ch:0,cs:{},stars:0,done:[],last:Date.now(),boostUntil:0,boostNext:0,season:0,beat:{}}}
+function chs(i){const C=CHAPS[i];const s=S.imp.cs[C.id]=S.imp.cs[C.id]||{cash:0,earned:0,pile:0,mk:1,st:{}};C.st.forEach((x,j)=>{if(!s.st[x.id])s.st[x.id]={L:1,s:1,mgr:false,open:!x.lock}});return s}
+const msCount=L=>[10,25,50,100,200].filter(x=>L>=x).length;
+const spd=(L,mgr)=>(1+.09*(L-1))*Math.pow(2,msCount(L))*(mgr?1.25:1);
+function impMult(){return(1+STAR_BONUS*S.imp.stars)*(Date.now()<S.imp.boostUntil?2:1)}
+function arrival(i){const C=CHAPS[i],s=chs(i);return .45*(1+.14*(s.mk-1))*Math.pow(2,msCount(s.mk))}
+function stRate(i,x){const s=chs(i).st[x.id];if(!x.t)return Infinity;return s.s*spd(s.L,s.mgr)/x.t}
+function flow(i){const C=CHAPS[i];let f=arrival(i),gg="porta";C.st.forEach(x=>{const s=chs(i).st[x.id];if(!s.open||!x.t)return;const r=stRate(i,x);if(r<f){f=r;gg=x.id}});return{f,gg}}
+function unitValue(i){const C=CHAPS[i];return C.st.reduce((a,x)=>a+(chs(i).st[x.id].open?x.v:0),0)}
+function income(i){return flow(i).f*unitValue(i)*impMult()}
+const lvCost=(i,x)=>x.v*7*Math.pow(1.09,chs(i).st[x.id].L-1)*(x.t?1:0)||CHAPS[i].st[1].v*6*Math.pow(1.11,chs(i).mk-1);
+const stfCost=(i,x)=>x.v*40*Math.pow(3,chs(i).st[x.id].s-1);
+const mgrCost=(i,x)=>(x.v||CHAPS[i].st[1].v)*180;
+const MAXS=5;
+function payImp(i,c){const s=chs(i);if(s.cash<c){impToast("Ainda não","Junte mais dinheiro neste capítulo.");return false}s.cash-=c;return true}
+let impBuyX=1;
+function impLevel(i,id){const C=CHAPS[i],x=C.st.find(q=>q.id===id),s=chs(i);let n=impBuyX==="max"?999:impBuyX,k=0;
+  while(k<n){const st=s.st[id];const c=x.t?x.v*7*Math.pow(1.09,st.L-1):C.st[1].v*6*Math.pow(1.11,s.mk-1);if(s.cash<c)break;s.cash-=c;if(x.t)st.L++;else s.mk++;k++;const L=x.t?st.L:s.mk;if([10,25,50,100,200].includes(L)){impBurst(`★ Marco! ${x.n} nível ${L}: velocidade x2`);confetti()}}
+  if(!k)impToast("Ainda não","Junte mais dinheiro.");else{vibe(8);addXP(Math.min(10,k))}impRender(true)}
+function impStaff(i,id){const C=CHAPS[i],x=C.st.find(q=>q.id===id),st=chs(i).st[id];if(st.s>=MAXS)return;if(!payImp(i,stfCost(i,x)))return;st.s++;vibe(10);addXP(5);impRender(true);I3.dirty=true}
+function impMgr(i,id){const C=CHAPS[i],x=C.st.find(q=>q.id===id),st=chs(i).st[id];if(st.mgr)return;if(!payImp(i,mgrCost(i,x)))return;st.mgr=true;vibe(10);addXP(8);
+  impToast(`Gerente em ${x.n}`,id===C.st[C.st.length-1].id||x.k==="caixa"?"O dinheiro entra sozinho, mesmo com você fora.":"Andar com dono rende 25% a mais. Delegar é multiplicar.");impRender(true);I3.dirty=true}
+function impOpen(i,id){const C=CHAPS[i],x=C.st.find(q=>q.id===id),st=chs(i).st[id];if(st.open)return;if(!payImp(i,x.lock))return;st.open=true;confetti();impBurst(`Nova estação: ${x.n}`);addXP(20);impRender(true);I3.dirty=true}
+function autoCollect(i){const C=CHAPS[i],s=chs(i);const cx=C.st.find(x=>x.k==="caixa")||C.st[C.st.length-1];return C.st.some(x=>s.st[x.id].mgr&&s.st[x.id].open&&(x.id===cx.id||x.k==="caixa"))||S.imp.season>0}
+function collect(i){const s=chs(i);if(s.pile<=0)return;s.cash+=s.pile;impBurst("+"+fmtR(s.pile));s.pile=0;vibe(12);impRender(true)}
+function impLive(){if(Date.now()<S.imp.boostNext){impToast("Live recarregando",`Próxima live em ${Math.ceil((S.imp.boostNext-Date.now())/60000)} min.`);return}
+  S.imp.boostUntil=Date.now()+120000;S.imp.boostNext=Date.now()+600000;confetti();addXP(5);impToast("AO VIVO: vendas x2 por 2 minutos","Ritmo, rotina e ritual: live no mesmo horário cria encontro com o cliente.");impRender(true)}
+// tempo real: roda mesmo com o jogo da agenda pausado
+let impAcc=0;
+function impTick(dt){if(!S||!S.imp)return;const i=S.imp.ch,s=chs(i);const inc=income(i)*dt;s.earned+=inc;
+  if(autoCollect(i))s.cash+=inc;else{s.pile=Math.min(s.pile+inc,income(i)*120)}
+  // capítulos já concluídos rendem um pouco em segundo plano
+  S.imp.done.forEach(j=>{if(j!==i){const sj=chs(j);sj.cash+=income(j)*dt*.25;sj.earned+=income(j)*dt*.25}});
+  const C=CHAPS[i];const fr=s.earned/C.goal;(C.beats||[]).forEach((b,k)=>{const key=C.id+k;if(fr>=b[0]&&!S.imp.beat[key]){S.imp.beat[key]=1;impToast(PEOPLE[b[1]].name,b[2],b[1]);chat(b[1],"npc",b[2])}});
+  if(s.earned>=C.goal&&!S.imp.done.includes(i)){S.imp.done.push(i);S.imp.stars+=2;addXP(150);confetti();setTimeout(()=>chapterDone(i),300)}}
+function offlineImp(){if(!S||!S.imp)return;const sec=Math.min(8*3600,(Date.now()-(S.imp.last||Date.now()))/1000);S.imp.last=Date.now();if(sec<60)return;
+  const i=S.imp.ch,s=chs(i);const rate=income(i)*(autoCollect(i)?.5:.15);const v=rate*sec;if(v<=0)return;s.cash+=v;s.earned+=v;
+  setTimeout(()=>{if($("modal").hidden)modal(`<div class="eyebrow">Enquanto você estava fora · ${Math.round(sec/60)} min</div><h2>${CHAPS[i].n} faturou ${fmtR(v)}</h2><p>${autoCollect(i)?"O gerente do caixa cuidou de tudo.":"Sem gerente no caixa, a loja rende bem menos com você fora. Contrate um gerente para o caixa."}</p><button class="btn pri" onclick="closeModal();setTab('imperio')" style="align-self:flex-start">Ver o império</button>`)},1800)}
+function chapterDone(i){const C=CHAPS[i],nx=CHAPS[i+1];modal(`<div class="eyebrow">${C.cap} concluído</div><h2>★★ ${C.n}</h2><p>Você ganhou 2 estrelas: tudo no império rende +${Math.round(STAR_BONUS*200)}% a mais para sempre, e a Lumena ganha reputação no jogo da agenda.</p>
+  ${nx?`<p><b>Próximo: ${nx.cap} · ${nx.n}.</b> ${esc(nx.intro.t)}</p><button class="btn pri" id="nxCh">Começar ${nx.cap}</button>`:`<p><b>O império amarelo está de pé.</b> Comece uma nova temporada para jogar de novo do balcão, com tudo rendendo mais.</p><button class="btn pri" id="nxCh">Nova temporada</button>`}<button class="btn" onclick="closeModal()">Ficar mais um pouco</button>`);
+  $("nxCh").onclick=()=>{closeModal();if(nx){S.imp.ch=i+1;I3.dirty=true;impRender(true);setTimeout(()=>impIntro(i+1),400)}else newSeason()}}
+function newSeason(){S.imp.season++;const st=S.imp.stars;S.imp.cs={};S.imp.ch=0;S.imp.done=[];S.imp.beat={};S.imp.stars=st+3;I3.dirty=true;impRender(true);impToast(`Temporada ${S.imp.season+1}`,"Tudo recomeça do balcão, com o caixa automático e mais estrelas.")}
+function impIntro(i){const C=CHAPS[i];modal(`<div class="eyebrow">${C.cap}</div><h2>${C.n}</h2><div class="bb npc" style="max-width:none">${av(C.intro.who,"s")} ${esc(C.intro.t)}</div>
+  <div class="learn"><span>Toque nos andares de cada estação para subir de nível</span><span>Contrate gente onde trava</span><span>Gerente no caixa = dinheiro sozinho</span><span>Live do CEO = vendas x2</span></div>
+  <p class="sub">Meta do capítulo: faturar ${fmtR(C.goal)}.</p><button class="btn pri" onclick="closeModal()" style="align-self:flex-start">Bora</button>`)}
+function impToast(t,msg,who){toast(who||"bento",t,msg)}
+function impBurst(txt){if(!I3.ready)return;const el=document.createElement("div");el.className="t3cash";el.textContent=txt;I3.lab.appendChild(el);I3.floats.push({el,t:0,p:new THREE.Vector3(I3.cashP?I3.cashP.x:0,2.6,I3.cashP?I3.cashP.z:0)})}
+// reputação do império ajuda a Lumena no jogo da agenda
+const _tdImp=towerDem;towerDem=function(){return _tdImp()+(S&&S.imp?.01*S.imp.stars:0)};
+
+// ---------- cena 3D da loja (cartoon isométrico) ----------
+const I3={ready:false,dirty:true,agents:[],floats:[],labels:[]};
+const RW3=16,RD3=10;
+const STPOS=[[-5.6,3.4],[-3.2,-2.4],[1.2,-2.6],[5,-1.2],[4.6,2.4]];
+function i3init(){if(I3.ready)return true;try{const cv=document.createElement("canvas");cv.style.cssText="display:block;width:100%;height:100%;touch-action:manipulation";
+  const r=new THREE.WebGLRenderer({canvas:cv,antialias:true});r.setPixelRatio(Math.min(2,devicePixelRatio||1));r.shadowMap.enabled=true;r.shadowMap.type=THREE.PCFSoftShadowMap;
+  const sc=new THREE.Scene();sc.background=new THREE.Color("#e6eefb");const cam=new THREE.OrthographicCamera(-1,1,1,-1,-100,200);
+  sc.add(new THREE.HemisphereLight(0xffffff,0xb8b0d0,.85));const sun=new THREE.DirectionalLight(0xffffff,.65);sun.position.set(14,24,10);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-14,right:14,top:14,bottom:-14});sc.add(sun);
+  const lab=document.createElement("div");lab.className="t3labels";Object.assign(I3,{ready:true,cv,r,sc,cam,lab,root:null});
+  cv.addEventListener("click",e=>{const rc=cv.getBoundingClientRect();const v=new THREE.Vector2((e.clientX-rc.left)/rc.width*2-1,-((e.clientY-rc.top)/rc.height)*2+1);const ray=new THREE.Raycaster();ray.setFromCamera(v,I3.cam);
+    const h=ray.intersectObjects(I3.pick||[],true)[0];if(h){let o=h.object;while(o&&!o.userData.st)o=o.parent;if(o){impSel=o.userData.st;impRender(true);setTimeout(()=>{const c=document.getElementById("impcard");if(c)c.scrollIntoView({block:"nearest",behavior:"smooth"})},40)}}});
+  return true}catch(e){I3.fail=true;return false}}
+function i3mount(){if(!i3init())return;const w=$("impwrap");if(!w)return;if(I3.cv.parentElement!==w){w.appendChild(I3.cv);w.appendChild(I3.lab)}i3size()}
+function i3size(){const w=$("impwrap");if(!w)return;const W=w.clientWidth||360,H=w.clientHeight||380;I3.r.setSize(W,H,false);I3.W=W;I3.H=H;const vw=W<500?15:18,vh=vw*H/W;Object.assign(I3.cam,{left:-vw/2,right:vw/2,top:vh/2,bottom:-vh/2});I3.cam.updateProjectionMatrix()}
+function prop(k,g,i){const Bx=(w,h,d,c,x,y,z)=>B(w,h,d,c,x,y,z,g);
+  if(k==="porta"){Bx(2.6,2.6,.2,"#ffffff",0,0,0);Bx(1.6,2.1,.22,"#9fd3ff",0,0,0);Bx(3,.5,1,"#f2b822",0,2.6,.3);if(i===0){const lt=document.createElement("canvas");lt.width=256;lt.height=64;const q=lt.getContext("2d");q.fillStyle="#f2b822";q.fillRect(0,0,256,64);q.fillStyle="#1b1f2a";q.font="900 30px system-ui";q.textAlign="center";q.fillText(["FARMÁCIA DO ZÉ","DISTRIBUIDORA","LABORATÓRIO","ESTÚDIO"][S.imp.ch]||"LUMENA",128,44);const m=new THREE.Mesh(new THREE.PlaneGeometry(3,.75),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(lt)}));m.position.set(0,2.85,.81);g.add(m)}}
+  if(k==="gondola"||k==="gondola2"){Bx(3,2,.8,"#ffffff",0,0,0);for(let r=0;r<3;r++)for(let c=0;c<6;c++)Bx(.38,.4,.5,k==="gondola"?["#f2b822","#ef6a2a","#1f9a55"][(r+c)%3]:["#9fd3ff","#d9468f","#ffffff"][(r+c)%3],-1.2+c*.48,.25+r*.6,.1)}
+  if(k==="caixa"){Bx(2.4,1,1,"#ef6a2a",0,0,0);Bx(.7,.5,.1,"#22223a",.4,1,-.2);Bx(.6,.4,.05,"#7CFC9A",.4,1.05,-.12);Bx(.6,.15,.5,"#1f9a55",-.6,1,.1)}
+  if(k==="balcao"){Bx(3,1.1,1,"#ffffff",0,0,0);Bx(3,.1,1.05,"#1f9a55",0,1.1,0);Bx(.6,.6,.08,"#1f9a55",0,2,-.6);Bx(.2,.6,.09,"#ffffff",0,2,-.55);Bx(.6,.2,.09,"#ffffff",0,2.2,-.55)}
+  if(k==="doca"||k==="caminhao"){Bx(2.8,1.6,1.6,"#f2b822",0,.3,0);Bx(1.1,1.3,1.5,"#3456d1",1.9,.3,0);[-.8,.8,1.9].forEach(x=>{const w=new THREE.Mesh(new THREE.CylinderGeometry(.33,.33,1.7,10),MT("#22223a"));w.rotation.x=Math.PI/2;w.position.set(x,.33,0);g.add(w)})}
+  if(k==="mesa"){Bx(2.4,.9,1.2,"#c9a27e",0,0,0);for(let c=0;c<3;c++)Bx(.5,.45,.5,"#f2b822",-.7+c*.7,.9,0)}
+  if(k==="estante"){Bx(3,2.6,.9,"#3456d1",0,0,0);for(let r=0;r<3;r++)for(let c=0;c<4;c++)Bx(.6,.55,.6,"#f2b822",-1.05+c*.7,.2+r*.8,.05)}
+  if(k==="esteira"){Bx(3.4,.6,1,"#6b7280",0,0,0);for(let c=0;c<4;c++)Bx(.45,.4,.45,"#f2b822",-1.2+c*.8,.6,0)}
+  if(k==="tanque"||k==="tanque2"){[-.7,.7].forEach(x=>{tm(CYL,k==="tanque"?"#cfd6e2":"#9fd3ff",.55,2.2,.55,x,1.1,0,g);tm(SPH,"#cfd6e2",.55,.25,.55,x,2.2,0,g)})}
+  if(k==="envase"){Bx(2.8,1.4,1.1,"#3456d1",0,0,0);Bx(.5,.3,.05,"#7CFC9A",-.8,1.1,.57);for(let c=0;c<5;c++)tm(CYL,"#ffffff",.12,.4,.12,-1+c*.5,1.6,0,g)}
+  if(k==="caixas"){for(let r=0;r<3;r++)for(let c=0;c<3-r;c++)Bx(.8,.7,.8,"#f2b822",-.8+c*.85+r*.42,r*.7,0)}
+  if(k==="lab"){Bx(2.8,.95,1.1,"#f4f4f4",0,0,0);["#d64545","#1f9a55","#8b5cf6","#2a9bb5"].forEach((c,j)=>tm(CYL,c,.13,.45,.13,-.9+j*.6,1.18,0,g))}
+  if(k==="roteiro"){Bx(2,.8,1,"#c9a27e",0,0,0);Bx(.8,.5,.06,"#22223a",0,.85,-.2);Bx(1.6,1.8,.2,"#ffffff",0,0,-.9)}
+  if(k==="set"){Bx(3,2.6,.15,"#f2b822",0,0,-.8);const ring=new THREE.Mesh(new THREE.TorusGeometry(.55,.08,8,24),MT("#ffffff"));ring.position.set(1.2,1.8,.4);g.add(ring);Bx(.1,1.3,.1,"#333",1.2,0,.4)}
+  if(k==="edicao"){Bx(2.4,.8,1,"#c9a27e",0,0,0);Bx(.8,.55,.06,"#22223a",-.45,.85,-.2);Bx(.8,.55,.06,"#22223a",.45,.85,-.2);Bx(.7,.45,.03,"#ffd9e4",-.45,.9,-.16);Bx(.7,.45,.03,"#9fd3ff",.45,.9,-.16)}
+  if(k==="celular"){Bx(1.3,2.4,.25,"#1b1f2a",0,0,0);Bx(1.1,2,.05,"#ef6a2a",0,.2,.14);tm(SPH,"#ffffff",.15,.15,.05,0,.15,.14,g)}
+  if(k==="live"){Bx(2.4,1,1,"#d64545",0,0,0);Bx(1,.6,.06,"#ffffff",0,1.2,0);tm(SPH,"#d64545",.12,.12,.12,.8,2,0,g)}}
+function i3build(){const old=I3.root;if(old){I3.sc.remove(old)}I3.lab.innerHTML="";I3.labels=[];I3.agents=[];I3.floats=[];I3.pick=[];
+  const i=S.imp.ch,C=CHAPS[i],s=chs(i);const root=new THREE.Group();I3.sc.add(root);I3.root=root;
+  const slab=B(RW3,.3,RD3,"#d8a46a",0,-.3,0,root);slab.material=floorMat(i===1||i===2?"prod":"rh");
+  B(RW3,3.2,.25,C.wall,0,0,-RD3/2-.12,root);B(.25,3.2,RD3,C.wall,-RW3/2-.12,0,0,root);for(let x=-6;x<=6;x+=4)B(2,1.2,.05,"#bfe3ff",x,1.4,-RD3/2+.03,root);
+  decor3(["rh","comercial","fin","bem"][i]||"rh",root);
+  C.st.forEach((x,j)=>{const st=s.st[x.id];const g=new THREE.Group();const [px,pz]=STPOS[j];g.position.set(px,0,pz);if(j===0)g.rotation.y=0;root.add(g);g.userData.st=x.id;I3.pick.push(g);
+    if(st.open){prop(x.k,g,j);for(let k=0;k<(x.t?st.s:0);k++){const pp=person3({shirt:["#1f9a55","#3456d1","#ef6a2a","#d9468f","#8b5cf6"][k%5],hair:HAIRS[(k+j)%HAIRS.length],skin:SKINS[(k+j*2)%SKINS.length]},g,-1+k*.55,-1.1,false);pp.scale.setScalar(.75)}
+      if(st.mgr){const pm=person3({shirt:"#1b1f2a",hat:"#f2b822"},g,1.6,.9,false);pm.scale.setScalar(.85)}}
+    else{const ph=new THREE.Mesh(new THREE.BoxGeometry(3,.15,1.6),new THREE.MeshBasicMaterial({color:0xef6a2a,transparent:true,opacity:.18}));g.add(ph)}
+    const el=document.createElement("button");el.className="nt t3 floor st3";el.onclick=()=>{impSel=x.id;impRender(true)};I3.lab.appendChild(el);I3.labels.push({el,p:new THREE.Vector3(px,st.open?3.1:.8,pz),st:x.id,j})});
+  const cx=C.st.find(x=>x.k==="caixa")||C.st[C.st.length-1];const cj=C.st.indexOf(cx);I3.cashP={x:STPOS[cj][0],z:STPOS[cj][1]};
+  const pb=document.createElement("button");pb.className="pile";pb.onclick=()=>collect(S.imp.ch);I3.lab.appendChild(pb);I3.pileEl=pb;
+  I3.sig=JSON.stringify([i,s.st,S.imp.season]);I3.dirty=false}
+function spawnAgent(){const i=S.imp.ch,C=CHAPS[i],s=chs(i);const path=[[-7.2,4.6]].concat(C.st.map((x,j)=>s.st[x.id].open?[STPOS[j][0]+(j?0:0),STPOS[j][1]+(j?1.4:0)]:null).filter(Boolean)).concat([[7.4,4.6]]);
+  const g=person3({shirt:["#ffd166","#7fd8b4","#c4a5ff","#ffb15c","#8fa6ff","#f3a6c8"][Math.floor(Math.random()*6)],hair:HAIRS[Math.floor(Math.random()*HAIRS.length)],skin:SKINS[Math.floor(Math.random()*SKINS.length)]},I3.root,path[0][0],path[0][1],false);g.scale.setScalar(.72);
+  I3.agents.push({g,path,k:1,wait:0,paid:false})}
+const _iv=new THREE.Vector3();let impSpawn=0;
+function imperioFrame(dt){if(!S||!S.imp)return;impTick(dt);if(tab!=="imperio"||(isMobile()&&screen!=="imperio")||!$("impwrap"))return;
+  if(!I3.ready||I3.cv.parentElement!==$("impwrap"))i3mount();if(!I3.ready)return;if(I3.dirty||I3.sig!==JSON.stringify([S.imp.ch,chs(S.imp.ch).st,S.imp.season]))i3build();
+  const w=$("impwrap");if(w.clientWidth!==I3.W||w.clientHeight!==I3.H)i3size();
+  const tgt=new THREE.Vector3(0,0,.4);I3.cam.position.copy(tgt).add(new THREE.Vector3(20,19,24));I3.cam.lookAt(tgt);
+  const i=S.imp.ch,C=CHAPS[i],fl=flow(i);impSpawn-=dt*Math.min(1.4,fl.f);if(impSpawn<=0&&I3.agents.length<16){impSpawn=1;spawnAgent()}
+  for(let a=I3.agents.length-1;a>=0;a--){const ag=I3.agents[a];if(ag.wait>0){ag.wait-=dt;continue}const tg=ag.path[ag.k];if(!tg){I3.root.remove(ag.g);I3.agents.splice(a,1);continue}
+    const dx=tg[0]-ag.g.position.x,dz=tg[1]-ag.g.position.z,d=Math.hypot(dx,dz);if(d<.15){ag.k++;ag.wait=ag.k<ag.path.length?.5+Math.random()*.8:0;
+      if(ag.k===ag.path.length-1&&!ag.paid){ag.paid=true;if(Math.random()<.5)impBurstSmall("+"+fmtR(unitValue(i)*impMult()))}continue}
+    const sp=2.6*dt;ag.g.position.x+=dx/d*sp;ag.g.position.z+=dz/d*sp;ag.g.rotation.y=Math.atan2(dx,dz);const l=ag.g.userData.legs;if(l){const sw=Math.sin(performance.now()/90)*.1;l[0].position.z=sw;l[1].position.z=-sw}}
+  I3.r.render(I3.sc,I3.cam);
+  const s=chs(i);I3.labels.forEach(l=>{const x=C.st[l.j],st=s.st[x.id];_iv.copy(l.p).project(I3.cam);const sx=(_iv.x*.5+.5)*I3.W,sy=(-_iv.y*.5+.5)*I3.H;
+    const can=st.open?(x.t?s.cash>=x.v*7*Math.pow(1.09,st.L-1):s.cash>=C.st[1].v*6*Math.pow(1.11,s.mk-1)):s.cash>=x.lock;const gg=fl.gg===x.id;
+    const h=st.open?`<b>${x.n}</b><span class="lv">Nv ${x.t?st.L:s.mk}</span>${gg?'<span class="ggb">gargalo</span>':""}${can?'<span class="upb">↑</span>':""}`:`<b>🔒 ${x.n}</b><span class="lv">${fmtR(x.lock)}</span>${can?'<span class="upb">↑</span>':""}`;
+    if(l.el._h!==h){l.el._h=h;l.el.innerHTML=h}l.el.classList.toggle("sel",impSel===x.id);l.el.style.transform=`translate(${sx}px,${sy}px) translate(-50%,-100%)`});
+  if(I3.pileEl){const on=s.pile>0&&!autoCollect(i);I3.pileEl.style.display=on?"":"none";if(on){_iv.set(I3.cashP.x,1.4,I3.cashP.z+1).project(I3.cam);I3.pileEl.style.transform=`translate(${(_iv.x*.5+.5)*I3.W}px,${(-_iv.y*.5+.5)*I3.H}px) translate(-50%,-50%)`;const t="$ "+fmtR(s.pile).replace("R$ ","");if(I3.pileEl._t!==t){I3.pileEl._t=t;I3.pileEl.innerHTML=`<span>${t}</span>`}}}
+  for(let k=I3.floats.length-1;k>=0;k--){const m=I3.floats[k];m.t+=dt;if(m.t>1.6){m.el.remove();I3.floats.splice(k,1);continue}_iv.copy(m.p).project(I3.cam);m.el.style.transform=`translate(${(_iv.x*.5+.5)*I3.W}px,${(-_iv.y*.5+.5)*I3.H-m.t*30}px) translate(-50%,-100%)`;m.el.style.opacity=1-m.t/1.6}
+  if(performance.now()-(I3.hT||0)>400){I3.hT=performance.now();impHead()}}
+function impBurstSmall(t){if(I3.floats.length>5)return;impBurst(t)}
+
+// ---------- painel do império ----------
+let impSel=null;
+function impHead(){const i=S.imp.ch,C=CHAPS[i],s=chs(i);const e=$("impcash");if(e)e.textContent=fmtR(s.cash);const r=$("imprate");if(r)r.textContent=`+${fmtR(income(i))}/s`;
+  const p=$("impprog");if(p)p.style.width=Math.min(100,s.earned/C.goal*100)+"%";const pt=$("impprogt");if(pt)pt.textContent=`${fmtR(s.earned)} de ${fmtR(C.goal)}`;
+  const lv=$("implive");if(lv){const on=Date.now()<S.imp.boostUntil;lv.classList.toggle("on",on);lv.querySelector("small").textContent=on?`AO VIVO · ${Math.ceil((S.imp.boostUntil-Date.now())/1000)} s`:Date.now()<S.imp.boostNext?`volta em ${Math.ceil((S.imp.boostNext-Date.now())/60000)} min`:"vendas x2 por 2 min"}
+  document.querySelectorAll("[data-ic]").forEach(b=>{const c=+b.dataset.ic;b.disabled=s.cash<c})}
+function stCard(i,x){const s=chs(i),st=s.st[x.id];const fl=flow(i);if(!st.open)return`<div class="flcard" id="impcard"><h4>🔒 ${x.n}</h4><span class="sub">Nova estação: cada cliente passa a render mais ${fmtR(x.v)}.</span><button class="btn pri buybig" data-impa="open" data-id="${x.id}" data-ic="${x.lock}">Construir · ${fmtR(x.lock)}</button></div>`;
+  if(!x.t){const c=C0=>0;const cost=CHAPS[i].st[1].v*6*Math.pow(1.11,s.mk-1);return`<div class="flcard" id="impcard"><h4>${x.n} · nível ${s.mk}</h4><span class="sub">Atrai ${arrival(i).toFixed(2).replace(".",",")} ${CHAPS[i].unit}(s) por segundo. Divulgação traz mais gente, mas só vira dinheiro se as estações aguentarem.</span>${fl.gg==="porta"?'<span class="chip r">É o gargalo: falta cliente</span>':""}
+   <div class="buyx">${[1,10,"max"].map(q=>`<button data-impx="${q}" aria-pressed="${impBuyX===q}">${q==="max"?"MÁX":"x"+q}</button>`).join("")}</div><button class="btn pri buybig" data-impa="lv" data-id="${x.id}" data-ic="${cost}">Divulgar mais · ${fmtR(cost)}</button></div>`}
+  const r=stRate(i,x),lc=x.v*7*Math.pow(1.09,st.L-1),ms=[10,25,50,100,200].find(q=>q>st.L)||st.L;
+  return`<div class="flcard" id="impcard"><div style="display:flex;justify-content:space-between;align-items:center"><h4>${x.n}</h4><span class="chip b">Nível ${st.L}</span></div>
+   <span class="sub">Atende ${r.toFixed(2).replace(".",",")} por segundo · ${st.s} pessoa(s) · vale ${fmtR(x.v)} por ${CHAPS[i].unit}${st.mgr?" · com gerente (+25%)":""}</span>${fl.gg===x.id?'<span class="chip r">Gargalo: a fila trava aqui. Suba o nível ou contrate.</span>':""}
+   <div class="ms"><span class="sub">Próximo marco: nível ${ms} (velocidade x2)</span>${barHtml(st.L/ms*100,"#f2b822")}</div>
+   <div class="buyx">${[1,10,"max"].map(q=>`<button data-impx="${q}" aria-pressed="${impBuyX===q}">${q==="max"?"MÁX":"x"+q}</button>`).join("")}</div>
+   <button class="btn pri buybig" data-impa="lv" data-id="${x.id}" data-ic="${lc}">Subir de nível · ${fmtR(lc)}</button>
+   <div style="display:flex;gap:8px;flex-wrap:wrap">${st.s<MAXS?`<button class="btn" data-impa="staff" data-id="${x.id}" data-ic="${stfCost(i,x)}">Contratar pessoa · ${fmtR(stfCost(i,x))}</button>`:`<span class="chip g">Equipe completa</span>`}
+   ${st.mgr?`<span class="chip g">Gerente ativo</span>`:`<button class="btn" data-impa="mgr" data-id="${x.id}" data-ic="${mgrCost(i,x)}">Gerente · ${fmtR(mgrCost(i,x))}</button>`}</div></div>`}
+function tabImperio(){const i=S.imp.ch,C=CHAPS[i],s=chs(i);const sel=C.st.find(x=>x.id===impSel)||C.st.find(x=>x.id===flow(i).gg)||C.st[1];impSel=sel.id;
+  return`<div class="imphead"><div class="impcash"><span class="coin">$</span><div><b id="impcash">${fmtR(s.cash)}</b><small id="imprate">+${fmtR(income(i))}/s</small></div></div>
+   <button class="tyc live ${Date.now()<S.imp.boostUntil?"on":""}" id="implive"><span>🔴</span><b>Live do CEO</b><small></small></button></div>
+  <div class="chapbar"><div class="eyebrow">${C.cap} · ${C.n}${S.imp.season?` · Temporada ${S.imp.season+1}`:""} · ★ ${S.imp.stars}</div><div class="bar"><i id="impprog" style="width:${Math.min(100,s.earned/C.goal*100)}%;background:#f2b822"></i></div><span class="sub" id="impprogt"></span></div>
+  <div class="twwrap impw" id="impwrap"><span class="t3hint">Toque numa estação · o $ no caixa é para coletar</span></div>
+  ${stCard(i,sel)}
+  <div class="chapnav">${CHAPS.map((c,j)=>`<button data-impch="${j}" ${j===i?'aria-pressed="true"':""} ${j>0&&!S.imp.done.includes(j-1)?"disabled":""}>${S.imp.done.includes(j)?"★ ":""}${c.cap.replace("Capítulo ","Cap. ")}<small>${c.n}</small></button>`).join("")}</div>
+  <p class="sub">Capítulos concluídos rendem 25% em segundo plano. Cada capítulo concluído dá 2 estrelas: +${Math.round(STAR_BONUS*100)}% em tudo, para sempre.</p>`}
+function wireImperio(){i3mount();$("implive").onclick=impLive;
+  document.querySelectorAll("[data-impa]").forEach(b=>b.onclick=()=>{const a=b.dataset.impa,id=b.dataset.id,i=S.imp.ch;if(a==="lv")impLevel(i,id);if(a==="staff")impStaff(i,id);if(a==="mgr")impMgr(i,id);if(a==="open")impOpen(i,id)});
+  document.querySelectorAll("[data-impx]").forEach(b=>b.onclick=()=>{impBuyX=b.dataset.impx==="max"?"max":+b.dataset.impx;impRender(true)});
+  document.querySelectorAll("[data-impch]").forEach(b=>b.onclick=()=>{const j=+b.dataset.impch;if(j===S.imp.ch)return;S.imp.ch=j;impSel=null;I3.dirty=true;impRender(true);if(!S.imp.beat["intro"+j]){S.imp.beat["intro"+j]=1;impIntro(j)}});impHead()}
+function impRender(force){if(tab==="imperio")renderSide(true);save()}
+
+// ---------- missões do capítulo (recompensa a cada poucos minutos) ----------
+function impQuest(){const i=S.imp.ch,C=CHAPS[i],s=chs(i);S.imp.q=S.imp.q||{};let q=S.imp.q[C.id];
+  if(!q){const open=C.st.filter(x=>x.t&&s.st[x.id].open);const k=Math.floor(Math.random()*3);const inc=Math.max(income(i),.5);
+    if(k===0&&open.length){const x=open[Math.floor(Math.random()*open.length)];const L=s.st[x.id].L;q={t:"lv",id:x.id,to:L+(L<10?3:5),n:`Suba ${x.n} ao nível ${L+(L<10?3:5)}`}}
+    else if(k===1){const g=flow(i).gg;const x=C.st.find(y=>y.id===g&&y.t)||open[0];if(x&&s.st[x.id].s<MAXS)q={t:"st",id:x.id,to:s.st[x.id].s+1,n:`Contrate mais 1 pessoa em ${x.n}`};}
+    if(!q)q={t:"earn",from:s.earned,to:inc*150,n:`Fature ${fmtR(inc*150)}`};q.rw=Math.max(income(i),.5)*90;S.imp.q[C.id]=q}
+  return q}
+function questDone(q){const i=S.imp.ch,s=chs(i);if(q.t==="lv")return s.st[q.id].L>=q.to;if(q.t==="st")return s.st[q.id].s>=q.to;return s.earned-q.from>=q.to}
+function questCheck(){const q=impQuest();if(questDone(q)){const s=chs(S.imp.ch);s.cash+=q.rw;addXP(6);S.imp.qn=(S.imp.qn||0)+1;delete S.imp.q[CHAPS[S.imp.ch].id];impToast("Missão cumprida: +"+fmtR(q.rw),q.n);impBurst("+"+fmtR(q.rw));return true}return false}
+const _itQ=impTick;impTick=function(dt){_itQ(dt);if(S&&S.imp){S.imp._qt=(S.imp._qt||0)+dt;if(S.imp._qt>1){S.imp._qt=0;questCheck()}}};
+function questHtml(){const q=impQuest();const i=S.imp.ch,s=chs(i);let pr=0;if(q.t==="lv")pr=s.st[q.id].L/q.to;else if(q.t==="st")pr=s.st[q.id].s/q.to;else pr=(s.earned-q.from)/q.to;
+  return`<div class="iquest"><span class="qi">🎯</span><div style="flex:1;min-width:0"><b>${esc(q.n)}</b>${barHtml(Math.min(100,pr*100),"#1f9a55")}<small>Prêmio: ${fmtR(q.rw)} · missões cumpridas: ${S.imp.qn||0}</small></div></div>`}
+const _tiQ=tabImperio;tabImperio=function(){return _tiQ().replace('<div class="twwrap impw"',questHtml()+'<div class="twwrap impw"')};
 // ======================= MUNDO 3D =======================
 const canvas=$("scene"),labelsEl=$("labels");
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
@@ -3018,13 +3222,13 @@ function frame(now){const dt=Math.min(.1,(now-last)/1000);last=now;let gdt=0;
   worldTick(dt,gdt);lighting();buildingsTick();if(window.KART)KART.visible=!!S.up.kart;
   if(follow){const tg=bento.g.visible?bento.g.position:S.b.trip?bentoLabelPos.clone().setY(0):JETPOS.SP;camTarget.lerp(tmp.copy(tg).setY(0),Math.min(1,dt*2.5))}
   cam.position.copy(camTarget).add(CAM_OFF);cam.lookAt(camTarget);if(!(isMobile()&&screen!=="map")){renderer.render(scene,cam);labels()}
-  towerFrame(dt,gdt);
+  towerFrame(dt,gdt);imperioFrame(dt);
   if(now-uiT>250){uiT=now;renderTop();renderBento();renderSide()}
   if(dirty&&now-saveT>15000){saveT=now;save()}
   requestAnimationFrame(frame)}
 
 // ======================= SALVAR =======================
-function save(){if(!S)return;dirty=false;S.lastSeen=Date.now();const json=JSON.stringify(S);store.set("ceo_v3",json);
+function save(){if(!S)return;dirty=false;S.lastSeen=Date.now();if(S.imp)S.imp.last=Date.now();const json=JSON.stringify(S);store.set("ceo_v3",json);
   if(dbApi&&userId){dbApi.doc("data/users/"+userId+"/save").set({json,t:Date.now()}).catch(()=>{})}}
 function newCareer(){closeModal();S=freshState();startAtNow();renderAll();save();toast("bento","Nova carreira",`Dia 1 começa agora, ${fmt(S.min)}.`)}
 window.newCareer=newCareer;
@@ -3051,10 +3255,10 @@ document.querySelectorAll("[data-nav]").forEach(b=>b.onclick=()=>{if(b.dataset.n
     S.xp=S.xp||0;S.lvl=S.lvl||0;S.ach=S.ach||{};S.quests=S.quests||{};S.chats=S.chats||{};S.diff=S.diff||"real";if(S.onboarded===undefined)S.onboarded=true;if(!S.today.missions)pickMissions()}else{S=freshState();startAtNow()}
   resize();const P=PLACES[S.b.loc];if(!P.remote){bento.g.position.set(P.x,0,P.z);camTarget.set(P.x,0,P.z)}
   renderAll();requestAnimationFrame(frame);
-  if(s)offlineGain();
+  if(s){offlineGain();offlineImp()}
   if(s)toast("bento",`Continuando: dia ${S.day}`,`${dateLabel(S.day)}, ${fmt(S.min)}.`);
   else toast("bento","Dia 1 começa agora",`São ${fmt(S.min)} de ${dateLabel(S.day)}, a mesma hora de hoje.`);
   if(!S.onboarded)setTimeout(startIntro,400);else if(!store.get("ceo_tut5"))setTimeout(startTutorial,600);
-  go(isMobile()?"map":"torre");
+  go("imperio");if(!S.imp.beat.intro0&&S.onboarded){S.imp.beat.intro0=1;setTimeout(()=>impIntro(0),900)}
   aiInit();cloudInit();pwaRegister();pwaNudge()})();
 </script></body></html>
